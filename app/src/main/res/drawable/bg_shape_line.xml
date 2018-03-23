@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+shape是用来定义形状的，gradient定义该形状里面为渐变色填充，
+startColor起始颜色，endColor结束颜色，angle表示方向角度。
+当angle=0时，渐变色是从左向右。 然后逆时针方向转，当angle=90时为从下往上。
+-->
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="line">
+    <solid android:color="@color/red" />
+    <stroke
+        android:width="2dp"
+        android:color="@color/green"
+        android:dashWidth="2dp"
+        android:dashGap="1dp" />
+</shape>

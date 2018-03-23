@@ -1,0 +1,35 @@
+<!DOCTYPE>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript">
+        function android(bl){
+            if(bl){
+
+                document.getElementById("ap").innerHTML= "是true啊参数传过来了"
+            }else{
+                document.getElementById("ap").innerHTML= "改变了段落的文字"
+            }
+        }
+        function self(){
+                document.getElementById("btn").innerHTML= "javascript改变按钮文字"
+        }
+        function collection(){
+            document.getElementById("collection").innerHTML= "已收藏"
+        }
+        function cancelCollection(){
+            document.getElementById("collection").innerHTML= "取消收藏"
+        }
+    </script>
+</head>
+<body>
+<div>
+    <button onclick="window.webView.setToken('token')">设置Token</button>
+    <button onclick="window.webView.finish()">关闭页面</button>
+    <button onclick="window.webView.collection('1')">收藏</button>
+    <button id="collection">收藏</button>
+</div>
+<input type="text" name="firstname" value="Mickey">
+
+</body>
+</html>

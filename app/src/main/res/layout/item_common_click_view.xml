@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/ds110"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/ds30"
+    android:paddingRight="@dimen/ds30"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="财经"
+        android:textSize="16dp"
+        android:textColor="@color/black"/>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+    <ImageView
+        android:id="@+id/arrow"
+        android:layout_width="@dimen/ds30"
+        android:layout_height="@dimen/ds30"
+        android:button="@null"
+        android:src="@drawable/icon_arrow_more" />
+
+</LinearLayout>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/c_bg_a"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ds100"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/top_linear"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ds300"
+            android:background="#007AFF"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="@dimen/ds100"
+                android:layout_height="@dimen/ds100"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/ds50"
+                android:layout_marginRight="@dimen/ds30"
+                android:src="@drawable/icon_account_logout" />
+
+            <TextView
+                android:id="@+id/tv_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/logo"
+                android:text="hongyan@163.com"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/logo"
+                android:background="@drawable/bg_button_corner_white"
+                android:padding="@dimen/ds12"
+                android:text="登录/注册"
+                android:textColor="@color/white"
+                android:textSize="16dp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <com.hongyan.xcj.widget.view.ItemCommonClickView
+                android:id="@+id/linear_collection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:title="我的收藏" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/ds2"
+                android:layout_marginLeft="@dimen/ds30"
+                android:layout_marginRight="@dimen/ds30"
+                android:background="@color/c_bg_line_b" />
+
+            <com.hongyan.xcj.widget.view.ItemCommonClickView
+                android:id="@+id/linear_market"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:title="行情自选" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/ds2"
+                android:background="@color/c_bg_line_b" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/ds20"
+                android:background="@color/c_bg_a" />
+
+            <com.hongyan.xcj.widget.view.ItemCommonClickView
+                android:id="@+id/linear_clear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:title="清除缓存" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/ds2"
+                android:layout_marginLeft="@dimen/ds30"
+                android:layout_marginRight="@dimen/ds30"
+                android:background="@color/c_bg_line_b" />
+
+            <com.hongyan.xcj.widget.view.ItemCommonClickView
+                android:id="@+id/linear_logout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:title="退出登录" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/ds2"
+                android:background="@color/c_bg_line_b" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
