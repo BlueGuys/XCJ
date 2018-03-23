@@ -96,6 +96,7 @@ public class MainTabActivity extends BaseActivity {
         contentAdapter = new ContentPagerAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(contentAdapter);
         mViewPager.setCurrentItem(0);
+        //TODO 添加
     }
 
     class ContentPagerAdapter extends FragmentPagerAdapter {

@@ -95,8 +95,6 @@ public class BaseWebViewActivity extends BaseActivity {
     @SuppressLint({"SetJavaScriptEnabled", "AddJavascriptInterface"})
     private void initView() {
         mWebView = findViewById(R.id.webView);
-        mWebView.requestFocus();
-        mWebView.requestFocusFromTouch();
         tvTitle = findViewById(R.id.webView_title);
         progressView = findViewById(R.id.progress);
         imageBack = findViewById(R.id.rl_left);
@@ -148,27 +146,12 @@ public class BaseWebViewActivity extends BaseActivity {
             mWebView.setWebViewClient(mWebViewClient);
             mWebView.setWebChromeClient(new MyWebChromeClient());
             mWebView.addJavascriptInterface(new ClientFunction(), "webView");
-            mWebView.evaluateJavascript("javascript:showAlert()", new ValueCallback<String>() {
-                @Override
-                public void onReceiveValue(String value) {
-                    //此处为 js 返回的结果
-                }
-            });
-            mWebView.requestFocus();
-            mWebView.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    switch (event.getAction()) {
-                        case MotionEvent.ACTION_DOWN:
-                        case MotionEvent.ACTION_UP:
-                            if (!v.hasFocus()) {
-                                v.requestFocus();
-                            }
-                            break;
-                    }
-                    return false;
-                }
-            });
+//            mWebView.evaluateJavascript("javascript:collection()", new ValueCallback<String>() {
+//                @Override
+//                public void onReceiveValue(String value) {
+//                    //此处为 js 返回的结果
+//                }
+//            });
         } catch (Exception e) {
         }
     }
