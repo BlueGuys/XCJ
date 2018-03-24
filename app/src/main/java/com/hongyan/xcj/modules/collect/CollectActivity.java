@@ -113,6 +113,7 @@ public class CollectActivity extends BaseActivity {
                     mArticleList.clear();
                     mArticleList.addAll(result.data.collectionList);
                     currentPage = 1;
+                    helper.setSwipeToLoadEnabled("1".equals(result.data.hasMore));
                     notifyDataSetChanged();
                 }
             }
@@ -140,10 +141,12 @@ public class CollectActivity extends BaseActivity {
                 if (result != null && result.data != null) {
                     mArticleList.addAll(result.data.collectionList);
                     boolean hasMore = "1".equals(result.data.hasMore);
-                    notifyDataSetChanged();
                     if (hasMore) {
                         currentPage++;
+                    }else{
+                        helper.setSwipeToLoadEnabled(false);
                     }
+                    notifyDataSetChanged();
                 }
             }
         }, new Response.ErrorListener() {

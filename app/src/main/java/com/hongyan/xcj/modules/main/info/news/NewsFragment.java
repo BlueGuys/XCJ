@@ -119,6 +119,7 @@ public class NewsFragment extends BaseFragment {
                     mNewsList.clear();
                     mNewsList.addAll(result.data.list);
                     currentPage = 1;
+                    helper.setSwipeToLoadEnabled("1".equals(result.data.hasMore));
                     notifyDataSetChanged();
                 }
             }
@@ -146,10 +147,12 @@ public class NewsFragment extends BaseFragment {
                 if (result != null && result.data != null) {
                     mNewsList.addAll(result.data.list);
                     boolean hasMore = "1".equals(result.data.hasMore);
-                    notifyDataSetChanged();
                     if (hasMore) {
                         currentPage++;
+                    }else{
+                        helper.setSwipeToLoadEnabled(false);
                     }
+                    notifyDataSetChanged();
                 }
             }
         }, new Response.ErrorListener() {

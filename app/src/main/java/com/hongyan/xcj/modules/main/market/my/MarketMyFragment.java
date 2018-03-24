@@ -111,6 +111,7 @@ public class MarketMyFragment extends BaseFragment {
                     mMyMarketList.clear();
                     mMyMarketList.addAll(result.data.marketList);
                     currentPage = 1;
+                    helper.setSwipeToLoadEnabled("1".equals(result.data.hasMore));
                     notifyDataSetChanged();
                 }
             }
@@ -138,10 +139,12 @@ public class MarketMyFragment extends BaseFragment {
                 if (result != null && result.data != null) {
                     mMyMarketList.addAll(result.data.marketList);
                     boolean hasMore = "1".equals(result.data.hasMore);
-                    notifyDataSetChanged();
                     if (hasMore) {
                         currentPage++;
+                    } else {
+                        helper.setSwipeToLoadEnabled(false);
                     }
+                    notifyDataSetChanged();
                 }
             }
         }, new Response.ErrorListener() {

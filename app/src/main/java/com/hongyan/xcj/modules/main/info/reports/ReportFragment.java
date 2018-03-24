@@ -117,6 +117,7 @@ public class ReportFragment extends BaseFragment {
                     mReportList.clear();
                     mReportList.addAll(result.data.list);
                     currentPage = 1;
+                    helper.setSwipeToLoadEnabled("1".equals(result.data.hasMore));
                     notifyDataSetChanged();
                 }
             }
@@ -144,10 +145,12 @@ public class ReportFragment extends BaseFragment {
                 if (result != null && result.data != null) {
                     mReportList.addAll(result.data.list);
                     boolean hasMore = "1".equals(result.data.hasMore);
-                    notifyDataSetChanged();
                     if (hasMore) {
                         currentPage++;
+                    } else {
+                        helper.setSwipeToLoadEnabled(false);
                     }
+                    notifyDataSetChanged();
                 }
             }
         }, new Response.ErrorListener() {
