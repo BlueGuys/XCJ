@@ -82,8 +82,8 @@ public class BaseWebViewActivity extends BaseActivity {
         Uri uri = Uri.parse(url);
         String type = uri.getQueryParameter("title");
         setTitle(type);
-//        mWebView.loadUrl(url);
-        mWebView.loadUrl("file:///android_asset/hello.html");
+        mWebView.loadUrl(url);
+//        mWebView.loadUrl("file:///android_asset/hello.html");
     }
 
     public void setTitle(String title) {
