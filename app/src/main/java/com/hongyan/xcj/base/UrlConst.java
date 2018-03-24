@@ -48,4 +48,27 @@ public class UrlConst {
     public static String getCancelCollectUrl() {
         return HOST + "Api/Users/cancel_collect.html";
     }
+
+    /**
+     * 首页->推荐
+     */
+    public static String getInfoRecommendUrl() {
+        return HOST + "Api/Article/index.html";
+    }
+
+    /**
+     * 首页->快讯
+     */
+    public static String getInfoNewsUrl() {
+        return HOST + "Api/Users/cancel_collect.html";
+    }
+
+    /**
+     * 首页->分析师说
+     */
+    public static String getInfoAnalysisUrl() {
+        return HOST + "Api/Users/cancel_collect.html";
+    }
+
+
 }

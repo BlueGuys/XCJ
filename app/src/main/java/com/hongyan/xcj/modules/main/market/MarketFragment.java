@@ -16,7 +16,6 @@ import com.hongyan.xcj.modules.main.market.my.MarketMyFragment;
 
 public class MarketFragment extends BaseFragment {
 
-    private MarketToggleButton toggleButton;
     private MarketAllFragment marketAllFragment = new MarketAllFragment();
     private MarketMyFragment marketMyFragment = new MarketMyFragment();
     private FragmentManager fragmentManager;
@@ -30,7 +29,7 @@ public class MarketFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        toggleButton = view.findViewById(R.id.btn_toggle);
+        MarketToggleButton toggleButton = view.findViewById(R.id.btn_toggle);
         toggleButton.setStatusChangeListener(new MarketToggleButton.OnStatusChangeListener() {
             @Override
             public void onChange(int buttonId) {
