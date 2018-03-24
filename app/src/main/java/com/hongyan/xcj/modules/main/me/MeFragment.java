@@ -17,6 +17,7 @@ import com.hongyan.xcj.base.BaseWebViewActivity;
 import com.hongyan.xcj.core.AccountInfo;
 import com.hongyan.xcj.core.AccountManager;
 import com.hongyan.xcj.core.AccountMessageEvent;
+import com.hongyan.xcj.modules.article.ArticleActivity;
 import com.hongyan.xcj.modules.coin.CoinDetailActivity;
 import com.hongyan.xcj.modules.collect.CollectActivity;
 import com.hongyan.xcj.widget.view.ItemCommonClickView;
@@ -74,6 +75,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
             case R.id.linear_market:
                 break;
             case R.id.linear_clear:
+                ArticleActivity.startActivity(getActivity(), "http://www.xicaijing.com/App/Users/login.html?title=登录");
                 break;
             case R.id.linear_logout:
                 AccountManager.getInstance().logout();

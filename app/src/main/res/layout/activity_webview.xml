@@ -45,7 +45,8 @@
             android:id="@+id/rl_right"
             android:layout_width="44dp"
             android:layout_height="match_parent"
-            android:paddingRight="@dimen/ds30">
+            android:paddingRight="@dimen/ds30"
+            android:visibility="invisible">
 
             <ImageView
                 android:id="@+id/image_collection"
