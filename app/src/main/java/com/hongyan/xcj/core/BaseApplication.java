@@ -1,7 +1,9 @@
 package com.hongyan.xcj.core;
 
 import android.app.Application;
+import android.graphics.Bitmap;
 
+import com.hongyan.xcj.R;
 import com.hongyan.xcj.network.RequestQueue;
 import com.hongyan.xcj.network.toolbox.Volley;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
@@ -12,6 +14,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.core.decode.BaseImageDecoder;
+import com.nostra13.universalimageloader.core.display.RoundedVignetteBitmapDisplayer;
 import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 import com.nostra13.universalimageloader.utils.StorageUtils;
 
@@ -24,6 +27,7 @@ public class BaseApplication extends Application {
 
     private static BaseApplication _instance;
     private RequestQueue mRequestQueue;
+    private DisplayImageOptions displayImageOptions;
 
 
     @Override
@@ -61,6 +65,22 @@ public class BaseApplication extends Application {
                 .writeDebugLogs()
                 .build();
         ImageLoader.getInstance().init(config);
+    }
+
+    public DisplayImageOptions getImageLoaderOptions() {
+        if (displayImageOptions == null) {
+            displayImageOptions = new DisplayImageOptions.Builder()
+//                .showImageOnLoading(R.drawable.ic_stub)
+//                .showImageForEmptyUri(R.drawable.ic_empty)
+//                .showImageOnFail(R.drawable.ic_error)
+                    .cacheInMemory(true)
+                    .cacheOnDisk(true)
+                    .considerExifParams(true)
+                    .bitmapConfig(Bitmap.Config.RGB_565)
+                    .displayer(new RoundedVignetteBitmapDisplayer(10, 10))
+                    .build();
+        }
+        return displayImageOptions;
     }
 
     public static BaseApplication getInstance() {

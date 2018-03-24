@@ -6,10 +6,19 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import com.hongyan.xcj.R;
 import com.hongyan.xcj.base.BaseActivity;
+import com.hongyan.xcj.base.JPBaseModel;
+import com.hongyan.xcj.base.JPRequest;
+import com.hongyan.xcj.base.JPResponse;
+import com.hongyan.xcj.base.UrlConst;
+import com.hongyan.xcj.modules.main.info.recommend.InfoRecommendAdapter;
+import com.hongyan.xcj.modules.main.info.recommend.InfoRecommendResult;
 import com.hongyan.xcj.modules.main.market.MarketAdapter;
+import com.hongyan.xcj.network.Response;
+import com.hongyan.xcj.network.VolleyError;
 import com.hongyan.xcj.test.AdapterWrapper;
 import com.hongyan.xcj.test.DividerItemDecoration;
 import com.hongyan.xcj.test.SwipeToLoadHelper;
@@ -24,6 +33,9 @@ public class CollectActivity extends BaseActivity {
     private CollectionAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private AdapterWrapper adapterWrapper;
+    private SwipeToLoadHelper helper;
+    private int currentPage = 1;
+    private ArrayList<CollectionResult.Collection> mArticleList = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,7 +43,12 @@ public class CollectActivity extends BaseActivity {
         setContentView(R.layout.activity_collect);
         setTitle("我的收藏");
         initView();
-        notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        refresh();
     }
 
     private void initView() {
@@ -43,44 +60,82 @@ public class CollectActivity extends BaseActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new CollectionAdapter();
         adapterWrapper = new AdapterWrapper(mAdapter);
-        final SwipeToLoadHelper helper = new SwipeToLoadHelper(mRecyclerView, adapterWrapper);
+        helper = new SwipeToLoadHelper(mRecyclerView, adapterWrapper);
         mRecyclerView.setAdapter(adapterWrapper);
         mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        //我在List最前面加入一条数据
-                        mAdapter.notifyDataSetChanged();
-                        mRefreshLayout.setRefreshing(false);
-                    }
-                }, 1000);
+                refresh();
             }
         });
         helper.setLoadMoreListener(new SwipeToLoadHelper.LoadMoreListener() {
             @Override
             public void onLoad() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        helper.setLoadMoreFinish();
-                    }
-                }, 1000);
+                loadMore();
             }
         });
     }
 
     private void notifyDataSetChanged() {
-        mAdapter.setData(getData());
+        mAdapter.setData(mArticleList);
         adapterWrapper.notifyDataSetChanged();
     }
 
-    private ArrayList<CollectionResult.Collection> getData() {
-        ArrayList<CollectionResult.Collection> data = new ArrayList<>();
-        String temp = " item";
-        for (int i = 0; i < 8; i++) {
-            data.add(new CollectionResult.Collection());
-        }
-        return data;
+    private void refresh() {
+        JPRequest request = new JPRequest<>(CollectionResult.class, UrlConst.getCollectUrl(), new Response.Listener<JPResponse>() {
+            @Override
+            public void onResponse(JPResponse response) {
+                mRefreshLayout.setRefreshing(false);
+                if (null == response || null == response.getResult()) {
+                    return;
+                }
+                CollectionResult result = (CollectionResult) response.getResult();
+                if (result != null && result.data != null) {
+                    mArticleList.clear();
+                    mArticleList.addAll(result.data.collectionList);
+                    currentPage = 1;
+                    notifyDataSetChanged();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("error", error.getErrorMessage());
+            }
+        });
+        request.addParam("pagesize", "20");
+        request.addParam("p", 1);
+        JPBaseModel baseModel = new JPBaseModel();
+        baseModel.sendRequest(request);
     }
+
+    private void loadMore() {
+        JPRequest request = new JPRequest<>(CollectionResult.class, UrlConst.getCollectUrl(), new Response.Listener<JPResponse>() {
+            @Override
+            public void onResponse(JPResponse response) {
+                helper.setLoadMoreFinish();
+                if (null == response || null == response.getResult()) {
+                    return;
+                }
+                CollectionResult result = (CollectionResult) response.getResult();
+                if (result != null && result.data != null) {
+                    mArticleList.addAll(result.data.collectionList);
+                    boolean hasMore = "1".equals(result.data.hasMore);
+                    notifyDataSetChanged();
+                    if (hasMore) {
+                        currentPage++;
+                    }
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("error", error.getErrorMessage());
+            }
+        });
+        request.addParam("pagesize", "20");
+        request.addParam("p", currentPage);
+        JPBaseModel baseModel = new JPBaseModel();
+        baseModel.sendRequest(request);
+    }
+
 }

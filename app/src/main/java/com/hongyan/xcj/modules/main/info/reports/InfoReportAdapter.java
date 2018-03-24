@@ -1,4 +1,4 @@
-package com.hongyan.xcj.modules.main.info.recommend;
+package com.hongyan.xcj.modules.main.info.reports;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,30 +13,30 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
 
-public class InfoRecommendAdapter extends RecyclerView.Adapter<InfoRecommendAdapter.ViewHolder> {
+public class InfoReportAdapter extends RecyclerView.Adapter<InfoReportAdapter.ViewHolder> {
 
-    private ArrayList<InfoRecommendResult.Article> mList;
+    private ArrayList<InfoReportResult.Report> mList;
 
-    public void setData(ArrayList<InfoRecommendResult.Article> data) {
+    public void setData(ArrayList<InfoReportResult.Report> data) {
         this.mList = data;
         notifyDataSetChanged();
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_info_recommend, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_info_report, parent, false);
         return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         // 绑定数据
-        InfoRecommendResult.Article article = mList.get(position);
-        if (article != null) {
-            holder.articleName.setText(article.title);
-            holder.articleTime.setText(article.update_time);
-            holder.articleWebSite.setText(article.source);
-            ImageLoader.getInstance().displayImage(article.photo, holder.articleImage, BaseApplication.getInstance().getImageLoaderOptions());
+        InfoReportResult.Report report = mList.get(position);
+        if (report != null) {
+            holder.articleName.setText(report.title);
+            holder.articleTime.setText(report.update_time);
+            holder.articleWebSite.setText(report.source);
+            ImageLoader.getInstance().displayImage(report.photo, holder.articleImage, BaseApplication.getInstance().getImageLoaderOptions());
         }
     }
 

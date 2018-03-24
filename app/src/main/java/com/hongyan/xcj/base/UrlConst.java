@@ -18,7 +18,7 @@ public class UrlConst {
      * 鉴权注册接口
      */
     public static String getInfoList() {
-        return HOST + "Api/Article/index.html";
+        return HOST + "Api/News/index.html";
     }
 
     /**
@@ -33,6 +33,13 @@ public class UrlConst {
      */
     public static String getAccountInfo() {
         return HOST + "Api/Users/user_info.html";
+    }
+
+    /**
+     * 我的收藏
+     */
+    public static String getMyCollectUrl() {
+        return HOST + "Api/Users/articles.html";
     }
 
     /**
@@ -60,7 +67,7 @@ public class UrlConst {
      * 首页->快讯
      */
     public static String getInfoNewsUrl() {
-        return HOST + "Api/Users/cancel_collect.html";
+        return HOST + "Api/Article/newsflash.html";
     }
 
     /**
@@ -70,5 +77,11 @@ public class UrlConst {
         return HOST + "Api/Article/analyst.html";
     }
 
+    /**
+     * 首页->研报
+     */
+    public static String getInfoReportUrl() {
+        return HOST + "Api/Article/projects.html";
+    }
 
 }

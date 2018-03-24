@@ -28,7 +28,7 @@ public class CollectionManager {
         return instance;
     }
 
-    public void collectionArticle(String articleId) {
+    public void collectionArticle(String articleId, String type) {
         if (null == articleId) {
             return;
         }
@@ -50,10 +50,11 @@ public class CollectionManager {
             }
         });
         request.addParam("aid", articleId);
+        request.addParam("type", type);
         new JPBaseModel().sendRequest(request);
     }
 
-    public void cancelCollectionArticle(String articleId) {
+    public void cancelCollectionArticle(String articleId, String type) {
         if (null == articleId) {
             return;
         }
@@ -75,6 +76,7 @@ public class CollectionManager {
             }
         });
         request.addParam("aid", articleId);
+        request.addParam("type", type);
         new JPBaseModel().sendRequest(request);
     }
 

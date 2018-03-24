@@ -15,7 +15,9 @@ import com.hongyan.xcj.base.BaseFragment;
 import com.hongyan.xcj.base.JPBaseModel;
 import com.hongyan.xcj.base.JPRequest;
 import com.hongyan.xcj.base.JPResponse;
+import com.hongyan.xcj.base.RecyclerItemClickListener;
 import com.hongyan.xcj.base.UrlConst;
+import com.hongyan.xcj.modules.article.ArticleActivity;
 import com.hongyan.xcj.network.Response;
 import com.hongyan.xcj.network.VolleyError;
 import com.hongyan.xcj.test.AdapterWrapper;
@@ -34,20 +36,28 @@ public class RecommendFragment extends BaseFragment {
     private SwipeToLoadHelper helper;
     private int currentPage = 1;
     private ArrayList<InfoRecommendResult.Article> mArticleList = new ArrayList<>();
+    private View view;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_recommend, container, false);
+        if (view == null) {
+            view = inflater.inflate(R.layout.fragment_recommend, container, false);
+            initView();
+            refresh();
+        }
+        return view;
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        initView(view);
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (null != view) {
+            ((ViewGroup) view.getParent()).removeView(view);
+        }
     }
 
-    private void initView(View view) {
+    private void initView() {
         mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         mRefreshLayout = view.findViewById(R.id.layout_swipe_refresh);
         mRecyclerView = view.findViewById(R.id.recycler_view);
@@ -69,6 +79,22 @@ public class RecommendFragment extends BaseFragment {
                 loadMore();
             }
         });
+        mRecyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(getActivity(), mRecyclerView, new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        InfoRecommendResult.Article article = mArticleList.get(position);
+                        if (article != null) {
+                            ArticleActivity.startActivity(getActivity(), article.url);
+                        }
+                    }
+
+                    @Override
+                    public void onItemLongClick(View view, int position) {
+
+                    }
+                })
+        );
     }
 
     private void notifyDataSetChanged() {
@@ -76,26 +102,9 @@ public class RecommendFragment extends BaseFragment {
         adapterWrapper.notifyDataSetChanged();
     }
 
-    private ArrayList<String> getData() {
-        ArrayList<String> data = new ArrayList<>();
-        String temp = " item";
-        for (int i = 0; i < 8; i++) {
-            data.add(i + temp);
-        }
-        return data;
-    }
-
-    //每次上拉加载的时候，给RecyclerView的后面添加了10条数据数据
-    private void loadMoreData() {
-        for (int i = 0; i < 20; i++) {
-            mAdapter.notifyDataSetChanged();
-        }
-    }
-
     @Override
     public void onResume() {
         super.onResume();
-        refresh();
     }
 
     private void refresh() {

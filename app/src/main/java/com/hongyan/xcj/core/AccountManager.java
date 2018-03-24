@@ -18,6 +18,7 @@ public class AccountManager {
 
     private static volatile AccountManager instance;
     private AccountInfo mAccountInfo;
+    private String token;
 
     private AccountManager() {
         init();
@@ -42,7 +43,12 @@ public class AccountManager {
     }
 
     public void setToken(String token) {
+        this.token = token;
         getAccountInfoFromServer(token);
+    }
+
+    public String getToken() {
+        return this.token;
     }
 
     public AccountInfo getAccountInfo() {
