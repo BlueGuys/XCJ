@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.hongyan.xcj.R;
 import com.hongyan.xcj.base.BaseFragment;
@@ -34,7 +35,7 @@ public class MarketFragment extends BaseFragment {
     private MarketAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private AdapterWrapper adapterWrapper;
-
+    private SwipeToLoadHelper helper;
     private ArrayList<MarketResult.Market> mAllMarketList = new ArrayList<>();
     private ArrayList<MarketResult.Market> mMeMarketList = new ArrayList<>();
 
@@ -42,6 +43,11 @@ public class MarketFragment extends BaseFragment {
      * 是全部列表
      */
     private boolean isAll = true;
+
+    //分页标志
+    private int page=1;
+
+    private boolean hasmore=true;
 
     @Nullable
     @Override
@@ -67,29 +73,33 @@ public class MarketFragment extends BaseFragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new MarketAdapter();
         adapterWrapper = new AdapterWrapper(mAdapter);
-        final SwipeToLoadHelper helper = new SwipeToLoadHelper(mRecyclerView, adapterWrapper);
+        helper = new SwipeToLoadHelper(mRecyclerView, adapterWrapper);
         mRecyclerView.setAdapter(adapterWrapper);
         mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        //我在List最前面加入一条数据
-                        mAdapter.notifyDataSetChanged();
-                        mRefreshLayout.setRefreshing(false);
-                    }
-                }, 1000);
+//                new Handler().postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        //我在List最前面加入一条数据
+//                        mAdapter.notifyDataSetChanged();
+//                        mRefreshLayout.setRefreshing(false);
+//                    }
+//                }, 1000);
+
+                registerMore(true);
+
             }
         });
         helper.setLoadMoreListener(new SwipeToLoadHelper.LoadMoreListener() {
             @Override
             public void onLoad() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        helper.setLoadMoreFinish();
-                    }
-                }, 1000);
+//                new Handler().postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        helper.setLoadMoreFinish();
+//                    }
+//                }, 1000);
+                registerMore(false);
             }
         });
     }
@@ -118,22 +128,38 @@ public class MarketFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        register();
+
+        registerMore(false);
     }
 
     /**
      * 向鉴权中心注册
      */
-    private void register() {
+    private void registerMore(final boolean refresh) {
+        if(refresh){
+            if (isAll) {
+                mAllMarketList.clear();
+            } else {
+                mMeMarketList.clear();
+            }
+            page=1;
+        }
         JPRequest request = new JPRequest<>(MarketResult.class, UrlConst.getMarketList(), new Response.Listener<JPResponse>() {
             @Override
             public void onResponse(JPResponse response) {
-                if (null == response || null == response.getResult()) {
+                if(refresh){
+                    mRefreshLayout.setRefreshing(false);
+                }else{ helper.setLoadMoreFinish();
+                }
+                if (null == response || null == response.getResult()) {;
                     return;
                 }
                 MarketResult result = (MarketResult) response.getResult();
                 if (result != null && result.data != null) {
+                    hasmore= "1".equals(result.data.hasMore);
                     setData(result.data.marketList);
+                    notifyDataSetChanged();
+                    page=+1;
                 }
             }
         }, new Response.ErrorListener() {
@@ -143,7 +169,7 @@ public class MarketFragment extends BaseFragment {
             }
         });
         request.addParam("pagesize", "10");
-        request.addParam("p", "1");
+        request.addParam("p", page);
         JPBaseModel baseModel = new JPBaseModel();
         baseModel.sendRequest(request);
     }
@@ -156,4 +182,34 @@ public class MarketFragment extends BaseFragment {
         }
         notifyDataSetChanged();
     }
+
+
+//    /**
+//     * 向鉴权中心注册
+//     */
+//    private void register() {
+//        JPRequest request = new JPRequest<>(MarketResult.class, UrlConst.getMarketList(), new Response.Listener<JPResponse>() {
+//            @Override
+//            public void onResponse(JPResponse response) {
+//                if (null == response || null == response.getResult()) {
+//                    return;
+//                }
+//                MarketResult result = (MarketResult) response.getResult();
+//                if (result != null && result.data != null) {
+//                    setData(result.data.marketList);
+//                }
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                Log.e("error", error.getErrorMessage());
+//            }
+//        });
+//        request.addParam("pagesize", "10");
+//        request.addParam("p", "1");
+//        JPBaseModel baseModel = new JPBaseModel();
+//        baseModel.sendRequest(request);
+//    }
+
+
 }

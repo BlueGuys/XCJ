@@ -18,6 +18,8 @@ public class MarketResult extends JPResult {
     class Data {
 
         public ArrayList<Market> marketList;
+
+        public String hasMore;
     }
 
     class Market {
