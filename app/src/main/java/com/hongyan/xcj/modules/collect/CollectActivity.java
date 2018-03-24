@@ -81,7 +81,7 @@ public class CollectActivity extends BaseActivity {
     }
 
     private void refresh() {
-        JPRequest request = new JPRequest<>(CollectionResult.class, UrlConst.getCollectUrl(), new Response.Listener<JPResponse>() {
+        JPRequest request = new JPRequest<>(CollectionResult.class, UrlConst.getMyCollectUrl(), new Response.Listener<JPResponse>() {
             @Override
             public void onResponse(JPResponse response) {
                 mRefreshLayout.setRefreshing(false);
@@ -109,7 +109,7 @@ public class CollectActivity extends BaseActivity {
     }
 
     private void loadMore() {
-        JPRequest request = new JPRequest<>(CollectionResult.class, UrlConst.getCollectUrl(), new Response.Listener<JPResponse>() {
+        JPRequest request = new JPRequest<>(CollectionResult.class, UrlConst.getMyCollectUrl(), new Response.Listener<JPResponse>() {
             @Override
             public void onResponse(JPResponse response) {
                 helper.setLoadMoreFinish();
