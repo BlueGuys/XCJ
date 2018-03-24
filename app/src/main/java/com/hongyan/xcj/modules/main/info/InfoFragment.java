@@ -22,17 +22,27 @@ public class InfoFragment extends BaseFragment {
     private InfoHeaderView headerView;
     private ViewPager mViewPager;
     private ArrayList<Fragment> fragments = new ArrayList<>();
-
+    private View view;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_info, container, false);
+        if (view == null) {
+            view = inflater.inflate(R.layout.fragment_info, container, false);
+            initView();
+        }
+        return view;
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (null != view) {
+            ((ViewGroup) view.getParent()).removeView(view);
+        }
+    }
+
+    private void initView() {
         headerView = view.findViewById(R.id.headView);
         headerView.setOnTabChangeListener(new InfoHeaderView.OnTabChangeListener() {
             @Override
