@@ -63,16 +63,13 @@
         android:layout_height="@dimen/ds2"
         android:background="@color/c_bg_line_b" />
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/layout_swipe_refresh"
+    <LinearLayout
+        android:id="@+id/fragment_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white" />
-    </android.support.v4.widget.SwipeRefreshLayout>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="vertical" />
 
 </LinearLayout>

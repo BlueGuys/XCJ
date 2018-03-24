@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="@dimen/ds200"
     android:layout_height="@dimen/ds60"
-    android:gravity="center_vertical"
     android:background="@drawable/bg_button_market_blue"
+    android:gravity="center_vertical"
     android:orientation="horizontal">
 
     <TextView
@@ -12,10 +12,10 @@
         android:layout_height="@dimen/ds60"
         android:layout_alignParentRight="true"
         android:layout_weight="1"
-        android:background="@color/transparent"
+        android:background="@drawable/bg_button_market_white"
         android:gravity="center"
         android:text="全部"
-        android:textColor="@color/white" />
+        android:textColor="@color/market_blue_bg" />
 
     <TextView
         android:id="@+id/tv_right"
@@ -23,9 +23,9 @@
         android:layout_height="@dimen/ds60"
         android:layout_alignParentLeft="true"
         android:layout_weight="1"
-        android:background="@drawable/bg_button_market_white"
+        android:background="@color/transparent"
         android:gravity="center"
         android:text="自选"
-        android:textColor="@color/market_blue_bg" />
+        android:textColor="@color/white" />
 
 </LinearLayout>

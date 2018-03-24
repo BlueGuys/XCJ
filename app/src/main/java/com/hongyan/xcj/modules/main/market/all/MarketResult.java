@@ -1,4 +1,4 @@
-package com.hongyan.xcj.modules.main.market;
+package com.hongyan.xcj.modules.main.market.all;
 
 
 import com.hongyan.xcj.base.JPResult;

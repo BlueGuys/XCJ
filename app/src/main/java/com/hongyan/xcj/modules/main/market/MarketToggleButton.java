@@ -14,7 +14,7 @@ public class MarketToggleButton extends LinearLayout {
 
     private TextView tvLeft;
     private TextView tvRight;
-    private boolean isLeft;
+    private boolean isLeft = true;
     private OnStatusChangeListener mListener;
 
     public MarketToggleButton(Context context, @Nullable AttributeSet attrs) {
