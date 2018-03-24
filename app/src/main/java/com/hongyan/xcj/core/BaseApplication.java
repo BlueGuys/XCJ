@@ -25,6 +25,7 @@ public class BaseApplication extends Application {
     private static BaseApplication _instance;
     private RequestQueue mRequestQueue;
 
+
     @Override
     public void onCreate() {
         super.onCreate();
