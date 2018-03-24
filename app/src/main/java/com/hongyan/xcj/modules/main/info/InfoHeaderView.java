@@ -101,11 +101,21 @@ public class InfoHeaderView extends LinearLayout {
         linearLayout.addView(textView);
     }
 
+    public void setCurrentIndex(int index) {
+        for (int i = 0; i < 4; i++) {
+            TextView tv = (TextView) linearLayout.getChildAt(i);
+            TextPaint tp = tv.getPaint();
+            tp.setFakeBoldText(i == index);
+            tv.setText(tv.getText());
+        }
+        currentIndex = index;
+    }
+
     public void setOnTabChangeListener(OnTabChangeListener listener) {
         this.mOnTabChangeListener = listener;
     }
 
-    public void setmOnSearchListener(OnSearchListener listener) {
+    public void setOnSearchListener(OnSearchListener listener) {
         this.mOnSearchListener = listener;
     }
 

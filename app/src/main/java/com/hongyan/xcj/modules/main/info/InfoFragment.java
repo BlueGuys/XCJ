@@ -38,10 +38,10 @@ public class InfoFragment extends BaseFragment {
         headerView.setOnTabChangeListener(new InfoHeaderView.OnTabChangeListener() {
             @Override
             public void onChange(int index) {
-                showSuccessToast("切换为" + index);
+                mViewPager.setCurrentItem(index);
             }
         });
-        headerView.setmOnSearchListener(new InfoHeaderView.OnSearchListener() {
+        headerView.setOnSearchListener(new InfoHeaderView.OnSearchListener() {
             @Override
             public void onSearch(String text) {
                 showSuccessToast("搜索文案" + text);
@@ -55,5 +55,21 @@ public class InfoFragment extends BaseFragment {
         adapter = new MyFragmentAdapter(getFragmentManager(), fragments);
         mViewPager.setOffscreenPageLimit(4);
         mViewPager.setAdapter(adapter);
+        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                headerView.setCurrentIndex(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 }
