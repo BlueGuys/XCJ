@@ -9,11 +9,21 @@ import android.widget.TextView;
 
 import com.hongyan.xcj.R;
 import com.hongyan.xcj.core.BaseApplication;
+import com.hongyan.xcj.test.MyHeaderView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
 
-public class InfoRecommendAdapter extends RecyclerView.Adapter<InfoRecommendAdapter.ViewHolder> {
+public class InfoRecommendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
+    /**
+     * Header
+     */
+    public static final int ITEM_TYPE_HEADER = 1000;
+    /**
+     * Item
+     */
+    public static final int ITEM_TYPE_ITEM = 1001;
 
     private ArrayList<InfoRecommendResult.Article> mList;
 
@@ -23,35 +33,78 @@ public class InfoRecommendAdapter extends RecyclerView.Adapter<InfoRecommendAdap
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_info_recommend, parent, false);
-        return new ViewHolder(v);
+    public int getItemViewType(int position) {
+        if (position == 0) {
+            return ITEM_TYPE_HEADER;
+        }
+        return ITEM_TYPE_ITEM;
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        // 绑定数据
-        InfoRecommendResult.Article article = mList.get(position);
-        if (article != null) {
-            holder.articleName.setText(article.title);
-            holder.articleTime.setText(article.update_time);
-            holder.articleWebSite.setText(article.source);
-            ImageLoader.getInstance().displayImage(article.photo, holder.articleImage, BaseApplication.getInstance().getImageLoaderOptions());
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        if (viewType == ITEM_TYPE_HEADER) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_info_header, parent, false);
+            return new HeadViewHolder(view);
+        } else {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_info_recommend, parent, false);
+            return new ItemViewHolder(view);
         }
     }
 
     @Override
-    public int getItemCount() {
-        return mList == null ? 0 : mList.size();
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        if (holder instanceof HeadViewHolder) {
+            ((HeadViewHolder) holder).headerView.initData(getData(), new MyHeaderView.OnPageClickListener() {
+                @Override
+                public void setOnPage(int position) {
+
+                }
+            });
+        } else if (holder instanceof ItemViewHolder) {
+            InfoRecommendResult.Article article = mList.get(position);
+            if (article != null) {
+                ((ItemViewHolder) holder).articleName.setText(article.title);
+                ((ItemViewHolder) holder).articleTime.setText(article.update_time);
+                ((ItemViewHolder) holder).articleWebSite.setText(article.source);
+                ImageLoader.getInstance().displayImage(article.photo, ((ItemViewHolder) holder).articleImage, BaseApplication.getInstance().getImageLoaderOptions());
+            }
+        }
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    private ArrayList<MyHeaderView.Entity> getData() {
+        ArrayList<MyHeaderView.Entity> list = new ArrayList<MyHeaderView.Entity>();
+        MyHeaderView.Entity Entity1 = new MyHeaderView.Entity();
+        Entity1.setImageurl("http://img.zcool.cn/community/0142135541fe180000019ae9b8cf86.jpg@1280w_1l_2o_100sh.png");
+        Entity1.setTitle("AAA");
+        list.add(Entity1);
+        MyHeaderView.Entity Entity2 = new MyHeaderView.Entity();
+        Entity2.setImageurl("http://pic71.nipic.com/file/20150610/13549908_104823135000_2.jpg");
+        Entity2.setTitle("BBB");
+        list.add(Entity2);
+        return list;
+    }
+
+    @Override
+    public int getItemCount() {
+        return mList == null ? 1 : mList.size() + 1;
+    }
+
+    public static class HeadViewHolder extends RecyclerView.ViewHolder {
+        MyHeaderView headerView;
+
+        public HeadViewHolder(View itemView) {
+            super(itemView);
+            headerView = itemView.findViewById(R.id.head_view);
+        }
+    }
+
+    public static class ItemViewHolder extends RecyclerView.ViewHolder {
         ImageView articleImage;
         TextView articleName;
         TextView articleTime;
         TextView articleWebSite;
 
-        public ViewHolder(View itemView) {
+        public ItemViewHolder(View itemView) {
             super(itemView);
             articleImage = itemView.findViewById(R.id.article_image);
             articleName = itemView.findViewById(R.id.article_title);

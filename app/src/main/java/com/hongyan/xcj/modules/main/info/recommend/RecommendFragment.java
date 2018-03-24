@@ -83,7 +83,10 @@ public class RecommendFragment extends BaseFragment {
                 new RecyclerItemClickListener(getActivity(), mRecyclerView, new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        InfoRecommendResult.Article article = mArticleList.get(position);
+                        if (position == 0) {
+                            return;
+                        }
+                        InfoRecommendResult.Article article = mArticleList.get(position - 1);
                         if (article != null) {
                             ArticleActivity.startActivity(getActivity(), article.url);
                         }
@@ -150,7 +153,7 @@ public class RecommendFragment extends BaseFragment {
                     boolean hasMore = "1".equals(result.data.hasMore);
                     if (hasMore) {
                         currentPage++;
-                    }else{
+                    } else {
                         helper.setSwipeToLoadEnabled(false);
                     }
                     notifyDataSetChanged();
