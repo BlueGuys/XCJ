@@ -9,13 +9,10 @@ import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.KeyEvent;
-import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.SslErrorHandler;
-import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -24,10 +21,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-
-import com.hongyan.xcj.core.AccountManager;
-
 import com.hongyan.xcj.R;
+import com.hongyan.xcj.core.AccountManager;
 import com.hongyan.xcj.widget.loading.WebViewProgressView;
 
 /**
@@ -40,16 +35,14 @@ import com.hongyan.xcj.widget.loading.WebViewProgressView;
  */
 public class BaseWebViewActivity extends BaseActivity {
 
-
     public static final String URL = "url";
-    private WebView mWebView;
-    private String mUrl;
-    private WebViewProgressView progressView;
-    private RelativeLayout imageBack;
-    private RelativeLayout rightLayout;
-    private ImageView imageCollection;
-    private TextView tvTitle;
-    private boolean isCollection = false;
+    protected WebView mWebView;
+    protected String mUrl;
+    protected WebViewProgressView progressView;
+    protected RelativeLayout imageBack;
+    protected RelativeLayout rightLayout;
+    protected ImageView imageCollection;
+    protected TextView tvTitle;
 
     public static void startActivity(Context context, String url) {
         Intent intent = new Intent(context, BaseWebViewActivity.class);
@@ -62,34 +55,21 @@ public class BaseWebViewActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_webview);
         hideNavigationView();
-        initData();
         initView();
-        load(mUrl);
-    }
-
-    protected void initData() {
-        Intent intent = getIntent();
-        mUrl = intent.getStringExtra(URL);
-    }
-
-    private void load(String url) {
-        if (mWebView == null) {
-            return;
-        }
-        if (url == null || url.length() == 0) {
-            return;
-        }
-        Uri uri = Uri.parse(url);
-        String type = uri.getQueryParameter("title");
-        setTitle(type);
-        mWebView.loadUrl(url);
+        mUrl = getIntent().getStringExtra(URL);
+        setTitle();
+        mWebView.loadUrl(mUrl);
 //        mWebView.loadUrl("file:///android_asset/hello.html");
     }
 
-    public void setTitle(String title) {
-        if (tvTitle != null) {
-            tvTitle.setText(title);
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (mWebView.canGoBack()) {
+                mWebView.goBack();//返回上一页面
+                return true;
+            }
         }
+        return super.onKeyDown(keyCode, event);
     }
 
     @SuppressLint({"SetJavaScriptEnabled", "AddJavascriptInterface"})
@@ -98,6 +78,8 @@ public class BaseWebViewActivity extends BaseActivity {
         tvTitle = findViewById(R.id.webView_title);
         progressView = findViewById(R.id.progress);
         imageBack = findViewById(R.id.rl_left);
+        imageCollection = findViewById(R.id.image_collection);
+        rightLayout = findViewById(R.id.rl_right);
         imageBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -108,23 +90,6 @@ public class BaseWebViewActivity extends BaseActivity {
                 }
             }
         });
-        imageCollection = findViewById(R.id.image_collection);
-        rightLayout = findViewById(R.id.rl_right);
-        rightLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (isCollection) {
-                    mWebView.loadUrl("javascript:cancelCollection()");
-                    isCollection = false;
-                } else {
-                    mWebView.loadUrl("javascript:collection()");
-                    isCollection = true;
-                }
-                imageCollection.setImageResource(isCollection ? R.drawable.icon_collection : R.drawable.icon_cancel_collection);
-            }
-        });
-
-
         try {
             mWebView.getSettings().setPluginState(WebSettings.PluginState.ON);
             mWebView.getSettings().setAllowFileAccess(true);
@@ -170,6 +135,31 @@ public class BaseWebViewActivity extends BaseActivity {
         }
     }
 
+    private void setTitle() {
+        if (tvTitle == null) {
+            return;
+        }
+        if (mUrl == null || mUrl.length() == 0) {
+            return;
+        }
+        Uri uri = Uri.parse(mUrl);
+        String title = uri.getQueryParameter("title");
+        tvTitle.setText(title);
+    }
+
+    public class ClientFunction {
+
+        @JavascriptInterface
+        public void finish() {
+            BaseWebViewActivity.this.finish();
+        }
+
+        @JavascriptInterface
+        public void setToken(String token) {
+            AccountManager.getInstance().setToken(token);
+        }
+    }
+
     private WebViewClient mWebViewClient = new WebViewClient() {
 
         @Override
@@ -205,52 +195,6 @@ public class BaseWebViewActivity extends BaseActivity {
         @Override
         public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
             handler.proceed();
-        }
-    };
-
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (mWebView.canGoBack()) {
-                mWebView.goBack();//返回上一页面
-                return true;
-            }
-        }
-        return super.onKeyDown(keyCode, event);
-    }
-
-    public class ClientFunction {
-        @JavascriptInterface
-        public void collection(String str) {
-            isCollection = "0".equals(str);
-            imageCollection.setImageResource(isCollection ? R.drawable.icon_collection : R.drawable.icon_cancel_collection);
-        }
-
-        @JavascriptInterface
-        public void finish() {
-            BaseWebViewActivity.this.finish();
-        }
-
-        @JavascriptInterface
-        public void setToken(String token) {
-            AccountManager.getInstance().setToken(token);
-        }
-    }
-
-    Runnable run2 = new Runnable() {
-
-        @Override
-        public void run() {
-            while (true) {
-                try {
-                    Thread.sleep(5000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                View rootview = BaseWebViewActivity.this.getWindow().getDecorView();
-                View aaa = rootview.findFocus();
-                Log.e("test", aaa.toString());
-            }
-
         }
     };
 

@@ -34,4 +34,18 @@ public class UrlConst {
     public static String getAccountInfo() {
         return HOST + "Api/Users/user_info.html";
     }
+
+    /**
+     * 添加收藏
+     */
+    public static String getCollectUrl() {
+        return HOST + "Api/Users/collect.html";
+    }
+
+    /**
+     * 取消收藏
+     */
+    public static String getCancelCollectUrl() {
+        return HOST + "Api/Users/cancel_collect.html";
+    }
 }
