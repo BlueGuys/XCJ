@@ -39,7 +39,7 @@ public class UrlConst {
      * 我的收藏
      */
     public static String getMyCollectUrl() {
-        return HOST + "http://www.xicaijing.com/Api/Users/articles.html";
+        return HOST + "Api/Users/articles.html";
     }
 
     /**
