@@ -67,7 +67,7 @@ public class UrlConst {
      * 首页->分析师说
      */
     public static String getInfoAnalysisUrl() {
-        return HOST + "Api/Users/cancel_collect.html";
+        return HOST + "Api/Article/analyst.html";
     }
 
 

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/ds170"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/ds20"
+    android:paddingLeft="@dimen/ds30"
+    android:paddingRight="@dimen/ds20"
+    android:paddingTop="@dimen/ds16">
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/article_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="@dimen/ds10"
+            android:lines="2"
+            android:text="烯说|比特币一万美元关口受阻，关注上行区间持续性"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/article_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="46分钟前"
+                android:textColor="@color/gray"
+                android:textSize="10dp" />
+
+            <TextView
+                android:id="@+id/article_website"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/ds40"
+                android:lines="1"
+                android:text="财经网"
+                android:textColor="@color/gray"
+                android:textSize="10dp" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/article_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/icon_arrow_more" />
+    </LinearLayout>
+
+</LinearLayout>
