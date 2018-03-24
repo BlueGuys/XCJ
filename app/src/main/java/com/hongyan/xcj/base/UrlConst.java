@@ -46,7 +46,7 @@ public class UrlConst {
      * 添加收藏
      */
     public static String getCollectUrl() {
-        return HOST + "Api/Users/articles.html";
+        return HOST + "Api/Users/collect.html";
     }
 
     /**
