@@ -26,17 +26,8 @@ public class InfoRecommendResult extends JPResult {
         public String id;
         public String title;
         public String source;
-        /**
-         * 今日成交量
-         */
         public String photo;
-        /**
-         * 今日成交量
-         */
         public String update_time;
-        /**
-         * rmb价格
-         */
         public String url;
     }
 }

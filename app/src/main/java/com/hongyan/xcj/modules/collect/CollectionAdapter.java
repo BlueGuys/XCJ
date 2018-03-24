@@ -32,10 +32,10 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.Vi
         // 绑定数据
         CollectionResult.Collection collection = mList.get(position);
         if (collection != null) {
-//            holder.articleName.setText(collection.title);
-//            holder.articleTime.setText(collection.update_time);
-//            holder.articleWebSite.setText(collection.source);
-//            ImageLoader.getInstance().displayImage(collection.photo, holder.articleImage);
+            holder.articleName.setText(collection.title);
+            holder.articleTime.setText(collection.update_time);
+            holder.articleWebSite.setText(collection.source);
+            ImageLoader.getInstance().displayImage(collection.photo, holder.articleImage);
         }
     }
 
