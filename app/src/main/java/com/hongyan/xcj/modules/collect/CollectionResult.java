@@ -17,7 +17,7 @@ public class CollectionResult extends JPResult {
 
     class Data {
 
-        public ArrayList<Collection> marketList;
+        public ArrayList<Collection> collectionList;
 
         public String hasMore;
     }

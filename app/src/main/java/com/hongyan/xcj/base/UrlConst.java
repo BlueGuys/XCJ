@@ -18,7 +18,7 @@ public class UrlConst {
      * 鉴权注册接口
      */
     public static String getInfoList() {
-        return HOST + "Api/Article/index.html";
+        return HOST + "Api/News/index.html";
     }
 
     /**
@@ -46,7 +46,7 @@ public class UrlConst {
      * 添加收藏
      */
     public static String getCollectUrl() {
-        return HOST + "Api/Users/collect.html";
+        return HOST + "Api/Users/articles.html";
     }
 
     /**
@@ -67,7 +67,7 @@ public class UrlConst {
      * 首页->快讯
      */
     public static String getInfoNewsUrl() {
-        return HOST + "Api/Users/cancel_collect.html";
+        return HOST + "Api/Article/newsflash.html";
     }
 
     /**

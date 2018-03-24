@@ -91,7 +91,7 @@ public class CollectActivity extends BaseActivity {
                 CollectionResult result = (CollectionResult) response.getResult();
                 if (result != null && result.data != null) {
                     mArticleList.clear();
-                    mArticleList.addAll(result.data.marketList);
+                    mArticleList.addAll(result.data.collectionList);
                     currentPage = 1;
                     notifyDataSetChanged();
                 }
@@ -118,7 +118,7 @@ public class CollectActivity extends BaseActivity {
                 }
                 CollectionResult result = (CollectionResult) response.getResult();
                 if (result != null && result.data != null) {
-                    mArticleList.addAll(result.data.marketList);
+                    mArticleList.addAll(result.data.collectionList);
                     boolean hasMore = "1".equals(result.data.hasMore);
                     notifyDataSetChanged();
                     if (hasMore) {

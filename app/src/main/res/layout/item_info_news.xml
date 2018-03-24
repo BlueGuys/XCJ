@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/ds200"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/ds20"
+    android:paddingLeft="@dimen/ds30"
+    android:paddingRight="@dimen/ds30"
+    android:paddingTop="@dimen/ds20">
+
+    <LinearLayout
+        android:layout_width="@dimen/ds100"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/ds30"
+        android:layout_marginRight="@dimen/ds30"
+        android:gravity="center_horizontal|top">
+
+        <TextView
+            android:id="@+id/news_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ds20"
+            android:text="46分钟前"
+            android:textColor="@color/gray"
+            android:textSize="10dp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/news_title"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/ds10"
+        android:layout_weight="1"
+        android:lines="4"
+        android:text="烯说|比特币一万美元关口受阻，关注上行区间持续性烯说|比特币一万美元关口受阻，关注上行区间持续性"
+        android:textColor="@color/black"
+        android:textSize="13dp" />
+
+</LinearLayout>
