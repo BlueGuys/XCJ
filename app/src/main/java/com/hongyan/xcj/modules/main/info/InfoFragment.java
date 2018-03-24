@@ -21,7 +21,6 @@ public class InfoFragment extends BaseFragment {
 
     private InfoHeaderView headerView;
     private ViewPager mViewPager;
-    private MyFragmentAdapter adapter;
     private ArrayList<Fragment> fragments = new ArrayList<>();
 
 
@@ -52,7 +51,7 @@ public class InfoFragment extends BaseFragment {
         fragments.add(new NewsFragment());
         fragments.add(new AnalysisFragment());
         fragments.add(new ReportFragment());
-        adapter = new MyFragmentAdapter(getFragmentManager(), fragments);
+        MyFragmentAdapter adapter = new MyFragmentAdapter(getFragmentManager(), fragments);
         mViewPager.setOffscreenPageLimit(4);
         mViewPager.setAdapter(adapter);
         mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {

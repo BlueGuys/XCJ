@@ -34,20 +34,28 @@ public class RecommendFragment extends BaseFragment {
     private SwipeToLoadHelper helper;
     private int currentPage = 1;
     private ArrayList<InfoRecommendResult.Article> mArticleList = new ArrayList<>();
+    private View view;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_recommend, container, false);
+        if (view == null) {
+            view = inflater.inflate(R.layout.fragment_recommend, container, false);
+            initView();
+            refresh();
+        }
+        return view;
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        initView(view);
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (null != view) {
+            ((ViewGroup) view.getParent()).removeView(view);
+        }
     }
 
-    private void initView(View view) {
+    private void initView() {
         mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         mRefreshLayout = view.findViewById(R.id.layout_swipe_refresh);
         mRecyclerView = view.findViewById(R.id.recycler_view);
@@ -79,7 +87,6 @@ public class RecommendFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        refresh();
     }
 
     private void refresh() {
