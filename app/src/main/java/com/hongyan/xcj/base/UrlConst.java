@@ -36,6 +36,13 @@ public class UrlConst {
     }
 
     /**
+     * 我的收藏
+     */
+    public static String getMyCollectUrl() {
+        return HOST + "http://www.xicaijing.com/Api/Users/articles.html";
+    }
+
+    /**
      * 添加收藏
      */
     public static String getCollectUrl() {
@@ -69,6 +76,5 @@ public class UrlConst {
     public static String getInfoAnalysisUrl() {
         return HOST + "Api/Article/analyst.html";
     }
-
 
 }

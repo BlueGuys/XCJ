@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hongyan.xcj.R;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
 
@@ -29,16 +30,12 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.Vi
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         // 绑定数据
-        CollectionResult.Collection market = mList.get(position);
-        if (market != null) {
-//            holder.tvLabel.setText(String.valueOf(position + 1));
-//            holder.tvLabel.setBackgroundResource(position < 3 ? R.drawable.bg_market_item_label_blue : R.drawable.bg_market_item_label_grey);
-//            holder.tvCurrencyName.setText(market.name);
-//            holder.tvCurrencyDesc.setText(market.desc);
-//            holder.tvCurrencyPriceUS.setText(market.dollar_price);
-//            holder.tvCurrencyPriceCN.setText(market.price);
-//            holder.tvCurrencyChangeRate.setText(market.chg);
-//            holder.tvCurrencyChangeRate.setBackgroundResource(market.isUp() ? R.drawable.bg_market_item_button_red : R.drawable.bg_market_item_button_green);
+        CollectionResult.Collection collection = mList.get(position);
+        if (collection != null) {
+//            holder.articleName.setText(collection.title);
+//            holder.articleTime.setText(collection.update_time);
+//            holder.articleWebSite.setText(collection.source);
+//            ImageLoader.getInstance().displayImage(collection.photo, holder.articleImage);
         }
     }
 
@@ -48,23 +45,18 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.Vi
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-//        ImageView imageLogo;
-//        TextView tvLabel;
-//        TextView tvCurrencyName;
-//        TextView tvCurrencyDesc;
-//        TextView tvCurrencyPriceUS;
-//        TextView tvCurrencyPriceCN;
-//        TextView tvCurrencyChangeRate;
+
+        ImageView articleImage;
+        TextView articleName;
+        TextView articleTime;
+        TextView articleWebSite;
 
         public ViewHolder(View itemView) {
             super(itemView);
-//            imageLogo = itemView.findViewById(R.id.market_logo);
-//            tvLabel = itemView.findViewById(R.id.market_label);
-//            tvCurrencyName = itemView.findViewById(R.id.market_currency_name);
-//            tvCurrencyDesc = itemView.findViewById(R.id.market_currency_desc);
-//            tvCurrencyPriceUS = itemView.findViewById(R.id.market_currency_price_us);
-//            tvCurrencyPriceCN = itemView.findViewById(R.id.market_currency_price_cn);
-//            tvCurrencyChangeRate = itemView.findViewById(R.id.market_currency_change_rate);
+            articleName = itemView.findViewById(R.id.collection_title);
+            articleTime = itemView.findViewById(R.id.collection_time);
+            articleWebSite = itemView.findViewById(R.id.collection_website);
+            articleImage = itemView.findViewById(R.id.collection_image);
         }
     }
 }

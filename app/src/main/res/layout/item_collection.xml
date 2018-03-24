@@ -37,6 +37,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/collection_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="46分钟前"
@@ -44,6 +45,7 @@
                 android:textSize="10dp" />
 
             <TextView
+                android:id="@+id/collection_website"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/ds40"
@@ -63,7 +65,7 @@
         android:gravity="center">
 
         <ImageView
-            android:id="@+id/market_currency_change_rate"
+            android:id="@+id/collection_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/icon_arrow_more" />
