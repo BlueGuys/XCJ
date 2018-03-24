@@ -29,6 +29,7 @@ public class BaseApplication extends Application {
     private RequestQueue mRequestQueue;
     private DisplayImageOptions displayImageOptions;
 
+
     @Override
     public void onCreate() {
         super.onCreate();
