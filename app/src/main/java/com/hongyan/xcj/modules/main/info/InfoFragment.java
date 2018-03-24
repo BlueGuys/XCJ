@@ -64,7 +64,7 @@ public class InfoFragment extends BaseFragment {
         MyFragmentAdapter adapter = new MyFragmentAdapter(getFragmentManager(), fragments);
         mViewPager.setOffscreenPageLimit(4);
         mViewPager.setAdapter(adapter);
-        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 

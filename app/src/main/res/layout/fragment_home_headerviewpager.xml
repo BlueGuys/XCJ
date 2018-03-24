@@ -1,37 +1,39 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/headerviewpager_layout"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/ds500">
+    android:layout_height="@dimen/ds360">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/homeheader_viewpager"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/ds500" />
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true" />
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="30dip"
-
-        android:layout_gravity="bottom"
-        android:background="#33000000">
+        android:layout_alignParentBottom="true"
+        android:background="#33000000"
+        android:gravity="center_vertical">
 
         <TextView
             android:id="@+id/homeheader_title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:layout_marginLeft="10dip"
-
+            android:layout_weight="1"
+            android:gravity="center_vertical|left"
+            android:lines="1"
             android:textColor="@android:color/white" />
 
         <LinearLayout
             android:id="@+id/homeheader_bottomlin"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/ds100"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dip"
-            android:orientation="horizontal" />
-    </RelativeLayout>
+            android:gravity="center_vertical|right"
+            android:orientation="horizontal"
+            android:paddingRight="@dimen/ds30" />
+    </LinearLayout>
 
-</FrameLayout>
+</RelativeLayout>

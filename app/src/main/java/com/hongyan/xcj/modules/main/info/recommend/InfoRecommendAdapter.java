@@ -6,10 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.hongyan.xcj.R;
 import com.hongyan.xcj.core.BaseApplication;
-import com.hongyan.xcj.test.MyHeaderView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
@@ -54,7 +52,8 @@ public class InfoRecommendAdapter extends RecyclerView.Adapter<RecyclerView.View
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof HeadViewHolder) {
-            ((HeadViewHolder) holder).headerView.initData(getData(), new MyHeaderView.OnPageClickListener() {
+            ((HeadViewHolder) holder).headerView.setData(getData());
+            ((HeadViewHolder) holder).headerView.setOnPageClickListener(new ScrollBannerView.OnPageClickListener() {
                 @Override
                 public void setOnPage(int position) {
 
@@ -71,14 +70,14 @@ public class InfoRecommendAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
     }
 
-    private ArrayList<MyHeaderView.Entity> getData() {
-        ArrayList<MyHeaderView.Entity> list = new ArrayList<MyHeaderView.Entity>();
-        MyHeaderView.Entity Entity1 = new MyHeaderView.Entity();
-        Entity1.setImageurl("http://img.zcool.cn/community/0142135541fe180000019ae9b8cf86.jpg@1280w_1l_2o_100sh.png");
+    private ArrayList<ScrollBannerView.Entity> getData() {
+        ArrayList<ScrollBannerView.Entity> list = new ArrayList<ScrollBannerView.Entity>();
+        ScrollBannerView.Entity Entity1 = new ScrollBannerView.Entity();
+        Entity1.setImageUrl("http://img.zcool.cn/community/0142135541fe180000019ae9b8cf86.jpg@1280w_1l_2o_100sh.png");
         Entity1.setTitle("AAA");
         list.add(Entity1);
-        MyHeaderView.Entity Entity2 = new MyHeaderView.Entity();
-        Entity2.setImageurl("http://pic71.nipic.com/file/20150610/13549908_104823135000_2.jpg");
+        ScrollBannerView.Entity Entity2 = new ScrollBannerView.Entity();
+        Entity2.setImageUrl("http://pic71.nipic.com/file/20150610/13549908_104823135000_2.jpg");
         Entity2.setTitle("BBB");
         list.add(Entity2);
         return list;
@@ -90,7 +89,7 @@ public class InfoRecommendAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     public static class HeadViewHolder extends RecyclerView.ViewHolder {
-        MyHeaderView headerView;
+        ScrollBannerView headerView;
 
         public HeadViewHolder(View itemView) {
             super(itemView);

@@ -43,8 +43,7 @@
         <activity android:name=".modules.article.ArticleActivity" />
         <activity
             android:name=".test.TestActivity"
-            android:launchMode="singleTask" >
-        </activity>
+            android:launchMode="singleTask"/>
     </application>
 
 </manifest>

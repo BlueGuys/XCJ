@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/ds170"
+    android:layout_height="wrap_content"
     android:orientation="horizontal">
 
-    <com.hongyan.xcj.test.MyHeaderView
+    <com.hongyan.xcj.modules.main.info.recommend.ScrollBannerView
         android:id="@+id/head_view"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/ds500" />
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
