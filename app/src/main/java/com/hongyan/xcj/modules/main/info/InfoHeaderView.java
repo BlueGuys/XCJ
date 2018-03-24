@@ -3,6 +3,7 @@ package com.hongyan.xcj.modules.main.info;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.text.TextPaint;
 import android.util.AttributeSet;
@@ -45,6 +46,9 @@ public class InfoHeaderView extends LinearLayout {
                 return false;
             }
         });
+        Drawable drawable = getResources().getDrawable(R.drawable.icon_search);
+        drawable.setBounds(0, 0, 50, 50);
+        etSearch.setCompoundDrawables(drawable, null, null, null);
         initTabView(context, view);
     }
 

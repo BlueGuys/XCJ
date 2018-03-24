@@ -20,7 +20,6 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/ds70"
             android:background="@drawable/bg_search_edit_text"
-            android:drawableLeft="@drawable/icon_arrow_more"
             android:imeOptions="actionSearch"
             android:inputType="text"
             android:lines="1"

@@ -76,22 +76,6 @@ public class RecommendFragment extends BaseFragment {
         adapterWrapper.notifyDataSetChanged();
     }
 
-    private ArrayList<String> getData() {
-        ArrayList<String> data = new ArrayList<>();
-        String temp = " item";
-        for (int i = 0; i < 8; i++) {
-            data.add(i + temp);
-        }
-        return data;
-    }
-
-    //每次上拉加载的时候，给RecyclerView的后面添加了10条数据数据
-    private void loadMoreData() {
-        for (int i = 0; i < 20; i++) {
-            mAdapter.notifyDataSetChanged();
-        }
-    }
-
     @Override
     public void onResume() {
         super.onResume();

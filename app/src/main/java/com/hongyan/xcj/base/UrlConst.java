@@ -60,28 +60,28 @@ public class UrlConst {
      * 首页->推荐
      */
     public static String getInfoRecommendUrl() {
-        return HOST + "Api/Report/index.html";
+        return HOST + "Api/Article/index.html";
     }
 
     /**
      * 首页->快讯
      */
     public static String getInfoNewsUrl() {
-        return HOST + "Api/Report/newsflash.html";
+        return HOST + "Api/Article/newsflash.html";
     }
 
     /**
      * 首页->分析师说
      */
     public static String getInfoAnalysisUrl() {
-        return HOST + "Api/Report/analyst.html";
+        return HOST + "Api/Article/analyst.html";
     }
 
     /**
      * 首页->研报
      */
     public static String getInfoReportUrl() {
-        return HOST + "Api/Report/projects.html";
+        return HOST + "Api/Article/projects.html";
     }
 
 }

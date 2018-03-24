@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hongyan.xcj.R;
+import com.hongyan.xcj.core.BaseApplication;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class InfoRecommendAdapter extends RecyclerView.Adapter<InfoRecommendAdap
             holder.articleName.setText(article.title);
             holder.articleTime.setText(article.update_time);
             holder.articleWebSite.setText(article.source);
-            ImageLoader.getInstance().displayImage(article.photo, holder.articleImage);
+            ImageLoader.getInstance().displayImage(article.photo, holder.articleImage, BaseApplication.getInstance().getImageLoaderOptions());
         }
     }
 

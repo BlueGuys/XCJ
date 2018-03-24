@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hongyan.xcj.R;
+import com.hongyan.xcj.core.BaseApplication;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.Vi
             holder.articleName.setText(collection.title);
             holder.articleTime.setText(collection.update_time);
             holder.articleWebSite.setText(collection.source);
-            ImageLoader.getInstance().displayImage(collection.photo, holder.articleImage);
+            ImageLoader.getInstance().displayImage(collection.photo, holder.articleImage, BaseApplication.getInstance().getImageLoaderOptions());
         }
     }
 
