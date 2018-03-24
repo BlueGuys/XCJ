@@ -15,7 +15,10 @@ import com.hongyan.xcj.base.BaseFragment;
 import com.hongyan.xcj.base.JPBaseModel;
 import com.hongyan.xcj.base.JPRequest;
 import com.hongyan.xcj.base.JPResponse;
+import com.hongyan.xcj.base.RecyclerItemClickListener;
 import com.hongyan.xcj.base.UrlConst;
+import com.hongyan.xcj.modules.article.ArticleActivity;
+import com.hongyan.xcj.modules.main.info.analysis.InfoAnalysisResult;
 import com.hongyan.xcj.network.Response;
 import com.hongyan.xcj.network.VolleyError;
 import com.hongyan.xcj.test.AdapterWrapper;
@@ -77,13 +80,28 @@ public class ReportFragment extends BaseFragment {
                 loadMore();
             }
         });
+        mRecyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(getActivity(), mRecyclerView, new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        InfoReportResult.Report report = mReportList.get(position);
+                        if (report != null) {
+                            ArticleActivity.startActivity(getActivity(), report.url);
+                        }
+                    }
+
+                    @Override
+                    public void onItemLongClick(View view, int position) {
+
+                    }
+                })
+        );
     }
 
     private void notifyDataSetChanged() {
         mAdapter.setData(mReportList);
         adapterWrapper.notifyDataSetChanged();
     }
-
 
 
     private void refresh() {

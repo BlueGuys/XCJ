@@ -7,15 +7,19 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 
 import com.hongyan.xcj.R;
 import com.hongyan.xcj.base.BaseActivity;
 import com.hongyan.xcj.base.JPBaseModel;
 import com.hongyan.xcj.base.JPRequest;
 import com.hongyan.xcj.base.JPResponse;
+import com.hongyan.xcj.base.RecyclerItemClickListener;
 import com.hongyan.xcj.base.UrlConst;
+import com.hongyan.xcj.modules.article.ArticleActivity;
 import com.hongyan.xcj.modules.main.info.recommend.InfoRecommendAdapter;
 import com.hongyan.xcj.modules.main.info.recommend.InfoRecommendResult;
+import com.hongyan.xcj.modules.main.info.reports.InfoReportResult;
 import com.hongyan.xcj.modules.main.market.MarketAdapter;
 import com.hongyan.xcj.network.Response;
 import com.hongyan.xcj.network.VolleyError;
@@ -73,6 +77,22 @@ public class CollectActivity extends BaseActivity {
                 loadMore();
             }
         });
+        mRecyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(CollectActivity.this, mRecyclerView, new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        CollectionResult.Collection collection = mArticleList.get(position);
+                        if (collection != null) {
+                            ArticleActivity.startActivity(CollectActivity.this, collection.url);
+                        }
+                    }
+
+                    @Override
+                    public void onItemLongClick(View view, int position) {
+
+                    }
+                })
+        );
     }
 
     private void notifyDataSetChanged() {
