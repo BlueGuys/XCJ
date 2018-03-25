@@ -16,9 +16,8 @@ public class InfoRecommendResult extends JPResult {
     public Data data;
 
     class Data {
-
         public ArrayList<Article> list;
-
+        public ArrayList<AD> ad;
         public String hasMore;
     }
 
@@ -30,4 +29,12 @@ public class InfoRecommendResult extends JPResult {
         public String update_time;
         public String url;
     }
+
+    public static class AD {
+        public String id;
+        public String title;
+        public String photo;
+        public String url;
+    }
+
 }

@@ -24,19 +24,52 @@ public class InfoRecommendAdapter extends RecyclerView.Adapter<RecyclerView.View
      */
     public static final int ITEM_TYPE_ITEM = 1001;
 
-    private ArrayList<InfoRecommendResult.Article> mList;
+    private ArrayList<InfoRecommendResult.Article> mArticleList = new ArrayList<>();
+    private ArrayList<InfoRecommendResult.AD> mAdList = new ArrayList<>();
 
-    public void setData(ArrayList<InfoRecommendResult.Article> data) {
-        this.mList = data;
+    public void setData(ArrayList<InfoRecommendResult.Article> articleList, ArrayList<InfoRecommendResult.AD> adList) {
+        if (articleList != null && articleList.size() > 0) {
+            this.mArticleList.clear();
+            this.mArticleList.addAll(articleList);
+        }
+        if (adList != null && adList.size() > 0) {
+            this.mAdList.clear();
+            this.mAdList.addAll(adList);
+        }
         notifyDataSetChanged();
     }
 
     @Override
     public int getItemViewType(int position) {
-        if (position == 0) {
-            return ITEM_TYPE_HEADER;
+        if (mAdList.size() > 0) {
+            if (position == 0) {
+                return ITEM_TYPE_HEADER;
+            } else {
+                return ITEM_TYPE_ITEM;
+            }
         }
         return ITEM_TYPE_ITEM;
+    }
+
+    public Object getItemData(int position) {
+        if (mAdList.size() > 0) {
+            if (position == 0) {
+                return mAdList;
+            } else {
+                return mArticleList.get(position - 1);
+            }
+        } else {
+            return mArticleList.get(position);
+        }
+    }
+
+    @Override
+    public int getItemCount() {
+        if (mAdList.size() > 0) {
+            return mArticleList.size() + 1;
+        } else {
+            return mArticleList.size();
+        }
     }
 
     @Override
@@ -53,7 +86,15 @@ public class InfoRecommendAdapter extends RecyclerView.Adapter<RecyclerView.View
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof HeadViewHolder) {
-            ((HeadViewHolder) holder).headerView.setData(getData());
+            ArrayList<ScrollBannerView.Entity> entityArrayList = new ArrayList<>();
+            ArrayList<InfoRecommendResult.AD> adList = (ArrayList<InfoRecommendResult.AD>) getItemData(position);
+            for (int i = 0; i < adList.size(); i++) {
+                ScrollBannerView.Entity entity = new ScrollBannerView.Entity();
+                entity.setImageUrl(adList.get(position).url);
+                entity.setTitle(adList.get(position).title);
+                entityArrayList.add(entity);
+            }
+            ((HeadViewHolder) holder).headerView.setData(entityArrayList);
             ((HeadViewHolder) holder).headerView.setOnPageClickListener(new ScrollBannerView.OnPageClickListener() {
                 @Override
                 public void setOnPage(int position) {
@@ -61,7 +102,7 @@ public class InfoRecommendAdapter extends RecyclerView.Adapter<RecyclerView.View
                 }
             });
         } else if (holder instanceof ItemViewHolder) {
-            InfoRecommendResult.Article article = mList.get(position - 1);
+            InfoRecommendResult.Article article = (InfoRecommendResult.Article) getItemData(position);
             if (article != null) {
                 ((ItemViewHolder) holder).articleName.setText(article.title);
                 ((ItemViewHolder) holder).articleTime.setText(article.update_time);
@@ -69,24 +110,6 @@ public class InfoRecommendAdapter extends RecyclerView.Adapter<RecyclerView.View
                 ImageLoader.getInstance().displayImage(article.photo, ((ItemViewHolder) holder).articleImage, BaseApplication.getInstance().getImageLoaderOptions());
             }
         }
-    }
-
-    private ArrayList<ScrollBannerView.Entity> getData() {
-        ArrayList<ScrollBannerView.Entity> list = new ArrayList<ScrollBannerView.Entity>();
-        ScrollBannerView.Entity Entity1 = new ScrollBannerView.Entity();
-        Entity1.setImageUrl("http://img.zcool.cn/community/0142135541fe180000019ae9b8cf86.jpg@1280w_1l_2o_100sh.png");
-        Entity1.setTitle("AAA");
-        list.add(Entity1);
-        ScrollBannerView.Entity Entity2 = new ScrollBannerView.Entity();
-        Entity2.setImageUrl("http://pic71.nipic.com/file/20150610/13549908_104823135000_2.jpg");
-        Entity2.setTitle("BBB");
-        list.add(Entity2);
-        return list;
-    }
-
-    @Override
-    public int getItemCount() {
-        return mList == null ? 1 : mList.size() + 1;
     }
 
     public static class HeadViewHolder extends RecyclerView.ViewHolder {
