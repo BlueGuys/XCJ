@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.hongyan.xcj.R;
 import com.hongyan.xcj.core.BaseApplication;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -60,7 +61,7 @@ public class InfoRecommendAdapter extends RecyclerView.Adapter<RecyclerView.View
                 }
             });
         } else if (holder instanceof ItemViewHolder) {
-            InfoRecommendResult.Article article = mList.get(position);
+            InfoRecommendResult.Article article = mList.get(position - 1);
             if (article != null) {
                 ((ItemViewHolder) holder).articleName.setText(article.title);
                 ((ItemViewHolder) holder).articleTime.setText(article.update_time);

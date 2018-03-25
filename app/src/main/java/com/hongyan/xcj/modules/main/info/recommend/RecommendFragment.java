@@ -29,9 +29,7 @@ import java.util.ArrayList;
 public class RecommendFragment extends BaseFragment {
 
     private SwipeRefreshLayout mRefreshLayout;
-    private RecyclerView mRecyclerView;
     private InfoRecommendAdapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
     private AdapterWrapper adapterWrapper;
     private SwipeToLoadHelper helper;
     private int currentPage = 1;
@@ -58,9 +56,9 @@ public class RecommendFragment extends BaseFragment {
     }
 
     private void initView() {
-        mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         mRefreshLayout = view.findViewById(R.id.layout_swipe_refresh);
-        mRecyclerView = view.findViewById(R.id.recycler_view);
+        RecyclerView mRecyclerView = view.findViewById(R.id.recycler_view);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),
                 DividerItemDecoration.VERTICAL_LIST));
         mRecyclerView.setLayoutManager(mLayoutManager);
