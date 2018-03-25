@@ -38,7 +38,7 @@ public final class DateUtils {
     public static final String LOCALE_DATE_FORMAT = "yyyy年M月d日 HH:mm:ss";
     public static final String DB_DATA_FORMAT = "yyyy-MM-DD HH:mm:ss";
     public static final String NEWS_ITEM_DATE_FORMAT = "hh:mm M月d日 yyyy";
-
+    public static final String HHmm = "HH:mm";
 
     public static String dateToString(Date date, String pattern)
             throws Exception {
@@ -165,7 +165,7 @@ public final class DateUtils {
      * @param time 时间
      * @return
      */
-    private String translateDate(long time, long curTime) {
+    public static String translateDate(long time, long curTime) {
         long oneDay = 24 * 60 * 60;
         Calendar today = Calendar.getInstance();    //今天
         today.setTimeInMillis(curTime * 1000);

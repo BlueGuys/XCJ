@@ -8,9 +8,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hongyan.xcj.R;
+import com.hongyan.xcj.utils.DateUtils;
+import com.hongyan.xcj.utils.JavaTypesHelper;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class InfoNewsAdapter extends RecyclerView.Adapter<InfoNewsAdapter.ViewHolder> {
 
@@ -32,8 +35,11 @@ public class InfoNewsAdapter extends RecyclerView.Adapter<InfoNewsAdapter.ViewHo
         // 绑定数据
         InfoNewsResult.News news = mList.get(position);
         if (news != null) {
+            long timeStamp = JavaTypesHelper.toLong(news.update_time);
+            Date date = new Date(timeStamp);
+            String time = DateUtils.formatDate(date, DateUtils.HHmm);
             holder.newsTitle.setText(news.content);
-            holder.newsTime.setText(news.update_time);
+            holder.newsTime.setText(time);
         }
     }
 

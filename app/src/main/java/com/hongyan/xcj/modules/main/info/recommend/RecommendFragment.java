@@ -34,6 +34,7 @@ public class RecommendFragment extends BaseFragment {
     private SwipeToLoadHelper helper;
     private int currentPage = 1;
     private ArrayList<InfoRecommendResult.Article> mArticleList = new ArrayList<>();
+    private ArrayList<InfoRecommendResult.AD> mAdList = new ArrayList<>();
     private View view;
 
     @Nullable
@@ -81,10 +82,7 @@ public class RecommendFragment extends BaseFragment {
                 new RecyclerItemClickListener(getActivity(), mRecyclerView, new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        if (position == 0) {
-                            return;
-                        }
-                        InfoRecommendResult.Article article = mArticleList.get(position - 1);
+                        InfoRecommendResult.Article article = (InfoRecommendResult.Article) mAdapter.getItemData(position);
                         if (article != null) {
                             ArticleActivity.startActivity(getActivity(), article.url);
                         }
@@ -99,7 +97,7 @@ public class RecommendFragment extends BaseFragment {
     }
 
     private void notifyDataSetChanged() {
-        mAdapter.setData(mArticleList);
+        mAdapter.setData(mArticleList, mAdList);
         adapterWrapper.notifyDataSetChanged();
     }
 
@@ -118,8 +116,14 @@ public class RecommendFragment extends BaseFragment {
                 }
                 InfoRecommendResult result = (InfoRecommendResult) response.getResult();
                 if (result != null && result.data != null) {
-                    mArticleList.clear();
-                    mArticleList.addAll(result.data.list);
+                    if(result.data.list!=null){
+                        mArticleList.clear();
+                        mArticleList.addAll(result.data.list);
+                    }
+                    if(result.data.ad!=null){
+                        mAdList.clear();
+                        mAdList.addAll(result.data.ad);
+                    }
                     currentPage = 1;
                     helper.setSwipeToLoadEnabled("1".equals(result.data.hasMore));
                     notifyDataSetChanged();

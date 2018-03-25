@@ -5,9 +5,8 @@
     android:layout_height="match_parent"
     tools:context="com.hongyan.xcj.modules.splash.AppStartActivity">
 
-    <com.github.mikephil.charting.charts.CombinedChart
-        android:id="@+id/chart"
+    <com.hongyan.xcj.modules.coin.CoinView
+        android:id="@+id/coin_view"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/ds600" />
-
+        android:layout_height="wrap_content" />
 </LinearLayout>

@@ -75,7 +75,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
             case R.id.linear_market:
                 break;
             case R.id.linear_clear:
-                ArticleActivity.startActivity(getActivity(), "http://www.xicaijing.com/App/Users/login.html?title=登录");
+                startActivity(new Intent(getActivity(),CoinDetailActivity.class));
                 break;
             case R.id.linear_logout:
                 AccountManager.getInstance().logout();
