@@ -29,21 +29,21 @@
         </activity>
         <activity
             android:name=".modules.main.MainTabActivity"
-            android:windowSoftInputMode="stateHidden|adjustPan">
+            android:windowSoftInputMode="stateHidden|adjustPan"></activity>
+        <activity android:name=".modules.coin.CoinDetailActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".modules.coin.CoinDetailActivity" />
         <activity android:name=".test.RecycleViewActivity" />
         <activity android:name=".base.BaseWebViewActivity" />
         <activity android:name=".modules.collect.CollectActivity" />
         <activity android:name=".modules.article.ArticleActivity" />
         <activity
             android:name=".test.TestActivity"
-            android:launchMode="singleTask"/>
+            android:launchMode="singleTask" />
     </application>
 
 </manifest>

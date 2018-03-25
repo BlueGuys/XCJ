@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/MPChartLib/MPChartLib.iml" filepath="$PROJECT_DIR$/MPChartLib/MPChartLib.iml" />
       <module fileurl="file://$PROJECT_DIR$/XCJ.iml" filepath="$PROJECT_DIR$/XCJ.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://C:\Users\feilu-PC\Desktop\TEMPJ\XCJ\app\app.iml" filepath="C:\Users\feilu-PC\Desktop\TEMPJ\XCJ\app\app.iml" />
