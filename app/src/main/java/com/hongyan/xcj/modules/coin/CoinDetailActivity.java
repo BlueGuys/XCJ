@@ -57,8 +57,6 @@ import java.util.List;
 
 public class CoinDetailActivity extends BaseActivity {
 
-    //开，收，高，低，量，换，额，查，比
-
     protected MyCombinedChart mChartKline;
     protected MyCombinedChart mChartVolume;
     protected MyCombinedChart mChartCharts;
@@ -68,8 +66,7 @@ public class CoinDetailActivity extends BaseActivity {
 
     //X轴标签的类
     protected XAxis xAxisKline, xAxisVolume, xAxisCharts;
-    //Y轴左侧的线    protected MyCombinedChart mChartCharts;
-
+    //Y轴左侧的线
     protected YAxis axisLeftKline, axisLeftVolume, axisLeftCharts;
     //Y轴右侧的线
     protected YAxis axisRightKline, axisRightVolume, axisRightCharts;
@@ -78,15 +75,12 @@ public class CoinDetailActivity extends BaseActivity {
     private DataParse mData;
     //K线图数据
     private ArrayList<KLineBean> kLineDatas;
-    //MACD数据
-    private ArrayList<Float> macdDatas;
-    private ArrayList<Float> kdjDatas;
 
     private DataParse mCacheData;
 
-    private Handler handler = new Handler() {
+    private Handler handler = new Handler(new Handler.Callback() {
         @Override
-        public void handleMessage(Message msg) {
+        public boolean handleMessage(Message message) {
             mChartKline.setAutoScaleMinMaxEnabled(true);
             mChartVolume.setAutoScaleMinMaxEnabled(true);
             mChartCharts.setAutoScaleMinMaxEnabled(true);
@@ -98,8 +92,9 @@ public class CoinDetailActivity extends BaseActivity {
             mChartKline.invalidate();
             mChartVolume.invalidate();
             mChartCharts.invalidate();
+            return true;
         }
-    };
+    });
 
     private Handler handlerAdd = new Handler();
     private Runnable runnable;
@@ -120,66 +115,18 @@ public class CoinDetailActivity extends BaseActivity {
         initChartVolume();
         initChartCharts();
         setChartListener();
-        initCharData();
+
+        initCharData();//初始化数据
 
         setKLineByChart(mChartKline);
         setVolumeByChart(mChartVolume);
         setMACDByChart(mChartCharts);
+
         isRefresh = false;
-//        setKDJByChart(mChartCharts);
 
         mChartKline.moveViewToX(kLineDatas.size() - 1);
         mChartVolume.moveViewToX(kLineDatas.size() - 1);
         mChartCharts.moveViewToX(kLineDatas.size() - 1);
-//        setOffset();
-
-
-        mIvRefresh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                chartType++;
-                if (chartType > chartTypes) {
-                    chartType = 1;
-                }
-                String entity = getString(R.string.entity_macd);
-                switch (chartType) {
-                    case 1:
-                        entity = getString(R.string.entity_macd);
-                        setMACDByChart(mChartCharts);
-                        break;
-                    case 2:
-                        entity = getString(R.string.entity_kdj);
-                        setKDJByChart(mChartCharts);
-                        break;
-                    case 3:
-                        entity = getString(R.string.entity_wr);
-                        setWRByChart(mChartCharts);
-                        break;
-                    case 4:
-                        entity = getString(R.string.entity_rsi);
-                        setRSIByChart(mChartCharts);
-                        break;
-                    case 5:
-                        entity = getString(R.string.entity_boll);
-                        setBOLLByChart(mChartCharts);
-                        break;
-                    case 6:
-                        entity = getString(R.string.entity_expma);
-                        setEXPMAByChart(mChartCharts);
-                        break;
-                    case 7:
-                        entity = getString(R.string.entity_dmi);
-                        setDMIByChart(mChartCharts);
-                        break;
-                }
-
-                mChartCharts.invalidate();
-                mTvEntity.setText(entity);
-
-            }
-        });
-
-
 
 /****************************************************************************************
  此处解决方法来源于CombinedChartDemo，k线图y轴显示问题，图表滑动后才能对齐的bug
@@ -190,12 +137,10 @@ public class CoinDetailActivity extends BaseActivity {
         runnable = new Runnable() {
             @Override
             public void run() {
-                // TODO Auto-generated method stub
                 //要做的事情，这里再次调用此Runnable对象，以实现每两秒实现一次的定时器操作
                 addData();
                 addKlineData();
                 addVolumeData();
-
                 switch (chartType) {
                     case 1:
                         setMACDByChart(mChartCharts);
@@ -242,14 +187,57 @@ public class CoinDetailActivity extends BaseActivity {
     }
 
     private void initViews() {
+        mChartKline = findViewById(R.id.kline_chart_k);
+        mChartVolume = findViewById(R.id.kline_chart_volume);
+        mChartCharts = findViewById(R.id.kline_chart_charts);
 
+        mIvRefresh = findViewById(R.id.kline_iv_refresh);
+        mTvEntity = findViewById(R.id.kline_tv_entity);
 
-        mChartKline = (MyCombinedChart) findViewById(R.id.kline_chart_k);
-        mChartVolume = (MyCombinedChart) findViewById(R.id.kline_chart_volume);
-        mChartCharts = (MyCombinedChart) findViewById(R.id.kline_chart_charts);
+        mIvRefresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                chartType++;
+                if (chartType > chartTypes) {
+                    chartType = 1;
+                }
+                String entity = getString(R.string.entity_macd);
+                switch (chartType) {
+                    case 1:
+                        entity = getString(R.string.entity_macd);
+                        setMACDByChart(mChartCharts);
+                        break;
+                    case 2:
+                        entity = getString(R.string.entity_kdj);
+                        setKDJByChart(mChartCharts);
+                        break;
+                    case 3:
+                        entity = getString(R.string.entity_wr);
+                        setWRByChart(mChartCharts);
+                        break;
+                    case 4:
+                        entity = getString(R.string.entity_rsi);
+                        setRSIByChart(mChartCharts);
+                        break;
+                    case 5:
+                        entity = getString(R.string.entity_boll);
+                        setBOLLByChart(mChartCharts);
+                        break;
+                    case 6:
+                        entity = getString(R.string.entity_expma);
+                        setEXPMAByChart(mChartCharts);
+                        break;
+                    case 7:
+                        entity = getString(R.string.entity_dmi);
+                        setDMIByChart(mChartCharts);
+                        break;
+                }
 
-        mIvRefresh = (ImageView) findViewById(R.id.kline_iv_refresh);
-        mTvEntity = (TextView) findViewById(R.id.kline_tv_entity);
+                mChartCharts.invalidate();
+                mTvEntity.setText(entity);
+
+            }
+        });
     }
 
     /**
@@ -708,8 +696,9 @@ public class CoinDetailActivity extends BaseActivity {
         combinedData.setData(lineData);
         combinedChart.setData(combinedData);
 
-        if (isRefresh)
+        if (isRefresh) {
             setHandler(combinedChart);
+        }
     }
 
     private void setKDJByChart(MyCombinedChart combinedChart) {
@@ -737,8 +726,9 @@ public class CoinDetailActivity extends BaseActivity {
         combinedData.setData(lineData);
         combinedChart.setData(combinedData);
 
-        if (isRefresh)
+        if (isRefresh) {
             setHandler(combinedChart);
+        }
     }
 
     private void setWRByChart(MyCombinedChart combinedChart) {
@@ -766,8 +756,9 @@ public class CoinDetailActivity extends BaseActivity {
         combinedData.setData(lineData);
         combinedChart.setData(combinedData);
 
-        if (isRefresh)
+        if (isRefresh) {
             setHandler(combinedChart);
+        }
     }
 
     private void setRSIByChart(MyCombinedChart combinedChart) {
@@ -795,23 +786,13 @@ public class CoinDetailActivity extends BaseActivity {
         combinedData.setData(lineData);
         combinedChart.setData(combinedData);
 
-        if (isRefresh)
+        if (isRefresh) {
             setHandler(combinedChart);
+        }
     }
 
     private void setBOLLByChart(MyCombinedChart combinedChart) {
         mData.initBOLL(kLineDatas);
-
-//        BarDataSet set = new BarDataSet(mData.getBarDatasBOLL(), "Sinus Function");
-//        set.setBarSpacePercent(20); //bar空隙
-//        set.setHighlightEnabled(true);
-//        set.setHighLightAlpha(255);
-//        set.setHighLightColor(getResources().getColor(R.color.marker_line_bg));
-//        set.setDrawValues(false);
-//        set.setAxisDependency(YAxis.AxisDependency.LEFT);
-//        set.setColor(getResources().getColor(R.color.transparent));
-//
-//        BarData barData = new BarData(mData.getXVals(), set);
 
         int size = kLineDatas.size();   //点的个数
         CandleDataSet set = new CandleDataSet(mData.getCandleEntries(), "");
@@ -844,8 +825,9 @@ public class CoinDetailActivity extends BaseActivity {
         combinedData.setData(lineData);
         combinedChart.setData(combinedData);
 
-        if (isRefresh)
+        if (isRefresh) {
             setHandler(combinedChart);
+        }
     }
 
     private void setEXPMAByChart(MyCombinedChart combinedChart) {
@@ -868,19 +850,8 @@ public class CoinDetailActivity extends BaseActivity {
         set.setHighLightColor(getResources().getColor(R.color.marker_line_bg));
         set.setDrawValues(true);
         set.setValueTextColor(getResources().getColor(R.color.marker_text_bg));
-//        set.setShowCandleBar(false);
         CandleData candleData = new CandleData(mData.getXVals(), set);
 
-//        BarDataSet set = new BarDataSet(mData.getBarDatasEXPMA(), "Sinus Function");
-//        set.setBarSpacePercent(20); //bar空隙
-//        set.setHighlightEnabled(true);
-//        set.setHighLightAlpha(255);
-//        set.setHighLightColor(getResources().getColor(R.color.marker_line_bg));
-//        set.setDrawValues(false);
-//        set.setAxisDependency(YAxis.AxisDependency.LEFT);
-//        set.setColor(getResources().getColor(R.color.transparent));
-//
-//        BarData barData = new BarData(mData.getXVals(), set);
 
         ArrayList<ILineDataSet> sets = new ArrayList<>();
         sets.add(setKDJMaLine(0, mData.getXVals(), (ArrayList<Entry>) mData.getExpmaData5()));
@@ -1057,22 +1028,6 @@ public class CoinDetailActivity extends BaseActivity {
             index = i;
         }
         return index;
-    }
-
-    private float getSum(Integer a, Integer b, ArrayList<KLineBean> datas) {
-        float sum = 0;
-        for (int i = a; i <= b; i++) {
-            sum += datas.get(i).close;
-        }
-        return sum;
-    }
-
-    private float getJSum(Integer a, Integer b, ArrayList<KLineBean> datas) {
-        float sum = 0;
-        for (int i = a; i <= b; i++) {
-            sum += datas.get(i).vol;
-        }
-        return sum;
     }
 
     /**
