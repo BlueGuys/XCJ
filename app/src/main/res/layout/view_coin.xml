@@ -155,7 +155,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.hongyan.xcj.modules.coin.XCJCombinedChart
+        <com.hongyan.xcj.modules.coin1.XCJCombinedChart
             android:id="@+id/kline_chart_k"
             android:layout_width="match_parent"
             android:layout_height="@dimen/ds400" />
