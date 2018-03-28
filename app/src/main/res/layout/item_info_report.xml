@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/ds170"
+    android:layout_height="@dimen/ds220"
     android:orientation="horizontal"
     android:paddingBottom="@dimen/ds20"
     android:paddingLeft="@dimen/ds30"
@@ -34,7 +34,8 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginBottom="@dimen/ds10">
 
             <TextView
                 android:id="@+id/article_time"
@@ -42,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:text="46分钟前"
                 android:textColor="@color/gray"
-                android:textSize="10dp" />
+                android:textSize="11dp" />
 
             <TextView
                 android:id="@+id/article_website"
@@ -52,7 +53,7 @@
                 android:lines="1"
                 android:text="财经网"
                 android:textColor="@color/gray"
-                android:textSize="10dp" />
+                android:textSize="11dp" />
         </LinearLayout>
 
 
@@ -62,13 +63,13 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:gravity="center">
+        android:gravity="center"
+        android:paddingLeft="@dimen/ds30">
 
         <ImageView
             android:id="@+id/article_image"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/icon_arrow_more" />
+            android:layout_height="match_parent" />
     </LinearLayout>
 
 </LinearLayout>

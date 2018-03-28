@@ -48,7 +48,7 @@ public class ImageLoaderOptionHelper {
                     .cacheOnDisk(true)
                     .considerExifParams(true)
                     .bitmapConfig(Bitmap.Config.RGB_565)
-                    .displayer(new RoundedVignetteBitmapDisplayer(10, 10))
+                    .displayer(new RoundedVignetteBitmapDisplayer(7, 5))
                     .build();
         }
         return mListImageOption;
