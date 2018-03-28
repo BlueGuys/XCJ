@@ -35,10 +35,15 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.ViewHolder
             holder.tvLabel.setBackgroundResource(position < 3 ? R.drawable.bg_market_item_label_blue : R.drawable.bg_market_item_label_grey);
             holder.tvCurrencyName.setText(market.name);
             holder.tvCurrencyDesc.setText(market.desc);
-            holder.tvCurrencyPriceUS.setText(market.dollar_price);
-            holder.tvCurrencyPriceCN.setText(market.price);
-            holder.tvCurrencyChangeRate.setText(market.chg);
-            holder.tvCurrencyChangeRate.setBackgroundResource(market.isUp() ? R.drawable.bg_market_item_button_red : R.drawable.bg_market_item_button_green);
+            holder.tvCurrencyPriceUS.setText("$" + market.dollar_price);
+            holder.tvCurrencyPriceCN.setText("¥" + market.price);
+            if (market.isUp()) {
+                holder.tvCurrencyChangeRate.setText("+" + market.chg + "%");
+                holder.tvCurrencyChangeRate.setBackgroundResource(R.drawable.bg_market_item_button_red);
+            } else {
+                holder.tvCurrencyChangeRate.setText("-" + market.chg + "%");
+                holder.tvCurrencyChangeRate.setBackgroundResource(R.drawable.bg_market_item_button_green);
+            }
         }
     }
 

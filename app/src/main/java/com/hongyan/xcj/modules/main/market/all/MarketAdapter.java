@@ -8,6 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hongyan.xcj.R;
+import com.hongyan.xcj.core.ImageLoaderOptionHelper;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
 
@@ -31,12 +33,18 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.ViewHolder
         // 绑定数据
         MarketResult.Market market = mList.get(position);
         if (market != null) {
+            ImageLoader.getInstance().displayImage(market.logo, holder.imageLogo, ImageLoaderOptionHelper.getInstance().getListImageOption());
             holder.tvCurrencyName.setText(market.name);
             holder.tvCurrencyDesc.setText(market.desc);
-            holder.tvCurrencyPriceUS.setText(market.dollar_price);
-            holder.tvCurrencyPriceCN.setText(market.price);
-            holder.tvCurrencyChangeRate.setText(market.chg);
-            holder.tvCurrencyChangeRate.setBackgroundResource(market.isUp() ? R.drawable.bg_market_item_button_red : R.drawable.bg_market_item_button_green);
+            holder.tvCurrencyPriceUS.setText("$" + market.dollar_price);
+            holder.tvCurrencyPriceCN.setText("¥" + market.price);
+            if (market.isUp()) {
+                holder.tvCurrencyChangeRate.setText("+" + market.chg + "%");
+                holder.tvCurrencyChangeRate.setBackgroundResource(R.drawable.bg_market_item_button_red);
+            } else {
+                holder.tvCurrencyChangeRate.setText("-" + market.chg + "%");
+                holder.tvCurrencyChangeRate.setBackgroundResource(R.drawable.bg_market_item_button_green);
+            }
         }
     }
 

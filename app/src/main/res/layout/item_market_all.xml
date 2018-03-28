@@ -24,8 +24,7 @@
             <ImageView
                 android:id="@+id/market_logo"
                 android:layout_width="@dimen/ds60"
-                android:layout_height="@dimen/ds60"
-                android:src="@drawable/ic_launcher" />
+                android:layout_height="@dimen/ds60" />
 
             <TextView
                 android:id="@+id/market_currency_name"
