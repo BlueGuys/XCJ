@@ -1,15 +1,20 @@
 package com.hongyan.xcj.modules.main.info.reports;
 
+import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hongyan.xcj.R;
 import com.hongyan.xcj.core.BaseApplication;
+import com.hongyan.xcj.core.CollectionManager;
 import com.hongyan.xcj.core.ImageLoaderOptionHelper;
+import com.hongyan.xcj.modules.article.ArticleActivity;
+import com.hongyan.xcj.modules.main.info.recommend.InfoRecommendAdapter;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
@@ -17,6 +22,11 @@ import java.util.ArrayList;
 public class InfoReportAdapter extends RecyclerView.Adapter<InfoReportAdapter.ViewHolder> {
 
     private ArrayList<InfoReportResult.Report> mList;
+    private Activity mActivity;
+
+    public InfoReportAdapter(Activity activity) {
+        this.mActivity = activity;
+    }
 
     public void setData(ArrayList<InfoReportResult.Report> data) {
         this.mList = data;
@@ -30,14 +40,35 @@ public class InfoReportAdapter extends RecyclerView.Adapter<InfoReportAdapter.Vi
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         // 绑定数据
-        InfoReportResult.Report report = mList.get(position);
+        final InfoReportResult.Report report = mList.get(position);
         if (report != null) {
             holder.articleName.setText(report.title);
             holder.articleTime.setText(report.update_time);
             holder.articleWebSite.setText(report.source);
             ImageLoader.getInstance().displayImage(report.photo, holder.articleImage, ImageLoaderOptionHelper.getInstance().getListImageOption());
+            holder.layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ArticleActivity.startActivity(mActivity, report.url);
+                }
+            });
+            holder.collectImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (report.isCollect()) {
+                        CollectionManager.getInstance().cancelCollectionArticle(report.id, "2");
+//                            setCollection(position, false);
+                        holder.collectImage.setImageResource(R.drawable.icon_item_collection_n);
+                    } else {
+                        CollectionManager.getInstance().collectionArticle(report.id, "2");
+                        holder.collectImage.setImageResource(R.drawable.icon_item_collection_s);
+//                            setCollection(position, true);
+                    }
+                    report.setCollect(!report.isCollect());
+                }
+            });
         }
     }
 
@@ -47,14 +78,18 @@ public class InfoReportAdapter extends RecyclerView.Adapter<InfoReportAdapter.Vi
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
+        LinearLayout layout;
         ImageView articleImage;
+        ImageView collectImage;
         TextView articleName;
         TextView articleTime;
         TextView articleWebSite;
 
         public ViewHolder(View itemView) {
             super(itemView);
+            layout = itemView.findViewById(R.id.linear_layout_report);
             articleImage = itemView.findViewById(R.id.article_image);
+            collectImage = itemView.findViewById(R.id.image_collection);
             articleName = itemView.findViewById(R.id.article_title);
             articleTime = itemView.findViewById(R.id.article_time);
             articleWebSite = itemView.findViewById(R.id.article_website);

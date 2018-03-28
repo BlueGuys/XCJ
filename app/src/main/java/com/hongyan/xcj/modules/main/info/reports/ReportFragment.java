@@ -65,7 +65,7 @@ public class ReportFragment extends BaseFragment {
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),
                 DividerItemDecoration.VERTICAL_LIST));
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new InfoReportAdapter();
+        mAdapter = new InfoReportAdapter(getActivity());
         adapterWrapper = new AdapterWrapper(mAdapter);
         helper = new SwipeToLoadHelper(mRecyclerView, adapterWrapper);
         mRecyclerView.setAdapter(adapterWrapper);
@@ -80,22 +80,6 @@ public class ReportFragment extends BaseFragment {
                 loadMore();
             }
         });
-        mRecyclerView.addOnItemTouchListener(
-                new RecyclerItemClickListener(getActivity(), mRecyclerView, new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, int position) {
-                        InfoReportResult.Report report = mReportList.get(position);
-                        if (report != null) {
-                            ArticleActivity.startActivity(getActivity(), report.url);
-                        }
-                    }
-
-                    @Override
-                    public void onItemLongClick(View view, int position) {
-
-                    }
-                })
-        );
     }
 
     private void notifyDataSetChanged() {

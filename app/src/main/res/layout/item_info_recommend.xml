@@ -6,7 +6,8 @@
     android:paddingBottom="@dimen/ds20"
     android:paddingLeft="@dimen/ds30"
     android:paddingRight="@dimen/ds20"
-    android:paddingTop="@dimen/ds16">
+    android:paddingTop="@dimen/ds16"
+    android:id="@+id/linear_layout_recommend">
 
     <RelativeLayout
         android:layout_width="0dp"
@@ -23,19 +24,20 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="@dimen/ds10"
             android:lines="2"
+            android:ellipsize="end"
             android:text="烯说|比特币一万美元关口受阻，关注上行区间持续性"
             android:textColor="@color/black"
             android:textSize="14dp"
             android:textStyle="bold" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
+            android:layout_marginBottom="@dimen/ds10"
             android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:layout_marginBottom="@dimen/ds10">
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/article_time"
@@ -54,6 +56,18 @@
                 android:text="财经网"
                 android:textColor="@color/gray"
                 android:textSize="11dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/image_collection"
+                android:layout_width="@dimen/ds40"
+                android:layout_height="@dimen/ds40"
+                android:layout_marginRight="@dimen/ds30"
+                android:src="@drawable/icon_item_collection_n" />
         </LinearLayout>
 
 

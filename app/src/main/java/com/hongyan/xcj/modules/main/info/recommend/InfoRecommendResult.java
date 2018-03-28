@@ -28,6 +28,15 @@ public class InfoRecommendResult extends JPResult {
         public String photo;
         public String update_time;
         public String url;
+        public boolean isCollect;
+
+        public boolean isCollect() {
+            return isCollect;
+        }
+
+        public void setCollect(boolean collect) {
+            isCollect = collect;
+        }
     }
 
     public static class AD {

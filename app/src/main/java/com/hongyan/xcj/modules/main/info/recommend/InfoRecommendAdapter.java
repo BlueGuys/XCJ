@@ -7,10 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hongyan.xcj.R;
 import com.hongyan.xcj.core.BaseApplication;
+import com.hongyan.xcj.core.CollectionManager;
 import com.hongyan.xcj.core.ImageLoaderOptionHelper;
 import com.hongyan.xcj.modules.article.ArticleActivity;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -94,7 +96,7 @@ public class InfoRecommendAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     @Override
-    public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         if (holder instanceof HeadViewHolder) {
             ArrayList<ScrollBannerView.Entity> entityArrayList = new ArrayList<>();
             final ArrayList<InfoRecommendResult.AD> adList = (ArrayList<InfoRecommendResult.AD>) getItemData(position);
@@ -112,15 +114,47 @@ public class InfoRecommendAdapter extends RecyclerView.Adapter<RecyclerView.View
                 }
             });
         } else if (holder instanceof ItemViewHolder) {
-            InfoRecommendResult.Article article = (InfoRecommendResult.Article) getItemData(position);
+            final InfoRecommendResult.Article article = (InfoRecommendResult.Article) getItemData(position);
             if (article != null) {
                 ((ItemViewHolder) holder).articleName.setText(article.title);
                 ((ItemViewHolder) holder).articleTime.setText(article.update_time);
                 ((ItemViewHolder) holder).articleWebSite.setText(article.source);
+                ((ItemViewHolder) holder).collectImage.setImageResource(article.isCollect() ? R.drawable.icon_item_collection_s : R.drawable.icon_item_collection_n);
                 ImageLoader.getInstance().displayImage(article.photo, ((ItemViewHolder) holder).articleImage, ImageLoaderOptionHelper.getInstance().getListImageOption());
+                ((ItemViewHolder) holder).layout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        ArticleActivity.startActivity(mActivity, article.url);
+                    }
+                });
+                ((ItemViewHolder) holder).collectImage.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (article.isCollect()) {
+                            CollectionManager.getInstance().cancelCollectionArticle(article.id, "1");
+//                            setCollection(position, false);
+                            ((ItemViewHolder) holder).collectImage.setImageResource(R.drawable.icon_item_collection_n);
+                        } else {
+                            CollectionManager.getInstance().collectionArticle(article.id, "1");
+                            ((ItemViewHolder) holder).collectImage.setImageResource(R.drawable.icon_item_collection_s);
+//                            setCollection(position, true);
+                        }
+                        article.setCollect(!article.isCollect());
+                    }
+                });
             }
         }
     }
+
+//    private void setCollection(int position, boolean isCollect) {
+//        for (int i = 0; i < mArticleList.size(); i++) {
+//            if (position == i) {
+//                mArticleList.get(position).setCollect(isCollect);
+//                break;
+//            }
+//        }
+//        notifyDataSetChanged();
+//    }
 
     public static class HeadViewHolder extends RecyclerView.ViewHolder {
         ScrollBannerView headerView;
@@ -132,14 +166,18 @@ public class InfoRecommendAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     public static class ItemViewHolder extends RecyclerView.ViewHolder {
+        LinearLayout layout;
         ImageView articleImage;
+        ImageView collectImage;
         TextView articleName;
         TextView articleTime;
         TextView articleWebSite;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
+            layout = itemView.findViewById(R.id.linear_layout_recommend);
             articleImage = itemView.findViewById(R.id.article_image);
+            collectImage = itemView.findViewById(R.id.image_collection);
             articleName = itemView.findViewById(R.id.article_title);
             articleTime = itemView.findViewById(R.id.article_time);
             articleWebSite = itemView.findViewById(R.id.article_website);

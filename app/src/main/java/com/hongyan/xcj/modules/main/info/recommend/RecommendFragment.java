@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -78,25 +79,27 @@ public class RecommendFragment extends BaseFragment {
                 loadMore();
             }
         });
-        mRecyclerView.addOnItemTouchListener(
-                new RecyclerItemClickListener(getActivity(), mRecyclerView, new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, int position) {
-                        if (position == 0) {//点击HeaderView事件单独处理
-                            return;
-                        }
-                        InfoRecommendResult.Article article = (InfoRecommendResult.Article) mAdapter.getItemData(position);
-                        if (article != null) {
-                            ArticleActivity.startActivity(getActivity(), article.url);
-                        }
-                    }
+//        mRecyclerView.addOnItemTouchListener(
+//                new RecyclerItemClickListener(getActivity(), mRecyclerView, new RecyclerItemClickListener.OnItemClickListener() {
+//                    @Override
+//                    public void onItemClick(View view, int position) {
+//                        if (position == 0) {//点击HeaderView事件单独处理
+//                            return;
+//                        }
+//                        InfoRecommendResult.Article article = (InfoRecommendResult.Article) mAdapter.getItemData(position);
+//                        if (article != null) {
+//                            ArticleActivity.startActivity(getActivity(), article.url);
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onItemLongClick(View view, int position) {
+//
+//                    }
+//                })
+//        );
 
-                    @Override
-                    public void onItemLongClick(View view, int position) {
 
-                    }
-                })
-        );
     }
 
     private void notifyDataSetChanged() {
