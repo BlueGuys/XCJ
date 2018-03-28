@@ -58,11 +58,11 @@ public class InfoFragment extends BaseFragment {
         });
         mViewPager = view.findViewById(R.id.view_pager);
         fragments.add(new RecommendFragment());
-        fragments.add(new NewsFragment());
+//        fragments.add(new NewsFragment());
         fragments.add(new AnalysisFragment());
         fragments.add(new ReportFragment());
         MyFragmentAdapter adapter = new MyFragmentAdapter(getFragmentManager(), fragments);
-        mViewPager.setOffscreenPageLimit(4);
+        mViewPager.setOffscreenPageLimit(3);
         mViewPager.setAdapter(adapter);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override

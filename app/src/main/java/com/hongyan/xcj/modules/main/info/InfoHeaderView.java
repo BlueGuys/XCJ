@@ -55,14 +55,14 @@ public class InfoHeaderView extends LinearLayout {
     private void initTabView(Context context, View view) {
         linearLayout = view.findViewById(R.id.bottomLinear);
         addView(context, "推荐");
-        addView(context, "快讯");
+//        addView(context, "快讯");
         addView(context, "分析师说");
         addView(context, "研报");
         linearLayout.setOnTouchListener(new OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 int touchIndex = 0;
-                int subViewWidth = linearLayout.getWidth() / 4;
+                int subViewWidth = linearLayout.getWidth() / 3;
                 float x = motionEvent.getX();
                 if (x > 0 && x < subViewWidth) {
                     touchIndex = 0;
@@ -70,18 +70,19 @@ public class InfoHeaderView extends LinearLayout {
                     touchIndex = 1;
                 } else if (x > subViewWidth * 2 && x < subViewWidth * 3) {
                     touchIndex = 2;
-                } else {
-                    touchIndex = 3;
                 }
+//                else {
+//                    touchIndex = 3;
+//                }
                 if (touchIndex == currentIndex) {
                     return true;
                 }
-                for (int i = 0; i < 4; i++) {
+                for (int i = 0; i < 3; i++) {
                     TextView tv = (TextView) linearLayout.getChildAt(i);
                     TextPaint tp = tv.getPaint();
                     tp.setFakeBoldText(i == touchIndex);
                     tv.setText(tv.getText());
-                    tv.setTextSize(i == touchIndex ? 17 : 14);
+                    tv.setTextSize(i == touchIndex ? 16 : 14);
                     currentIndex = touchIndex;
                 }
                 if (mOnTabChangeListener != null) {
@@ -107,7 +108,7 @@ public class InfoHeaderView extends LinearLayout {
     }
 
     public void setCurrentIndex(int index) {
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 3; i++) {
             TextView tv = (TextView) linearLayout.getChildAt(i);
             TextPaint tp = tv.getPaint();
             tp.setFakeBoldText(i == index);
