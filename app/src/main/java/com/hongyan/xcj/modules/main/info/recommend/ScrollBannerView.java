@@ -1,8 +1,6 @@
 package com.hongyan.xcj.modules.main.info.recommend;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -16,13 +14,11 @@ import android.widget.TextView;
 
 import com.hongyan.xcj.R;
 import com.hongyan.xcj.core.BaseApplication;
+import com.hongyan.xcj.core.ImageLoaderOptionHelper;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author 阎苏飞
@@ -36,12 +32,12 @@ public class ScrollBannerView extends LinearLayout {
         void setOnPage(int position);
     }
 
-    private int oldPos = 0;
-    private int currentPos = 0;
+//    private int oldPos = 0;
+//    private int currentPos = 0;
     private ViewPager viewPager;
     private HeaderVpAdapter headerVpAdapter;
     private TextView tvTitle;
-    private LinearLayout pointLayout;
+//    private LinearLayout pointLayout;
     private Context mContext;
 
     private OnPageClickListener mOnPageClickListener;
@@ -52,11 +48,11 @@ public class ScrollBannerView extends LinearLayout {
         super(context, attrs);
         this.mContext = context;
 
-        ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
-        service.scheduleAtFixedRate(new CommandTask(), 4, 4, TimeUnit.SECONDS);
+//        ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
+//        service.scheduleAtFixedRate(new CommandTask(), 4, 4, TimeUnit.SECONDS);
 
         View view = View.inflate(mContext, R.layout.fragment_home_headerviewpager, this);
-        pointLayout = view.findViewById(R.id.homeheader_bottomlin);
+//        pointLayout = view.findViewById(R.id.homeheader_bottomlin);
         tvTitle = view.findViewById(R.id.homeheader_title);
         viewPager = view.findViewById(R.id.homeheader_viewpager);
 
@@ -66,19 +62,19 @@ public class ScrollBannerView extends LinearLayout {
 
             @Override
             public void onPageSelected(int arg0) {
-                currentPos = arg0;
-                if (mList.size() > 0) {
-                    tvTitle.setText(mList.get(arg0 % mList.size()).getTitle());
-                    View view = pointLayout.getChildAt(arg0 % mList.size());
-                    if (view != null) {
-                        view.setBackgroundResource(R.drawable.yuan_pressed);
-                    }
-                    View view2 = pointLayout.getChildAt(oldPos % mList.size());
-                    if (view2 != null) {
-                        view2.setBackgroundResource(R.drawable.yuan_normal);
-                    }
-                }
-                oldPos = arg0;
+//                currentPos = arg0;
+//                if (mList.size() > 0) {
+//                    tvTitle.setText(mList.get(arg0 % mList.size()).getTitle());
+//                    View view = pointLayout.getChildAt(arg0 % mList.size());
+//                    if (view != null) {
+//                        view.setBackgroundResource(R.drawable.yuan_pressed);
+//                    }
+//                    View view2 = pointLayout.getChildAt(oldPos % mList.size());
+//                    if (view2 != null) {
+//                        view2.setBackgroundResource(R.drawable.yuan_normal);
+//                    }
+//                }
+//                oldPos = arg0;
             }
 
             @Override
@@ -109,10 +105,10 @@ public class ScrollBannerView extends LinearLayout {
      */
     private void notifyPointView() {
         tvTitle.setText(mList.get(0).getTitle() != null ? mList.get(0).getTitle() : "");
-        pointLayout.removeAllViews();
-        for (int i = 0; i < mList.size(); i++) {
-            pointLayout.addView(getPointView(mContext, i != 0));
-        }
+//        pointLayout.removeAllViews();
+//        for (int i = 0; i < mList.size(); i++) {
+//            pointLayout.addView(getPointView(mContext, i != 0));
+//        }
     }
 
     public static class Entity {
@@ -137,25 +133,25 @@ public class ScrollBannerView extends LinearLayout {
         }
     }
 
-    class CommandTask implements Runnable {
+//    class CommandTask implements Runnable {
+//
+//        @Override
+//        public void run() {
+//            currentPos++;
+//            handler.sendEmptyMessage(0);
+//        }
+//    }
 
-        @Override
-        public void run() {
-            currentPos++;
-            handler.sendEmptyMessage(0);
-        }
-    }
-
-    @SuppressLint("HandlerLeak")
-    public Handler handler = new Handler() {
-
-        public void handleMessage(android.os.Message msg) {
-            if (viewPager != null) {
-                viewPager.setCurrentItem(currentPos);
-            }
-        }
-
-    };
+//    @SuppressLint("HandlerLeak")
+//    public Handler handler = new Handler() {
+//
+//        public void handleMessage(android.os.Message msg) {
+//            if (viewPager != null) {
+//                viewPager.setCurrentItem(currentPos);
+//            }
+//        }
+//
+//    };
 
     public View getPointView(Context context, boolean flag) {
         View view = new View(context);
@@ -174,12 +170,12 @@ public class ScrollBannerView extends LinearLayout {
         private DisplayImageOptions imageOptions;
 
         HeaderVpAdapter() {
-            imageOptions = BaseApplication.getInstance().getOptions();
+            imageOptions = ImageLoaderOptionHelper.getInstance().getHeaderImageOption();
         }
 
         @Override
         public int getCount() {
-            return mList.size() > 0 ? Integer.MAX_VALUE : 0;
+            return mList.size();
         }
 
         @Override
@@ -196,13 +192,13 @@ public class ScrollBannerView extends LinearLayout {
         public Object instantiateItem(ViewGroup container, final int position) {
             View view = LayoutInflater.from(mContext).inflate(R.layout.viewpager_item, null);
             ImageView imageView = view.findViewById(R.id.home_header_imageView);
-            Entity newsListEntity = mList.get(position % mList.size());
+            Entity newsListEntity = mList.get(position);
             ImageLoader.getInstance().displayImage(newsListEntity.getImageUrl(), imageView, imageOptions);
             imageView.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (mOnPageClickListener != null) {
-                        mOnPageClickListener.setOnPage(position % mList.size());
+                        mOnPageClickListener.setOnPage(position);
                     }
                 }
             });

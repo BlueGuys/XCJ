@@ -1,5 +1,7 @@
 package com.hongyan.xcj.modules.main.info.recommend;
 
+import android.app.Activity;
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,8 @@ import android.widget.TextView;
 
 import com.hongyan.xcj.R;
 import com.hongyan.xcj.core.BaseApplication;
+import com.hongyan.xcj.core.ImageLoaderOptionHelper;
+import com.hongyan.xcj.modules.article.ArticleActivity;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
@@ -26,6 +30,12 @@ public class InfoRecommendAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     private ArrayList<InfoRecommendResult.Article> mArticleList = new ArrayList<>();
     private ArrayList<InfoRecommendResult.AD> mAdList = new ArrayList<>();
+
+    private Activity mActivity;
+
+    public InfoRecommendAdapter(Activity activity) {
+        this.mActivity = activity;
+    }
 
     public void setData(ArrayList<InfoRecommendResult.Article> articleList, ArrayList<InfoRecommendResult.AD> adList) {
         if (articleList != null && articleList.size() > 0) {
@@ -84,13 +94,13 @@ public class InfoRecommendAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof HeadViewHolder) {
             ArrayList<ScrollBannerView.Entity> entityArrayList = new ArrayList<>();
-            ArrayList<InfoRecommendResult.AD> adList = (ArrayList<InfoRecommendResult.AD>) getItemData(position);
+            final ArrayList<InfoRecommendResult.AD> adList = (ArrayList<InfoRecommendResult.AD>) getItemData(position);
             for (int i = 0; i < adList.size(); i++) {
                 ScrollBannerView.Entity entity = new ScrollBannerView.Entity();
-                entity.setImageUrl(adList.get(position).url);
+                entity.setImageUrl(adList.get(position).photo);
                 entity.setTitle(adList.get(position).title);
                 entityArrayList.add(entity);
             }
@@ -98,7 +108,7 @@ public class InfoRecommendAdapter extends RecyclerView.Adapter<RecyclerView.View
             ((HeadViewHolder) holder).headerView.setOnPageClickListener(new ScrollBannerView.OnPageClickListener() {
                 @Override
                 public void setOnPage(int position) {
-
+                    ArticleActivity.startActivity(mActivity, adList.get(position).url);
                 }
             });
         } else if (holder instanceof ItemViewHolder) {
@@ -107,7 +117,7 @@ public class InfoRecommendAdapter extends RecyclerView.Adapter<RecyclerView.View
                 ((ItemViewHolder) holder).articleName.setText(article.title);
                 ((ItemViewHolder) holder).articleTime.setText(article.update_time);
                 ((ItemViewHolder) holder).articleWebSite.setText(article.source);
-                ImageLoader.getInstance().displayImage(article.photo, ((ItemViewHolder) holder).articleImage, BaseApplication.getInstance().getImageLoaderOptions());
+                ImageLoader.getInstance().displayImage(article.photo, ((ItemViewHolder) holder).articleImage, ImageLoaderOptionHelper.getInstance().getListImageOption());
             }
         }
     }

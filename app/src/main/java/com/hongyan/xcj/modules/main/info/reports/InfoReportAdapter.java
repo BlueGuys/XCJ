@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.hongyan.xcj.R;
 import com.hongyan.xcj.core.BaseApplication;
+import com.hongyan.xcj.core.ImageLoaderOptionHelper;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
@@ -36,7 +37,7 @@ public class InfoReportAdapter extends RecyclerView.Adapter<InfoReportAdapter.Vi
             holder.articleName.setText(report.title);
             holder.articleTime.setText(report.update_time);
             holder.articleWebSite.setText(report.source);
-            ImageLoader.getInstance().displayImage(report.photo, holder.articleImage, BaseApplication.getInstance().getImageLoaderOptions());
+            ImageLoader.getInstance().displayImage(report.photo, holder.articleImage, ImageLoaderOptionHelper.getInstance().getListImageOption());
         }
     }
 

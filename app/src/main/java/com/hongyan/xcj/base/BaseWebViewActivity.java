@@ -23,6 +23,7 @@ import android.widget.TextView;
 
 import com.hongyan.xcj.R;
 import com.hongyan.xcj.core.AccountManager;
+import com.hongyan.xcj.utils.StringUtils;
 import com.hongyan.xcj.widget.loading.WebViewProgressView;
 
 /**
@@ -144,7 +145,11 @@ public class BaseWebViewActivity extends BaseActivity {
         }
         Uri uri = Uri.parse(mUrl);
         String title = uri.getQueryParameter("title");
-        tvTitle.setText(title);
+        if (StringUtils.isEmpty(title)) {
+            tvTitle.setText("烯财经");
+        } else {
+            tvTitle.setText(title);
+        }
     }
 
     public class ClientFunction {

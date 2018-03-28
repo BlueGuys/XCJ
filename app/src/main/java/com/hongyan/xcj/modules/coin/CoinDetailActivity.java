@@ -605,21 +605,21 @@ public class CoinDetailActivity extends BaseActivity {
         set.setValueTextColor(getResources().getColor(R.color.marker_text_bg));
         CandleData candleData = new CandleData(mData.getXVals(), set);
 
+
+        /******此处修复如果显示的点的个数达不到MA均线的位置所有的点都从0开始计算最小值的问题******************************/
         mData.initKLineMA(kLineDatas);
         ArrayList<ILineDataSet> sets = new ArrayList<>();
-        /******此处修复如果显示的点的个数达不到MA均线的位置所有的点都从0开始计算最小值的问题******************************/
         sets.add(setMaLine(5, mData.getXVals(), mData.getMa5DataL()));
         sets.add(setMaLine(10, mData.getXVals(), mData.getMa10DataL()));
         sets.add(setMaLine(20, mData.getXVals(), mData.getMa20DataL()));
         sets.add(setMaLine(30, mData.getXVals(), mData.getMa30DataL()));
-
         LineData lineData = new LineData(mData.getXVals(), sets);
+
 
         CombinedData combinedData = new CombinedData(mData.getXVals());
         combinedData.setData(lineData);
         combinedData.setData(candleData);
         combinedChart.setData(combinedData);
-
         setHandler(combinedChart);
     }
 

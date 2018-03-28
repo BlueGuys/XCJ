@@ -63,7 +63,7 @@ public class RecommendFragment extends BaseFragment {
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),
                 DividerItemDecoration.VERTICAL_LIST));
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new InfoRecommendAdapter();
+        mAdapter = new InfoRecommendAdapter(getActivity());
         adapterWrapper = new AdapterWrapper(mAdapter);
         helper = new SwipeToLoadHelper(mRecyclerView, adapterWrapper);
         mRecyclerView.setAdapter(adapterWrapper);
@@ -82,6 +82,9 @@ public class RecommendFragment extends BaseFragment {
                 new RecyclerItemClickListener(getActivity(), mRecyclerView, new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
+                        if (position == 0) {//点击HeaderView事件单独处理
+                            return;
+                        }
                         InfoRecommendResult.Article article = (InfoRecommendResult.Article) mAdapter.getItemData(position);
                         if (article != null) {
                             ArticleActivity.startActivity(getActivity(), article.url);
@@ -116,11 +119,11 @@ public class RecommendFragment extends BaseFragment {
                 }
                 InfoRecommendResult result = (InfoRecommendResult) response.getResult();
                 if (result != null && result.data != null) {
-                    if(result.data.list!=null){
+                    if (result.data.list != null) {
                         mArticleList.clear();
                         mArticleList.addAll(result.data.list);
                     }
-                    if(result.data.ad!=null){
+                    if (result.data.ad != null) {
                         mAdList.clear();
                         mAdList.addAll(result.data.ad);
                     }
