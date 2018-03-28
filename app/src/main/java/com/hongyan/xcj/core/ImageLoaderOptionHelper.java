@@ -41,9 +41,9 @@ public class ImageLoaderOptionHelper {
     public DisplayImageOptions getListImageOption() {
         if (mListImageOption == null) {
             mListImageOption = new DisplayImageOptions.Builder()
-//                .showImageOnLoading(R.drawable.ic_stub)
-//                .showImageForEmptyUri(R.drawable.ic_empty)
-//                .showImageOnFail(R.drawable.ic_error)
+                    .showImageOnLoading(R.drawable.icon_net_loading)
+                    .showImageForEmptyUri(R.drawable.icon_start)
+                    .showImageOnFail(R.drawable.icon_net_fail)
                     .cacheInMemory(true)
                     .cacheOnDisk(true)
                     .considerExifParams(true)
