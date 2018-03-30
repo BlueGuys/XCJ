@@ -39,6 +39,7 @@ public final class DateUtils {
     public static final String DB_DATA_FORMAT = "yyyy-MM-DD HH:mm:ss";
     public static final String NEWS_ITEM_DATE_FORMAT = "hh:mm M月d日 yyyy";
     public static final String HHmm = "HH:mm";
+    public static final String MMDD = "MM-dd";
 
     public static String dateToString(Date date, String pattern)
             throws Exception {

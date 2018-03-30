@@ -25,7 +25,7 @@ public class CoinDataParser {
     }
 
     public CombinedData getCombinedData(CoinResult.Data data,int type) {
-        CombinedData combinedData = new CombinedData(data.getXVals());
+        CombinedData combinedData = new CombinedData(data.getXValList());
         switch (type){
             case TYPE_CANDLE:
                 combinedData.setData(getCandleData(data));
@@ -35,6 +35,13 @@ public class CoinDataParser {
                 break;
         }
         return combinedData;
+    }
+
+    public CoinResult.CoinCurrent getCoinCurrent(CoinResult.Data data){
+        if(data ==null){
+            return null;
+        }
+        return data.getCoinCurrent();
     }
 
     private CandleData getCandleData(CoinResult.Data data){
@@ -54,7 +61,7 @@ public class CoinDataParser {
         set.setHighLightColor(mContext.getResources().getColor(R.color.marker_line_bg));
         set.setDrawValues(true);
         set.setValueTextColor(mContext.getResources().getColor(R.color.marker_text_bg));
-        return new CandleData(data.getXVals(), set);
+        return new CandleData(data.getXValList(), set);
     }
 
 
@@ -70,7 +77,7 @@ public class CoinDataParser {
         list.add(mContext.getResources().getColor(R.color.increasing_color));
         list.add(mContext.getResources().getColor(R.color.decreasing_color));
         set.setColors(list);
-        BarData barData = new BarData(data.getXVals(), set);
+        BarData barData = new BarData(data.getXValList(), set);
         return barData;
     }
 

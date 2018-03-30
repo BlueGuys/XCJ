@@ -14,10 +14,10 @@ import com.hongyan.xcj.modules.coin.CoinDataParser;
 import com.hongyan.xcj.modules.coin.CoinResult;
 import com.hongyan.xcj.modules.coin.mychart.MyCombinedChart;
 
-
 public class CoinView extends LinearLayout {
 
     private View view;
+    private CoinViewHeader mHeader;
     protected MyCombinedChart mChartKline, mChartVolume;
     //X轴标签的类
     protected XAxis xAxisKline, xAxisVolume;
@@ -36,6 +36,7 @@ public class CoinView extends LinearLayout {
         super(context, attrs);
         mParser = new CoinDataParser(context);
         view = View.inflate(context, R.layout.view_coin, this);
+        mHeader = view.findViewById(R.id.coin_view_header);
         mChartKline = view.findViewById(R.id.coin_detail_chartK);
         mChartVolume = view.findViewById(R.id.coin_detail_volume);
         initChartKline();
@@ -43,6 +44,7 @@ public class CoinView extends LinearLayout {
     }
 
     public void updateData(CoinResult.Data data) {
+        mHeader.update(mParser.getCoinCurrent(data));
         mChartKline.setData(mParser.getCombinedData(data, CoinDataParser.TYPE_CANDLE));
         mChartVolume.setData(mParser.getCombinedData(data, CoinDataParser.TYPE_BAR));
     }
