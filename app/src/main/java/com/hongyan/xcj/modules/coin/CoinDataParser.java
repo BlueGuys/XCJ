@@ -47,7 +47,7 @@ public class CoinDataParser {
         set.setDecreasingColor(mContext.getResources().getColor(R.color.decreasing_color));//设置开盘价高于收盘价的颜色
         set.setDecreasingPaintStyle(Paint.Style.FILL);
         set.setIncreasingColor(mContext.getResources().getColor(R.color.increasing_color));//设置开盘价地狱收盘价的颜色
-        set.setIncreasingPaintStyle(Paint.Style.STROKE);
+        set.setIncreasingPaintStyle(Paint.Style.FILL);
         set.setNeutralColor(mContext.getResources().getColor(R.color.decreasing_color));//设置开盘价等于收盘价的颜色
         set.setShadowColorSameAsCandle(true);
         set.setHighlightLineWidth(1f);

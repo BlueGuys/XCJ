@@ -161,6 +161,11 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/ds400" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ds2"
+            android:background="@color/white" />
+
         <com.hongyan.xcj.modules.coin.mychart.MyCombinedChart
             android:id="@+id/coin_detail_volume"
             android:layout_width="match_parent"
