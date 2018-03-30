@@ -3,7 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.hongyan.xcj.modules.splash.AppStartActivity">
+    tools:context="com.hongyan.xcj.modules.splash.AppStartActivity"
+    android:orientation="vertical">
+
+    <com.hongyan.xcj.modules.coin.widget.CoinDetailNavigation
+        android:id="@+id/coin_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <com.hongyan.xcj.modules.coin.widget.CoinView
         android:id="@+id/coin_view"

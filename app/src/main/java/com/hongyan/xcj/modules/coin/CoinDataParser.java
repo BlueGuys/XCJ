@@ -24,9 +24,9 @@ public class CoinDataParser {
         this.mContext = context;
     }
 
-    public CombinedData getCombinedData(CoinResult.Data data,int type) {
+    public CombinedData getCombinedData(CoinResult.Data data, int type) {
         CombinedData combinedData = new CombinedData(data.getXValList());
-        switch (type){
+        switch (type) {
             case TYPE_CANDLE:
                 combinedData.setData(getCandleData(data));
                 break;
@@ -37,14 +37,14 @@ public class CoinDataParser {
         return combinedData;
     }
 
-    public CoinResult.CoinCurrent getCoinCurrent(CoinResult.Data data){
-        if(data ==null){
+    public CoinResult.CoinCurrent getCoinCurrent(CoinResult.Data data) {
+        if (data == null) {
             return null;
         }
         return data.getCoinCurrent();
     }
 
-    private CandleData getCandleData(CoinResult.Data data){
+    private CandleData getCandleData(CoinResult.Data data) {
         CandleDataSet set = new CandleDataSet(data.getCandleEntries(), "");
         set.setDrawHorizontalHighlightIndicator(false);
         set.setHighlightEnabled(true);
@@ -65,7 +65,7 @@ public class CoinDataParser {
     }
 
 
-    private BarData getBarData(CoinResult.Data data){
+    private BarData getBarData(CoinResult.Data data) {
         BarDataSet set = new BarDataSet(data.getBarEntries(), "成交量");
         set.setBarSpacePercent(20); //bar空隙
         set.setHighlightEnabled(true);
