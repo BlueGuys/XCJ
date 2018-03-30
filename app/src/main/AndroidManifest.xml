@@ -29,7 +29,8 @@
         <activity
             android:name=".modules.main.MainTabActivity"
             android:windowSoftInputMode="stateHidden|adjustPan"></activity>
-        <activity android:name=".modules.coin.CoinDetailActivity">
+        <activity android:name=".modules.coin.CoinDetailActivity"/>
+        <activity android:name=".modules.coin.CoinDetail1Activity">
         </activity>
         <activity android:name=".test.RecycleViewActivity" />
         <activity android:name=".base.BaseWebViewActivity" />

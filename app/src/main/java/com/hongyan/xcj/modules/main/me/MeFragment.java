@@ -15,6 +15,7 @@ import com.hongyan.xcj.base.BaseWebViewActivity;
 import com.hongyan.xcj.core.AccountInfo;
 import com.hongyan.xcj.core.AccountManager;
 import com.hongyan.xcj.core.AccountMessageEvent;
+import com.hongyan.xcj.modules.coin.CoinDetail1Activity;
 import com.hongyan.xcj.modules.coin.CoinDetailActivity;
 import com.hongyan.xcj.modules.collect.CollectActivity;
 import com.hongyan.xcj.widget.view.ItemCommonClickView;
@@ -70,6 +71,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
                 startActivity(new Intent(getActivity(), CollectActivity.class));
                 break;
             case R.id.linear_market:
+                startActivity(new Intent(getActivity(),CoinDetail1Activity.class));
                 break;
             case R.id.linear_clear:
                 startActivity(new Intent(getActivity(),CoinDetailActivity.class));
