@@ -1,10 +1,12 @@
 package com.hongyan.xcj.modules.coin.bean;
 
+import android.util.Log;
 import android.util.SparseArray;
 
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.CandleEntry;
 import com.github.mikephil.charting.data.Entry;
+import com.hongyan.xcj.utils.GsonUtils;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -140,6 +142,7 @@ public class DataParse {
                 xValuesLabel.put(i, kLineData.date);
             }
         }
+        Log.e("test", GsonUtils.toJson(kLineBeans));
         kDatas.addAll(kLineBeans);
     }
 

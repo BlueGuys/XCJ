@@ -153,10 +153,16 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <com.hongyan.xcj.modules.coin1.XCJCombinedChart
-            android:id="@+id/kline_chart_k"
+        <com.hongyan.xcj.modules.coin.mychart.MyCombinedChart
+            android:id="@+id/coin_detail_chartK"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ds400" />
+
+        <com.hongyan.xcj.modules.coin.mychart.MyCombinedChart
+            android:id="@+id/coin_detail_volume"
             android:layout_width="match_parent"
             android:layout_height="@dimen/ds400" />
     </LinearLayout>
