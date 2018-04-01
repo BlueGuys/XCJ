@@ -2,6 +2,7 @@ package com.hongyan.xcj.core;
 
 
 import android.util.Log;
+import android.widget.Toast;
 
 import com.hongyan.xcj.base.JPBaseModel;
 import com.hongyan.xcj.base.JPRequest;
@@ -40,7 +41,7 @@ public class CollectionManager {
                 }
                 Account result = (Account) response.getResult();
                 if (result != null && result.isSuccessful()) {
-
+                    Toast.makeText(BaseApplication.getInstance().getApplicationContext(),"收藏成功",Toast.LENGTH_SHORT).show();
                 }
             }
         }, new Response.ErrorListener() {
@@ -66,7 +67,7 @@ public class CollectionManager {
                 }
                 Account result = (Account) response.getResult();
                 if (result != null && result.data != null) {
-
+                    Toast.makeText(BaseApplication.getInstance().getApplicationContext(),"已取消收藏",Toast.LENGTH_SHORT).show();
                 }
             }
         }, new Response.ErrorListener() {

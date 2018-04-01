@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hongyan.xcj.R;
 import com.hongyan.xcj.base.BaseFragment;
@@ -71,10 +72,10 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
                 startActivity(new Intent(getActivity(), CollectActivity.class));
                 break;
             case R.id.linear_market:
-                startActivity(new Intent(getActivity(),CoinDetailActivity.class));
+                startActivity(new Intent(getActivity(), CoinDetailActivity.class));
                 break;
             case R.id.linear_clear:
-                startActivity(new Intent(getActivity(),CoinDetail2Activity.class));
+                startActivity(new Intent(getActivity(), CoinDetail2Activity.class));
                 break;
             case R.id.linear_logout:
                 AccountManager.getInstance().logout();
