@@ -14,7 +14,8 @@
         android:layout_height="match_parent"
         android:layout_weight="2"
         android:gravity="center_vertical"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginRight="@dimen/ds40">
 
         <TextView
             android:id="@+id/article_title"
@@ -64,7 +65,6 @@
                 android:id="@+id/image_collection"
                 android:layout_width="@dimen/ds40"
                 android:layout_height="@dimen/ds40"
-                android:layout_marginRight="@dimen/ds30"
                 android:src="@drawable/icon_item_collection_n" />
         </LinearLayout>
 
