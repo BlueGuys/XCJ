@@ -6,7 +6,8 @@
     android:paddingBottom="@dimen/ds20"
     android:paddingLeft="@dimen/ds30"
     android:paddingRight="@dimen/ds20"
-    android:paddingTop="@dimen/ds16">
+    android:paddingTop="@dimen/ds16"
+    android:id="@+id/linear_layout_analysis">
 
     <RelativeLayout
         android:layout_width="0dp"

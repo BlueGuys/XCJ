@@ -37,5 +37,15 @@ public class InfoAnalysisResult extends JPResult {
          * rmb价格
          */
         public String url;
+
+        public boolean isCollect;
+
+        public boolean isCollect() {
+            return isCollect;
+        }
+
+        public void setCollect(boolean collect) {
+            isCollect = collect;
+        }
     }
 }

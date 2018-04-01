@@ -65,7 +65,7 @@ public class AnalysisFragment extends BaseFragment {
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),
                 DividerItemDecoration.VERTICAL_LIST));
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new InfoAnalysisAdapter();
+        mAdapter = new InfoAnalysisAdapter(getActivity());
         adapterWrapper = new AdapterWrapper(mAdapter);
         helper = new SwipeToLoadHelper(mRecyclerView, adapterWrapper);
         mRecyclerView.setAdapter(adapterWrapper);
@@ -80,22 +80,6 @@ public class AnalysisFragment extends BaseFragment {
                 loadMore();
             }
         });
-        mRecyclerView.addOnItemTouchListener(
-                new RecyclerItemClickListener(getActivity(), mRecyclerView, new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, int position) {
-                        InfoAnalysisResult.Article article = mArticleList.get(position);
-                        if (article != null) {
-                            ArticleActivity.startActivity(getActivity(), article.url);
-                        }
-                    }
-
-                    @Override
-                    public void onItemLongClick(View view, int position) {
-
-                    }
-                })
-        );
     }
 
     private void notifyDataSetChanged() {
@@ -168,7 +152,7 @@ public class AnalysisFragment extends BaseFragment {
                     boolean hasMore = "1".equals(result.data.hasMore);
                     if (hasMore) {
                         currentPage++;
-                    }else{
+                    } else {
                         helper.setSwipeToLoadEnabled(false);
                     }
                     notifyDataSetChanged();
