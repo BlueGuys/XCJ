@@ -16,7 +16,6 @@ import com.hongyan.xcj.base.UrlConst;
 import com.hongyan.xcj.modules.coin.widget.CoinDetailNavigation;
 import com.hongyan.xcj.network.Response;
 import com.hongyan.xcj.network.VolleyError;
-import com.hongyan.xcj.test.DividerItemDecoration;
 
 
 public class CoinDetailActivity extends BaseActivity {
@@ -36,7 +35,7 @@ public class CoinDetailActivity extends BaseActivity {
             public void run() {
                 requestCoinCore();
             }
-        },500);
+        }, 500);
     }
 
     private void initView() {
@@ -73,8 +72,6 @@ public class CoinDetailActivity extends BaseActivity {
 
         mRecyclerView = findViewById(R.id.coin_recycler_view);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(CoinDetailActivity.this, LinearLayoutManager.VERTICAL, false);
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(CoinDetailActivity.this,
-                DividerItemDecoration.VERTICAL_LIST));
         mRecyclerView.setLayoutManager(layoutManager);
         mAdapter = new CoinDetailAdapter(this);
         mRecyclerView.setAdapter(mAdapter);

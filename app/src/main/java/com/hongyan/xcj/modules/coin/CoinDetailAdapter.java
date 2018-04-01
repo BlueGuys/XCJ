@@ -157,10 +157,8 @@ public class CoinDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             return;
         }
         if (holder instanceof KLineHeader) {
-            //Do something
         } else if (holder instanceof MMHeader) {
             ((MMHeader) holder).progressView.setProgress(JavaTypesHelper.toFloat(this.mData.buyRate));
-            //Do something
         } else if (holder instanceof MMItem) {
             int realPosition = position - 2;
             CoinDetailResult.MMBean bean = this.mData.mmList.get(realPosition);
@@ -168,9 +166,10 @@ public class CoinDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             ((MMItem) holder).tvBuyCount.setText(bean.buyCount);
             ((MMItem) holder).tvSellerPrice.setText(bean.sellAmount);
             ((MMItem) holder).tvSellerCount.setText(bean.sellCount);
-            //Do something
+            if (realPosition == this.mData.mmList.size() - 1) {
+                ((MMItem) holder).bottomLine.setVisibility(View.GONE);
+            }
         } else if (holder instanceof DealHeader) {
-            //Do something
         } else if (holder instanceof DealItem) {
             int realPosition = position - this.mData.mmList.size() - 3;
             CoinDetailResult.DealBean bean = this.mData.dealList.get(realPosition);
@@ -182,16 +181,31 @@ public class CoinDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             } else {
                 ((DealItem) holder).tvDealPrice.setTextColor(mContext.getResources().getColor(R.color.text_color_green));
             }
-            //Do something
+            if (realPosition == this.mData.dealList.size() - 1) {
+                ((DealItem) holder).bottomLine.setVisibility(View.GONE);
+            }
         } else if (holder instanceof DetailBrief) {
-            //Do something
+            CoinDetailResult.CoinDetailBean bean = this.mData.coinDetail;
+            if (bean != null) {
+                ((DetailBrief) holder).tvDetailBrief.setText(bean.brief);
+                ((DetailBrief) holder).tvDetailNameEN.setText(bean.ENName);
+                ((DetailBrief) holder).tvDetailNameCN.setText(bean.CNName);
+                ((DetailBrief) holder).tvDetailWebSite.setText(bean.webSiteName);
+                ((DetailBrief) holder).tvDetailBlock.setText(bean.blockName);
+                ((DetailBrief) holder).tvDetailWhitePaper.setText(bean.whitePaper);
+                ((DetailBrief) holder).tvDetailExchangeName.setText(bean.exchangeName);
+                ((DetailBrief) holder).tvDetailReleaseTime.setText(bean.releaseTime);
+            }
         } else if (holder instanceof InfoHeader) {
-            //Do something
         } else if (holder instanceof InfoItem) {
             int realPosition = position - this.mData.mmList.size() - this.mData.dealList.size() - 5;
             CoinDetailResult.Info bean = this.mData.infoList.get(realPosition);
             ((InfoItem) holder).tvInfoTitle.setText(bean.title);
             ((InfoItem) holder).tvInfoTime.setText(bean.timeStamp);
+            if (realPosition == this.mData.infoList.size() - 1) {
+                ((InfoItem) holder).bottomLine.setVisibility(View.GONE);
+                ((InfoItem) holder).bottomMargin.setVisibility(View.VISIBLE);
+            }
         }
     }
 
@@ -217,6 +231,7 @@ public class CoinDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         TextView tvBuyCount;
         TextView tvSellerPrice;
         TextView tvSellerCount;
+        View bottomLine;
 
         public MMItem(View itemView) {
             super(itemView);
@@ -224,6 +239,7 @@ public class CoinDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             tvBuyCount = itemView.findViewById(R.id.tv_buy_count);
             tvSellerPrice = itemView.findViewById(R.id.tv_seller_price);
             tvSellerCount = itemView.findViewById(R.id.tv_seller_count);
+            bottomLine = itemView.findViewById(R.id.mm_bottom_line);
         }
     }
 
@@ -238,19 +254,37 @@ public class CoinDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         TextView tvDealTime;
         TextView tvDealPrice;
         TextView tvDealVolume;
+        View bottomLine;
 
         public DealItem(View itemView) {
             super(itemView);
             tvDealTime = itemView.findViewById(R.id.tv_deal_time);
             tvDealPrice = itemView.findViewById(R.id.tv_deal_price);
             tvDealVolume = itemView.findViewById(R.id.tv_deal_volume);
+            bottomLine = itemView.findViewById(R.id.deal_bottom_line);
         }
     }
 
     public class DetailBrief extends RecyclerView.ViewHolder {
+        TextView tvDetailBrief;
+        TextView tvDetailNameEN;
+        TextView tvDetailNameCN;
+        TextView tvDetailWebSite;
+        TextView tvDetailBlock;
+        TextView tvDetailExchangeName;
+        TextView tvDetailReleaseTime;
+        TextView tvDetailWhitePaper;
 
         public DetailBrief(View itemView) {
             super(itemView);
+            tvDetailBrief = itemView.findViewById(R.id.tv_coin_detail_brief);
+            tvDetailNameEN = itemView.findViewById(R.id.tv_coin_detail_en_name);
+            tvDetailNameCN = itemView.findViewById(R.id.tv_coin_detail_cn_name);
+            tvDetailWebSite = itemView.findViewById(R.id.tv_coin_detail_web_site);
+            tvDetailBlock = itemView.findViewById(R.id.tv_coin_detail_block);
+            tvDetailExchangeName = itemView.findViewById(R.id.tv_coin_detail_exchange_name);
+            tvDetailReleaseTime = itemView.findViewById(R.id.tv_coin_detail__release_time);
+            tvDetailWhitePaper = itemView.findViewById(R.id.tv_coin_detail_white_paper);
         }
     }
 
@@ -264,11 +298,15 @@ public class CoinDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public class InfoItem extends RecyclerView.ViewHolder {
         TextView tvInfoTitle;
         TextView tvInfoTime;
+        View bottomLine;
+        View bottomMargin;
 
         public InfoItem(View itemView) {
             super(itemView);
             tvInfoTitle = itemView.findViewById(R.id.tv_info_title);
             tvInfoTime = itemView.findViewById(R.id.tv_info_time);
+            bottomLine = itemView.findViewById(R.id.bottom_Line);
+            bottomMargin = itemView.findViewById(R.id.bottom_Margin);
         }
     }
 
