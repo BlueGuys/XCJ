@@ -5,9 +5,14 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ds2"
+        android:background="@color/c_bg_line_b" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/ds60"
+        android:layout_height="@dimen/ds80"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingLeft="@dimen/ds30"
@@ -40,11 +45,5 @@
             android:textColor="@color/xcj_text_b"
             android:textSize="13dp" />
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/deal_bottom_line"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/ds2"
-        android:background="@color/c_bg_line_b" />
 
 </LinearLayout>

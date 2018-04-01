@@ -178,9 +178,6 @@ public class CoinDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             ((DealItem) holder).tvDealPrice.setText(bean.price);
             ((DealItem) holder).tvDealVolume.setText(bean.volume);
             ((DealItem) holder).tvDealPrice.setTextColor(Color.parseColor(bean.textColor));
-            if (realPosition == this.mData.dealList.size() - 1) {
-                ((DealItem) holder).bottomLine.setVisibility(View.GONE);
-            }
         } else if (holder instanceof DetailBrief) {
             CoinDetailResult.CoinDetailBean bean = this.mData.coinDetail;
             if (bean != null) {
@@ -251,14 +248,12 @@ public class CoinDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         TextView tvDealTime;
         TextView tvDealPrice;
         TextView tvDealVolume;
-        View bottomLine;
 
         public DealItem(View itemView) {
             super(itemView);
             tvDealTime = itemView.findViewById(R.id.tv_deal_time);
             tvDealPrice = itemView.findViewById(R.id.tv_deal_price);
             tvDealVolume = itemView.findViewById(R.id.tv_deal_volume);
-            bottomLine = itemView.findViewById(R.id.deal_bottom_line);
         }
     }
 

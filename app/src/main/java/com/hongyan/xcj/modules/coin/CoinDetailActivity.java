@@ -24,11 +24,7 @@ public class CoinDetailActivity extends BaseActivity {
 
     private CoinDetailNavigation mNavigation;
     private RecyclerView mRecyclerView;
-    private RecyclerView.LayoutManager layoutManager;
     private CoinDetailAdapter mAdapter;
-    private TextView tvCoinK;
-    private TextView tvCoinDeal;
-    private TextView tvCoinDetail;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,9 +43,9 @@ public class CoinDetailActivity extends BaseActivity {
     private void initView() {
         hideNavigationView();
         mNavigation = findViewById(R.id.coin_navigation);
-        tvCoinK = findViewById(R.id.tv_coin_K);
-        tvCoinDeal = findViewById(R.id.tv_coin_deal);
-        tvCoinDetail = findViewById(R.id.tv_coin_detail);
+        TextView tvCoinK = findViewById(R.id.tv_coin_K);
+        TextView tvCoinDeal = findViewById(R.id.tv_coin_deal);
+        TextView tvCoinDetail = findViewById(R.id.tv_coin_detail);
         mRecyclerView = findViewById(R.id.coin_recycler_view);
         mNavigation.setOnBackClickListener(new CoinDetailNavigation.OnBackClickListener() {
             @Override
@@ -57,7 +53,7 @@ public class CoinDetailActivity extends BaseActivity {
                 finish();
             }
         });
-        layoutManager = new LinearLayoutManager(CoinDetailActivity.this, LinearLayoutManager.VERTICAL, false);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(CoinDetailActivity.this, LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(layoutManager);
         mAdapter = new CoinDetailAdapter(this);
         mRecyclerView.setAdapter(mAdapter);

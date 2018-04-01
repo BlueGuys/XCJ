@@ -6,14 +6,15 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/ds60"
-        android:orientation="horizontal"
-        android:layout_gravity="center_vertical">
+        android:layout_height="@dimen/ds80"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="@dimen/ds40"
             android:layout_weight="1"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <TextView
@@ -38,14 +39,15 @@
         <TextView
             android:layout_width="@dimen/ds2"
             android:layout_height="match_parent"
-            android:background="@color/c_bg_line_b"
+            android:layout_marginBottom="@dimen/ds6"
             android:layout_marginTop="@dimen/ds6"
-            android:layout_marginBottom="@dimen/ds6"/>
+            android:background="@color/c_bg_line_b" />
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="@dimen/ds40"
             android:layout_weight="1"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <TextView
