@@ -5,9 +5,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.hongyan.xcj.R;
+import com.hongyan.xcj.modules.coin.widget.CoinProgressView;
 import com.hongyan.xcj.modules.coin.widget.CoinView;
+import com.hongyan.xcj.utils.JavaTypesHelper;
 
 public class CoinDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -124,25 +127,25 @@ public class CoinDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             return kLineHeader;
         } else if (viewType == ITEM_TYPE_MM_HEADER) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_coin_detail_mm_header, parent, false);
-            return new KLineHeader(view);
+            return new MMHeader(view);
         } else if (viewType == ITEM_TYPE_MM_ITEM) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_coin_detail_mm_item, parent, false);
-            return new KLineHeader(view);
+            return new MMItem(view);
         } else if (viewType == ITEM_TYPE_DEAL_HEADER) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_coin_detail_deal_header, parent, false);
-            return new KLineHeader(view);
+            return new DealHeader(view);
         } else if (viewType == ITEM_TYPE_DEAL_ITEM) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_coin_detail_deal_item, parent, false);
-            return new KLineHeader(view);
+            return new DealItem(view);
         } else if (viewType == ITEM_TYPE_COIN_DETAIL) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_coin_detail_brief, parent, false);
-            return new KLineHeader(view);
+            return new DetailBrief(view);
         } else if (viewType == ITEM_TYPE_INFO_HEADER) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_coin_detail_info_header, parent, false);
-            return new KLineHeader(view);
+            return new InfoHeader(view);
         } else if (viewType == ITEM_TYPE_INFO_ITEM) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_coin_detail_info_item, parent, false);
-            return new KLineHeader(view);
+            return new InfoItem(view);
         } else {
             return null;
         }
@@ -150,22 +153,45 @@ public class CoinDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        if (this.mData == null) {
+            return;
+        }
         if (holder instanceof KLineHeader) {
             //Do something
         } else if (holder instanceof MMHeader) {
+            ((MMHeader) holder).progressView.setProgress(JavaTypesHelper.toFloat(this.mData.buyRate));
             //Do something
         } else if (holder instanceof MMItem) {
+            int realPosition = position - 2;
+            CoinDetailResult.MMBean bean = this.mData.mmList.get(realPosition);
+            ((MMItem) holder).tvBuyPrice.setText(bean.buyAmount);
+            ((MMItem) holder).tvBuyCount.setText(bean.buyCount);
+            ((MMItem) holder).tvSellerPrice.setText(bean.sellAmount);
+            ((MMItem) holder).tvSellerCount.setText(bean.sellCount);
             //Do something
         } else if (holder instanceof DealHeader) {
             //Do something
         } else if (holder instanceof DealItem) {
+            int realPosition = position - this.mData.mmList.size() - 3;
+            CoinDetailResult.DealBean bean = this.mData.dealList.get(realPosition);
+            ((DealItem) holder).tvDealTime.setText(bean.timeStamp);
+            ((DealItem) holder).tvDealPrice.setText(bean.price);
+            ((DealItem) holder).tvDealVolume.setText(bean.volume);
+            if (bean.isUp()) {
+                ((DealItem) holder).tvDealPrice.setTextColor(mContext.getResources().getColor(R.color.red));
+            } else {
+                ((DealItem) holder).tvDealPrice.setTextColor(mContext.getResources().getColor(R.color.text_color_green));
+            }
             //Do something
         } else if (holder instanceof DetailBrief) {
             //Do something
         } else if (holder instanceof InfoHeader) {
             //Do something
         } else if (holder instanceof InfoItem) {
-            //Do something
+            int realPosition = position - this.mData.mmList.size() - this.mData.dealList.size() - 5;
+            CoinDetailResult.Info bean = this.mData.infoList.get(realPosition);
+            ((InfoItem) holder).tvInfoTitle.setText(bean.title);
+            ((InfoItem) holder).tvInfoTime.setText(bean.timeStamp);
         }
     }
 
@@ -178,15 +204,26 @@ public class CoinDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     public class MMHeader extends RecyclerView.ViewHolder {
 
+        CoinProgressView progressView;
+
         public MMHeader(View itemView) {
             super(itemView);
+            progressView = itemView.findViewById(R.id.item_coin_progress);
         }
     }
 
     public class MMItem extends RecyclerView.ViewHolder {
+        TextView tvBuyPrice;
+        TextView tvBuyCount;
+        TextView tvSellerPrice;
+        TextView tvSellerCount;
 
         public MMItem(View itemView) {
             super(itemView);
+            tvBuyPrice = itemView.findViewById(R.id.tv_buy_price);
+            tvBuyCount = itemView.findViewById(R.id.tv_buy_count);
+            tvSellerPrice = itemView.findViewById(R.id.tv_seller_price);
+            tvSellerCount = itemView.findViewById(R.id.tv_seller_count);
         }
     }
 
@@ -198,9 +235,15 @@ public class CoinDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     }
 
     public class DealItem extends RecyclerView.ViewHolder {
+        TextView tvDealTime;
+        TextView tvDealPrice;
+        TextView tvDealVolume;
 
         public DealItem(View itemView) {
             super(itemView);
+            tvDealTime = itemView.findViewById(R.id.tv_deal_time);
+            tvDealPrice = itemView.findViewById(R.id.tv_deal_price);
+            tvDealVolume = itemView.findViewById(R.id.tv_deal_volume);
         }
     }
 
@@ -219,9 +262,13 @@ public class CoinDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     }
 
     public class InfoItem extends RecyclerView.ViewHolder {
+        TextView tvInfoTitle;
+        TextView tvInfoTime;
 
         public InfoItem(View itemView) {
             super(itemView);
+            tvInfoTitle = itemView.findViewById(R.id.tv_info_title);
+            tvInfoTime = itemView.findViewById(R.id.tv_info_time);
         }
     }
 

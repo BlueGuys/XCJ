@@ -1,11 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="我是交易Header" />
+        android:layout_height="@dimen/ds80"
+        android:background="#f9f9f9"
+        android:gravity="center"
+        android:text="交易记录"
+        android:textColor="@color/black"
+        android:textSize="16dp" />
 
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ds60"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/ds30"
+        android:paddingRight="@dimen/ds30">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical|left"
+            android:text="成交时间"
+            android:textColor="@color/c_font_b"
+            android:textSize="14dp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="成交价"
+            android:textColor="@color/c_font_b"
+            android:textSize="14dp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical|right"
+            android:text="成交量"
+            android:textColor="@color/c_font_b"
+            android:textSize="14dp" />
+    </LinearLayout>
+
+
+</LinearLayout>

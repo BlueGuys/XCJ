@@ -1,11 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="我是买卖Header" />
+        android:layout_height="@dimen/ds60"
+        android:orientation="horizontal">
 
-</RelativeLayout>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="买盘10档"
+            android:textColor="@color/red" />
+
+        <TextView
+            android:layout_width="@dimen/ds2"
+            android:layout_height="@dimen/ds50"
+            android:text="我是买卖Header"
+            android:background="@color/c_bg_line_b"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="卖盘10档"
+            android:textColor="@color/green" />
+    </LinearLayout>
+
+    <com.hongyan.xcj.modules.coin.widget.CoinProgressView
+        android:id="@+id/item_coin_progress"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ds44" />
+
+</LinearLayout>

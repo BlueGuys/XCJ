@@ -1,11 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="@dimen/ds40"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_buy_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/red"
+            android:textSize="14dp"/>
+
+        <TextView
+            android:id="@+id/tv_buy_count"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/red"
+            android:textSize="14dp"/>
+    </LinearLayout>
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="我是买卖Item" />
+        android:layout_width="@dimen/ds2"
+        android:layout_height="@dimen/ds50"
+        android:background="@color/c_bg_line_b" />
 
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="@dimen/ds40"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_seller_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/green"
+            android:textSize="14dp"/>
+
+        <TextView
+            android:id="@+id/tv_seller_count"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/green"
+            android:textSize="14dp"/>
+    </LinearLayout>
+
+</LinearLayout>

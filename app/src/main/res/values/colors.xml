@@ -270,6 +270,7 @@
     <color name="text_color_red">#FF0000</color>
     <color name="text_color_orange">#FCAE05</color>
     <color name="text_color_maroon">#CD0000</color>
+    <color name="text_color_green">#2ab21e</color>
 
     <!-- common -->
     <color name="common_1">#EEE9BF</color>
@@ -292,5 +293,7 @@
 
     <color name="increasing_color">#CD2626</color>
     <color name="decreasing_color">#006400</color>
+
+
 
 </resources>
