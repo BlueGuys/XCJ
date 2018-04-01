@@ -39,7 +39,7 @@ public class AccountManager {
     /**
      * 从SD卡读取账户信息
      */
-    private void init() {
+    public void init() {
         readAccountInfo();
     }
 
@@ -109,6 +109,7 @@ public class AccountManager {
         String accountJson = SharePreferenceManager.getInstance().getString("account");
         if (null != accountJson) {
             mAccountInfo = GsonUtils.gsonResolve(accountJson, AccountInfo.class);
+            this.token = mAccountInfo.getToken();
         }
     }
 }

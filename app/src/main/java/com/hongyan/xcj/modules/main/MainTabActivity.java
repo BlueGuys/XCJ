@@ -11,15 +11,21 @@ import android.view.KeyEvent;
 
 import com.hongyan.xcj.R;
 import com.hongyan.xcj.base.BaseActivity;
+import com.hongyan.xcj.base.BaseWebViewActivity;
 import com.hongyan.xcj.base.JPBaseModel;
 import com.hongyan.xcj.base.JPRequest;
 import com.hongyan.xcj.base.JPResponse;
 import com.hongyan.xcj.base.UrlConst;
+import com.hongyan.xcj.core.AccountMessageEvent;
 import com.hongyan.xcj.modules.main.info.InfoFragment;
 import com.hongyan.xcj.modules.main.market.MarketFragment;
 import com.hongyan.xcj.modules.main.me.MeFragment;
 import com.hongyan.xcj.network.Response;
 import com.hongyan.xcj.network.VolleyError;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +48,13 @@ public class MainTabActivity extends BaseActivity {
         mViewPager = findViewById(R.id.vp_content);
         initContent();
         initTab();
-//        register();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
     private void initTab() {
@@ -138,34 +150,12 @@ public class MainTabActivity extends BaseActivity {
         return true;
     }
 
-    /**
-     * 向鉴权中心注册
-     */
-    private void register() {
-        startLoading();
-        JPRequest request = new JPRequest<>(RegisterResult.class, UrlConst.getInfoList(), new Response.Listener<JPResponse>() {
-            @Override
-            public void onResponse(JPResponse response) {
-                cancelLoading();
-                if (null == response || null == response.getResult()) {
-                    return;
-                }
-                RegisterResult result = (RegisterResult) response.getResult();
-                if (result == null) {
-                    return;
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                cancelLoading();
-                showErrorToast("网络不稳定，请稍后重试");
-            }
-        });
-        request.addParam("pagesize", "5");
-        request.addParam("p", "1");
-        JPBaseModel baseModel = new JPBaseModel();
-        baseModel.sendRequest(request);
+    @Subscribe(threadMode = ThreadMode.POSTING)
+    public void accountEvent(TokenMessageEvent message) {
+        if (message == null) {
+            return;
+        }
+        BaseWebViewActivity.startActivity(this, "http://www.xicaijing.com/App/Users/login.html?title=登录");
     }
 
 }

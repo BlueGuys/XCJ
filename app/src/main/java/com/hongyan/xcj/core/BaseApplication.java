@@ -1,11 +1,13 @@
 package com.hongyan.xcj.core;
 
+import android.app.Activity;
 import android.app.Application;
 import android.graphics.Bitmap;
 
 import com.hongyan.xcj.R;
 import com.hongyan.xcj.network.RequestQueue;
 import com.hongyan.xcj.network.toolbox.Volley;
+import com.hongyan.xcj.utils.XCJActivityStack;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
@@ -36,6 +38,7 @@ public class BaseApplication extends Application {
         super.onCreate();
         _instance = this;
         this.mRequestQueue = Volley.newRequestQueue(this);
+        AccountManager.getInstance().init();
         initImageLoader();
     }
 

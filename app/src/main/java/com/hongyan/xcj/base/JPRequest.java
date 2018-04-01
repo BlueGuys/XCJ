@@ -1,6 +1,10 @@
 package com.hongyan.xcj.base;
 
+import android.util.Log;
+
 import com.hongyan.xcj.core.AccountManager;
+import com.hongyan.xcj.core.AccountMessageEvent;
+import com.hongyan.xcj.modules.main.TokenMessageEvent;
 import com.hongyan.xcj.network.AuthFailureError;
 import com.hongyan.xcj.network.DefaultRetryPolicy;
 import com.hongyan.xcj.network.NetworkResponse;
@@ -11,6 +15,8 @@ import com.hongyan.xcj.network.toolbox.HttpHeaderParser;
 import com.hongyan.xcj.utils.AppMD5Util;
 import com.hongyan.xcj.utils.GsonUtils;
 import com.hongyan.xcj.utils.SerializableHashMapUtils;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
@@ -83,6 +89,9 @@ public class JPRequest<T extends JPResult> extends Request<JPResponse> {
             }
             response.setResponse(string);
             JPResult result = GsonUtils.gsonResolve(string, mResultClass);
+            if ("50002".equals(result.getReturnCode())) {
+                EventBus.getDefault().post(new TokenMessageEvent());
+            }
             response.setResult(result);
             return Response.success(response, HttpHeaderParser.parseCacheHeaders(networkResponse));
         }
