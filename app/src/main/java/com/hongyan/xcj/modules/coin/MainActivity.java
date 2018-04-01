@@ -495,7 +495,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()) {
             case R.id.main_rl_right:
                 intent = new Intent();
-                intent.setClass(MainActivity.this, CoinDetailActivity.class);
+                intent.setClass(MainActivity.this, CoinDetail2Activity.class);
                 MainActivity.this.startActivity(intent);
                 break;
             case R.id.main_rl_buttom:
