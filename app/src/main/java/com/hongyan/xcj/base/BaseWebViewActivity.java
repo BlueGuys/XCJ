@@ -163,6 +163,11 @@ public class BaseWebViewActivity extends BaseActivity {
         public void setToken(String token) {
             AccountManager.getInstance().setToken(token);
         }
+
+        @JavascriptInterface
+        public String getToken() {
+            return AccountManager.getInstance().getToken();
+        }
     }
 
     private WebViewClient mWebViewClient = new WebViewClient() {

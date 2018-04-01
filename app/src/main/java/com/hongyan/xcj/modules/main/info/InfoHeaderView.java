@@ -82,7 +82,7 @@ public class InfoHeaderView extends LinearLayout {
                     TextPaint tp = tv.getPaint();
                     tp.setFakeBoldText(i == touchIndex);
                     tv.setText(tv.getText());
-                    tv.setTextSize(i == touchIndex ? 17 : 14);
+                    tv.setTextSize(i == touchIndex ? 16 : 14);
                     currentIndex = touchIndex;
                 }
                 if (mOnTabChangeListener != null) {
@@ -113,7 +113,7 @@ public class InfoHeaderView extends LinearLayout {
             TextPaint tp = tv.getPaint();
             tp.setFakeBoldText(i == index);
             tv.setText(tv.getText());
-            tv.setTextSize(i == index ? 17 : 14);
+            tv.setTextSize(i == index ? 16 : 14);
         }
         currentIndex = index;
     }
