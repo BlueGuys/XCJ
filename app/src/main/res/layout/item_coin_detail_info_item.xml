@@ -37,7 +37,7 @@
         android:id="@+id/bottom_Line"
         android:layout_width="match_parent"
         android:layout_height="@dimen/ds2"
-        android:background="@color/c_bg_line_b" />
+        android:background="@color/xcj_background" />
 
     <TextView
         android:id="@+id/bottom_Margin"

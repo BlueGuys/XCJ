@@ -6,7 +6,8 @@
     android:paddingBottom="@dimen/ds10"
     android:paddingLeft="@dimen/ds30"
     android:paddingRight="@dimen/ds30"
-    android:paddingTop="@dimen/ds16">
+    android:paddingTop="@dimen/ds16"
+    android:id="@+id/linear_market_all">
 
     <LinearLayout
         android:layout_width="0dp"

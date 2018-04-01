@@ -93,7 +93,7 @@ public class UrlConst {
      * 币行情页面
      */
     public static String getCoinDetailUrl() {
-        return HOST + "Api/Users/coinDetail.html";
+        return HOST + "Api/Digiccy/detail.html";
     }
 
 }

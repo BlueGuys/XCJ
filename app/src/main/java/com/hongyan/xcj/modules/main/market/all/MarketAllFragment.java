@@ -54,7 +54,7 @@ public class MarketAllFragment extends BaseFragment {
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),
                 DividerItemDecoration.VERTICAL_LIST));
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new MarketAdapter();
+        mAdapter = new MarketAdapter(getActivity());
         adapterWrapper = new AdapterWrapper(mAdapter);
         helper = new SwipeToLoadHelper(mRecyclerView, adapterWrapper);
         mRecyclerView.setAdapter(adapterWrapper);

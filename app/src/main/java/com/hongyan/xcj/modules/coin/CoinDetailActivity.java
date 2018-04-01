@@ -18,6 +18,7 @@ import com.hongyan.xcj.base.UrlConst;
 import com.hongyan.xcj.modules.coin.widget.CoinDetailNavigation;
 import com.hongyan.xcj.network.Response;
 import com.hongyan.xcj.network.VolleyError;
+import com.hongyan.xcj.utils.StringUtils;
 
 
 public class CoinDetailActivity extends BaseActivity {
@@ -26,10 +27,13 @@ public class CoinDetailActivity extends BaseActivity {
     private RecyclerView mRecyclerView;
     private CoinDetailAdapter mAdapter;
 
+    private String coinID;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coin);
+        coinID = getIntent().getStringExtra("id");
         initView();
         requestPageData();
         new Handler().postDelayed(new Runnable() {
@@ -119,7 +123,16 @@ public class CoinDetailActivity extends BaseActivity {
                 }
                 CoinDetailResult result = (CoinDetailResult) response.getResult();
                 if (result != null && result.data != null) {
-                    mNavigation.setCoinTitleList(result.data.titleList, 3);
+                    int currentID = 0;
+                    if (result.data.titleList != null) {
+                        for (int i = 0; i < result.data.titleList.size(); i++) {
+                            CoinDetailResult.CoinTitleBean bean = result.data.titleList.get(i);
+                            if (!StringUtils.isEmpty(bean.id) && bean.id.equals(coinID)) {
+                                currentID = i;
+                            }
+                        }
+                    }
+                    mNavigation.setCoinTitleList(result.data.titleList, currentID);
                     mAdapter.setData(result.data);
                 }
             }
@@ -129,6 +142,7 @@ public class CoinDetailActivity extends BaseActivity {
                 Log.e("error", error.getErrorMessage());
             }
         });
+        request.addParam("id", coinID);
         JPBaseModel baseModel = new JPBaseModel();
         baseModel.sendRequest(request);
     }

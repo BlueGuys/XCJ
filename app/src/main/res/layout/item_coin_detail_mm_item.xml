@@ -21,8 +21,9 @@
                 android:id="@+id/tv_buy_price"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/ds30"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="center_vertical|left"
                 android:textColor="@color/red"
                 android:textSize="14dp" />
 
@@ -30,8 +31,9 @@
                 android:id="@+id/tv_buy_count"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/ds30"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="center_vertical|right"
                 android:textColor="@color/red"
                 android:textSize="14dp" />
         </LinearLayout>
@@ -54,8 +56,9 @@
                 android:id="@+id/tv_seller_price"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/ds30"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="center_vertical|left"
                 android:textColor="@color/green"
                 android:textSize="14dp" />
 
@@ -63,8 +66,9 @@
                 android:id="@+id/tv_seller_count"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/ds30"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="center_vertical|right"
                 android:textColor="@color/green"
                 android:textSize="14dp" />
         </LinearLayout>
@@ -75,6 +79,6 @@
         android:id="@+id/mm_bottom_line"
         android:layout_width="match_parent"
         android:layout_height="@dimen/ds2"
-        android:background="@color/c_bg_line_b" />
+        android:background="@color/xcj_background" />
 
 </LinearLayout>
