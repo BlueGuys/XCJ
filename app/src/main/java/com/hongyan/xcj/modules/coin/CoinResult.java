@@ -48,6 +48,10 @@ public class CoinResult extends JPResult {
             return candleEntries;
         }
 
+        public ArrayList<KLineBean> getCoinHistory() {
+            return coinHistory;
+        }
+
         public CoinCurrent getCoinCurrent() {
             return coinCurrent;
         }
@@ -60,6 +64,7 @@ public class CoinResult extends JPResult {
         public float high;
         public float low;
         public float vol;
+        public String rose;
     }
 
     public static class CoinCurrent {

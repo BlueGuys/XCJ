@@ -6,7 +6,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/ds60"
+        android:layout_height="@dimen/ds80"
         android:orientation="horizontal">
 
         <TextView
@@ -15,7 +15,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="买盘10档"
-            android:textColor="@color/red" />
+            android:textColor="@color/xcj_text_a" />
 
         <TextView
             android:layout_width="@dimen/ds2"
@@ -31,7 +31,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="卖盘10档"
-            android:textColor="@color/green" />
+            android:textColor="@color/xcj_text_a" />
     </LinearLayout>
 
     <com.hongyan.xcj.modules.coin.widget.CoinProgressView

@@ -58,7 +58,7 @@ public class CoinDataParser {
         set.setNeutralColor(mContext.getResources().getColor(R.color.decreasing_color));//设置开盘价等于收盘价的颜色
         set.setShadowColorSameAsCandle(true);
         set.setHighlightLineWidth(1f);
-        set.setHighLightColor(mContext.getResources().getColor(R.color.marker_line_bg));
+        set.setHighLightColor(mContext.getResources().getColor(R.color.white));
         set.setDrawValues(true);
         set.setValueTextColor(mContext.getResources().getColor(R.color.marker_text_bg));
         return new CandleData(data.getXValList(), set);
@@ -70,13 +70,14 @@ public class CoinDataParser {
         set.setBarSpacePercent(20); //bar空隙
         set.setHighlightEnabled(true);
         set.setHighLightAlpha(255);
-        set.setHighLightColor(mContext.getResources().getColor(R.color.marker_line_bg));
+        set.setHighLightColor(mContext.getResources().getColor(R.color.white));
         set.setDrawValues(false);
 
         List<Integer> list = new ArrayList<>();
         list.add(mContext.getResources().getColor(R.color.increasing_color));
         list.add(mContext.getResources().getColor(R.color.decreasing_color));
         set.setColors(list);
+
         BarData barData = new BarData(data.getXValList(), set);
         return barData;
     }

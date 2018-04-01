@@ -21,17 +21,17 @@
         <activity
             android:name=".modules.splash.AppStartActivity"
             android:theme="@style/AppStart">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".modules.main.MainTabActivity"
             android:windowSoftInputMode="stateHidden|adjustPan"></activity>
         <activity android:name=".modules.coin.CoinDetail2Activity"/>
         <activity android:name=".modules.coin.CoinDetailActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
         <activity android:name=".test.RecycleViewActivity" />
         <activity android:name=".base.BaseWebViewActivity" />

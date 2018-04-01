@@ -1,23 +1,40 @@
 package com.hongyan.xcj.modules.coin.widget;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.CandleData;
+import com.github.mikephil.charting.data.CandleEntry;
+import com.github.mikephil.charting.data.CombinedData;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.interfaces.datasets.ICandleDataSet;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.hongyan.xcj.R;
 import com.hongyan.xcj.modules.coin.CoinDataParser;
 import com.hongyan.xcj.modules.coin.CoinResult;
 import com.hongyan.xcj.modules.coin.mychart.MyCombinedChart;
+import com.hongyan.xcj.utils.JavaTypesHelper;
+import com.hongyan.xcj.utils.StringUtils;
+
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CoinView extends LinearLayout {
 
     private View view;
     private CoinViewHeader mHeader;
+    private TextView tvCoinTime, tvCoinOpen, tvCoinHigh, tvCoinLow, tvCoinClose, tvCoinUp, tvCoinChange;
     protected MyCombinedChart mChartKline, mChartVolume;
     //X轴标签的类
     protected XAxis xAxisKline, xAxisVolume;
@@ -27,6 +44,8 @@ public class CoinView extends LinearLayout {
     protected YAxis axisRightKline, axisRightVolume;
 
     private CoinDataParser mParser;
+
+    private ArrayList<CoinResult.KLineBean> coinHistory;
 
     public CoinView(Context context) {
         super(context);
@@ -41,12 +60,57 @@ public class CoinView extends LinearLayout {
         mChartVolume = view.findViewById(R.id.coin_detail_volume);
         initChartKline();
         initChartVolume();
+        initCurrentCoinView();
+    }
+
+    private void initCurrentCoinView() {
+        tvCoinTime = view.findViewById(R.id.tv_chart_time);
+        tvCoinOpen = view.findViewById(R.id.tv_chart_open);
+        tvCoinHigh = view.findViewById(R.id.tv_chart_high);
+        tvCoinLow = view.findViewById(R.id.tv_chart_low);
+        tvCoinClose = view.findViewById(R.id.tv_chart_close);
+        tvCoinUp = view.findViewById(R.id.tv_chart_up);
+        tvCoinChange = view.findViewById(R.id.tv_chart_change);
     }
 
     public void updateData(CoinResult.Data data) {
         mHeader.update(mParser.getCoinCurrent(data));
+        coinHistory = data.getCoinHistory();
+        invalidateEntry(coinHistory.size() - 1);
         mChartKline.setData(mParser.getCombinedData(data, CoinDataParser.TYPE_CANDLE));
         mChartVolume.setData(mParser.getCombinedData(data, CoinDataParser.TYPE_BAR));
+    }
+
+    /**
+     * 渲染横条数据
+     */
+    private void invalidateEntry(int index) {
+        if (index <= 0 || index > coinHistory.size() - 1) {
+            return;
+        }
+        CoinResult.KLineBean bean = this.coinHistory.get(index);
+        tvCoinTime.setText(bean.date);
+        tvCoinOpen.setText("开：" + bean.open);
+        tvCoinClose.setText("收：" + bean.close);
+        tvCoinHigh.setText("高：" + bean.high);
+        tvCoinLow.setText("低：" + bean.low);
+
+        //涨幅
+        if (StringUtils.isEmpty(bean.rose)) {
+            tvCoinUp.setText("0%");
+        } else {
+            tvCoinUp.setText(bean.rose + "%");
+            if (JavaTypesHelper.toFloat(bean.rose) > 0) {
+                tvCoinUp.setTextColor(Color.RED);
+            } else {
+                tvCoinUp.setTextColor(getResources().getColor(R.color.text_color_green));
+            }
+        }
+
+        //振幅
+        float change = (bean.high - bean.low) / bean.high;
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");//构造方法的字符格式这里如果小数不足2位,会以0补足.
+        tvCoinChange.setText(decimalFormat.format(change) + "%");
     }
 
     /**
@@ -93,6 +157,7 @@ public class CoinView extends LinearLayout {
         axisRightKline.setDrawGridLines(false);
         axisRightKline.setDrawAxisLine(true);
         axisRightKline.setDrawLabels(true);
+        axisRightKline.setMinWidth(50);
         axisRightKline.enableGridDashedLine(10f, 10f, 0f);
         axisRightKline.setTextColor(getResources().getColor(R.color.white));
         axisRightKline.setLabelCount(4, false); //第一个参数是Y轴坐标的个数，第二个参数是 是否不均匀分布，true是不均匀分布
@@ -101,6 +166,28 @@ public class CoinView extends LinearLayout {
         mChartKline.setDragDecelerationFrictionCoef(0.2f);
 
         mChartKline.animateXY(2000, 2000);
+
+        mChartKline.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+            @Override
+            public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
+                Highlight highlight = new Highlight(h.getXIndex(), h.getValue(), h.getDataIndex(), h.getDataSetIndex());
+                float touchY = h.getTouchY() - mChartKline.getHeight();
+                Highlight h1 = mChartVolume.getHighlightByTouchPoint(h.getXIndex(), touchY);
+                highlight.setTouchY(touchY);
+                if (null == h1) {
+                    highlight.setTouchYValue(0);
+                } else {
+                    highlight.setTouchYValue(h1.getTouchYValue());
+                }
+                mChartVolume.highlightValues(new Highlight[]{highlight});
+                invalidateEntry(e.getXIndex());
+            }
+
+            @Override
+            public void onNothingSelected() {
+                mChartVolume.highlightValue(null);
+            }
+        });
     }
 
     /**
@@ -142,13 +229,14 @@ public class CoinView extends LinearLayout {
 //        axisLeftVolume.setGridColor(getResources().getColor(R.color.minute_grayLine));
         axisLeftVolume.setPosition(YAxis.YAxisLabelPosition.INSIDE_CHART);
         axisLeftVolume.setLabelCount(1, false); //第一个参数是Y轴坐标的个数，第二个参数是 是否不均匀分布，true是不均匀分布
-        axisLeftVolume.setSpaceTop(0);//距离顶部留白
+        axisLeftVolume.setSpaceTop(20);//距离顶部留白
 //        axisLeftVolume.setSpaceBottom(0);//距离顶部留白
 
         axisRightVolume = mChartVolume.getAxisRight();
         axisRightVolume.setDrawGridLines(false);
         axisRightVolume.setDrawAxisLine(true);
         axisRightVolume.setDrawLabels(true);
+        axisRightVolume.setMinWidth(50);
         axisRightVolume.enableGridDashedLine(10f, 10f, 0f);
         axisRightVolume.setTextColor(getResources().getColor(R.color.white));
         axisRightVolume.setLabelCount(4, false); //第一个参数是Y轴坐标的个数，第二个参数是 是否不均匀分布，true是不均匀分布
@@ -157,6 +245,29 @@ public class CoinView extends LinearLayout {
         mChartVolume.setDragDecelerationFrictionCoef(0.2f);
 
         mChartVolume.animateXY(2000, 2000);
+
+        mChartVolume.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+            @Override
+            public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
+                Highlight highlight = new Highlight(h.getXIndex(), h.getValue(), h.getDataIndex(), h.getDataSetIndex());
+
+                float touchY = h.getTouchY() + mChartKline.getHeight();
+                Highlight h1 = mChartKline.getHighlightByTouchPoint(h.getXIndex(), touchY);
+                highlight.setTouchY(touchY);
+                if (null == h1) {
+                    highlight.setTouchYValue(0);
+                } else {
+                    highlight.setTouchYValue(h1.getTouchYValue());
+                }
+                mChartKline.highlightValues(new Highlight[]{highlight});
+                invalidateEntry(e.getXIndex());
+            }
+
+            @Override
+            public void onNothingSelected() {
+                mChartKline.highlightValue(null);
+            }
+        });
     }
 
 }
