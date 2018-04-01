@@ -11,7 +11,6 @@ public class CoinDetailResult extends JPResult {
 
     public static class Data {
         public String buyRate;
-        public String sellRate;
 
         public ArrayList<CoinTitleBean> titleList;
         /**
@@ -60,11 +59,7 @@ public class CoinDetailResult extends JPResult {
         public String timeStamp;
         public String price;
         public String volume;
-        private String isUp;//0 下跌  1上涨
-
-        public boolean isUp() {
-            return !StringUtils.isEmpty(isUp) && "1".equals(isUp);
-        }
+        public String textColor;//文字颜色
     }
 
     /**

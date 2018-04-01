@@ -1,6 +1,7 @@
 package com.hongyan.xcj.modules.coin;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -176,11 +177,7 @@ public class CoinDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             ((DealItem) holder).tvDealTime.setText(bean.timeStamp);
             ((DealItem) holder).tvDealPrice.setText(bean.price);
             ((DealItem) holder).tvDealVolume.setText(bean.volume);
-            if (bean.isUp()) {
-                ((DealItem) holder).tvDealPrice.setTextColor(mContext.getResources().getColor(R.color.red));
-            } else {
-                ((DealItem) holder).tvDealPrice.setTextColor(mContext.getResources().getColor(R.color.text_color_green));
-            }
+            ((DealItem) holder).tvDealPrice.setTextColor(Color.parseColor(bean.textColor));
             if (realPosition == this.mData.dealList.size() - 1) {
                 ((DealItem) holder).bottomLine.setVisibility(View.GONE);
             }
