@@ -59,11 +59,11 @@ public class InfoAnalysisAdapter extends RecyclerView.Adapter<InfoAnalysisAdapte
                 @Override
                 public void onClick(View view) {
                     if (article.isCollect()) {
-                        CollectionManager.getInstance().cancelCollectionArticle(article.id, "1");
+                        CollectionManager.getInstance().cancelCollectionArticle(article.id, "0");
 //                            setCollection(position, false);
                         holder.collectImage.setImageResource(R.drawable.icon_item_collection_n);
                     } else {
-                        CollectionManager.getInstance().collectionArticle(article.id, "1");
+                        CollectionManager.getInstance().collectionArticle(article.id, "0");
                         holder.collectImage.setImageResource(R.drawable.icon_item_collection_s);
 //                            setCollection(position, true);
                     }

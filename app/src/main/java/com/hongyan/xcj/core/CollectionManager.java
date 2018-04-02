@@ -41,7 +41,7 @@ public class CollectionManager {
                 }
                 Account result = (Account) response.getResult();
                 if (result != null && result.isSuccessful()) {
-                    Toast.makeText(BaseApplication.getInstance().getApplicationContext(),"收藏成功",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BaseApplication.getInstance().getApplicationContext(), "收藏成功", Toast.LENGTH_SHORT).show();
                 }
             }
         }, new Response.ErrorListener() {
@@ -66,8 +66,8 @@ public class CollectionManager {
                     return;
                 }
                 Account result = (Account) response.getResult();
-                if (result != null && result.data != null) {
-                    Toast.makeText(BaseApplication.getInstance().getApplicationContext(),"已取消收藏",Toast.LENGTH_SHORT).show();
+                if (result != null && result.isSuccessful()) {
+                    Toast.makeText(BaseApplication.getInstance().getApplicationContext(), "已取消收藏", Toast.LENGTH_SHORT).show();
                 }
             }
         }, new Response.ErrorListener() {

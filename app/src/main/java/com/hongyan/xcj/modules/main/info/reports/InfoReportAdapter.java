@@ -58,11 +58,11 @@ public class InfoReportAdapter extends RecyclerView.Adapter<InfoReportAdapter.Vi
                 @Override
                 public void onClick(View view) {
                     if (report.isCollect()) {
-                        CollectionManager.getInstance().cancelCollectionArticle(report.id, "2");
+                        CollectionManager.getInstance().cancelCollectionArticle(report.id, "1");
 //                            setCollection(position, false);
                         holder.collectImage.setImageResource(R.drawable.icon_item_collection_n);
                     } else {
-                        CollectionManager.getInstance().collectionArticle(report.id, "2");
+                        CollectionManager.getInstance().collectionArticle(report.id, "1");
                         holder.collectImage.setImageResource(R.drawable.icon_item_collection_s);
 //                            setCollection(position, true);
                     }
