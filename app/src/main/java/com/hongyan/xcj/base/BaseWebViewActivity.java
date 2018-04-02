@@ -150,6 +150,22 @@ public class BaseWebViewActivity extends BaseActivity {
             }
             super.onProgressChanged(view, newProgress);
         }
+
+//        @Override
+//        public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
+//            AlertDialog.Builder b = new AlertDialog.Builder(BaseWebViewActivity.this);
+//            b.setTitle("Alert");
+//            b.setMessage(message);
+//            b.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialog, int which) {
+//                    result.confirm();
+//                }
+//            });
+//            b.setCancelable(false);
+//            b.create().show();
+//            return true;
+//        }
     }
 
     private void setTitle() {
@@ -181,8 +197,18 @@ public class BaseWebViewActivity extends BaseActivity {
         }
 
         @JavascriptInterface
-        public String getToken() {
-            return AccountManager.getInstance().getToken();
+        public void getToken() {
+            String token = AccountManager.getInstance().getToken();
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (StringUtils.isEmpty(token)) {
+                        mWebView.loadUrl("javascript:onTokenResult('" + "" + "')");
+                    } else {
+                        mWebView.loadUrl("javascript:onTokenResult('" + token + "')");
+                    }
+                }
+            });
         }
 
         @JavascriptInterface
