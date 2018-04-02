@@ -19,6 +19,7 @@ import com.hongyan.xcj.modules.coin.widget.CoinDetailNavigation;
 import com.hongyan.xcj.network.Response;
 import com.hongyan.xcj.network.VolleyError;
 import com.hongyan.xcj.utils.StringUtils;
+import com.umeng.analytics.MobclickAgent;
 
 
 public class CoinDetailActivity extends BaseActivity {
@@ -42,6 +43,18 @@ public class CoinDetailActivity extends BaseActivity {
                 requestCoinCore();
             }
         }, 500);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
     private void initView() {

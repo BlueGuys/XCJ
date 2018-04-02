@@ -24,6 +24,8 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.util.ArrayList;
+
 public class MeFragment extends BaseFragment implements View.OnClickListener {
 
     private TextView tvAccount;
@@ -71,7 +73,9 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
                 startActivity(new Intent(getActivity(), CollectActivity.class));
                 break;
             case R.id.linear_market:
-                startActivity(new Intent(getActivity(), CoinDetailActivity.class));
+                ArrayList<String> arrayList = new ArrayList<>();
+                showErrorToast(arrayList.get(5));
+//                startActivity(new Intent(getActivity(), CoinDetailActivity.class));
                 break;
             case R.id.linear_clear:
                 startActivity(new Intent(getActivity(), CoinDetail2Activity.class));

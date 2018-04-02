@@ -25,6 +25,7 @@ import com.hongyan.xcj.R;
 import com.hongyan.xcj.core.AccountManager;
 import com.hongyan.xcj.utils.StringUtils;
 import com.hongyan.xcj.widget.loading.WebViewProgressView;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * com.jp.base.BaseWebViewActivity
@@ -61,6 +62,18 @@ public class BaseWebViewActivity extends BaseActivity {
         setTitle();
         mWebView.loadUrl(mUrl);
 //        mWebView.loadUrl("file:///android_asset/hello.html");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {

@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import com.hongyan.xcj.R;
 import com.hongyan.xcj.modules.main.info.recommend.ScrollBannerView;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 
@@ -25,6 +26,18 @@ public class TestActivity extends Activity {
                 Toast.makeText(TestActivity.this, "position---" + position, 100).show();
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
 

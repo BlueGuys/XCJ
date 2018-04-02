@@ -26,6 +26,7 @@ import com.hongyan.xcj.network.VolleyError;
 import com.hongyan.xcj.test.AdapterWrapper;
 import com.hongyan.xcj.test.DividerItemDecoration;
 import com.hongyan.xcj.test.SwipeToLoadHelper;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 
@@ -53,6 +54,13 @@ public class CollectActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         refresh();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
     private void initView() {

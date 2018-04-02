@@ -44,6 +44,7 @@ import com.hongyan.xcj.modules.coin.mychart.MyHMarkerView;
 import com.hongyan.xcj.modules.coin.mychart.MyLeftMarkerView;
 import com.hongyan.xcj.modules.coin.utils.MyUtils;
 import com.hongyan.xcj.modules.coin.utils.VolFormatter;
+import com.umeng.analytics.MobclickAgent;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -103,6 +104,18 @@ public class CoinDetail2Activity extends BaseActivity {
     protected int chartTypes = 7;
 
     boolean isRefresh = true;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

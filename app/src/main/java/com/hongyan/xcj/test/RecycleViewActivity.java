@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.hongyan.xcj.R;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 
@@ -25,6 +26,18 @@ public class RecycleViewActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycleview);
         initView();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
     private void initView() {

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import com.hongyan.xcj.R;
 import com.hongyan.xcj.base.BaseActivity;
 import com.hongyan.xcj.modules.main.MainTabActivity;
+import com.umeng.analytics.MobclickAgent;
 
 public class AppStartActivity extends BaseActivity {
 
@@ -24,5 +25,17 @@ public class AppStartActivity extends BaseActivity {
                 finish();
             }
         }, 200);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 }

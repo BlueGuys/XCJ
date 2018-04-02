@@ -30,6 +30,6 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.2'
     compile 'com.android.support:recyclerview-v7:26.1.0'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
-    compile 'com.umeng.analytics:analytics:latest.integration'
+    compile 'com.umeng.analytics:analytics:6.1.4'
     implementation project(':MPChartLib')
 }

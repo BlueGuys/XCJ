@@ -13,6 +13,7 @@ import com.hongyan.xcj.base.BaseWebViewActivity;
 import com.hongyan.xcj.core.AccountManager;
 import com.hongyan.xcj.core.CollectionManager;
 import com.hongyan.xcj.utils.StringUtils;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * Created by wangning on 2018/3/24.
@@ -61,6 +62,20 @@ public class ArticleActivity extends BaseWebViewActivity {
         });
         mWebView.addJavascriptInterface(new ClientFunction(), "webView");
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
+
+
 
     public class ClientFunction {
         @JavascriptInterface
