@@ -12,6 +12,7 @@ import com.hongyan.xcj.network.Response;
 import com.hongyan.xcj.network.VolleyError;
 import com.hongyan.xcj.utils.GsonUtils;
 import com.hongyan.xcj.utils.SharePreferenceManager;
+import com.hongyan.xcj.utils.StringUtils;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -107,9 +108,12 @@ public class AccountManager {
 
     private void readAccountInfo() {
         String accountJson = SharePreferenceManager.getInstance().getString("account");
-        if (null != accountJson) {
+        Log.e("XCJ", "accountJson=" + accountJson);
+        if (!StringUtils.isEmpty(accountJson)) {
             mAccountInfo = GsonUtils.gsonResolve(accountJson, AccountInfo.class);
-            this.token = mAccountInfo.getToken();
+            if (mAccountInfo != null) {
+                this.token = mAccountInfo.getToken();
+            }
         }
     }
 }

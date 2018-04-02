@@ -12,16 +12,9 @@ import android.view.KeyEvent;
 import com.hongyan.xcj.R;
 import com.hongyan.xcj.base.BaseActivity;
 import com.hongyan.xcj.base.BaseWebViewActivity;
-import com.hongyan.xcj.base.JPBaseModel;
-import com.hongyan.xcj.base.JPRequest;
-import com.hongyan.xcj.base.JPResponse;
-import com.hongyan.xcj.base.UrlConst;
-import com.hongyan.xcj.core.AccountMessageEvent;
 import com.hongyan.xcj.modules.main.info.InfoFragment;
 import com.hongyan.xcj.modules.main.market.MarketFragment;
 import com.hongyan.xcj.modules.main.me.MeFragment;
-import com.hongyan.xcj.network.Response;
-import com.hongyan.xcj.network.VolleyError;
 import com.umeng.analytics.MobclickAgent;
 
 import org.greenrobot.eventbus.EventBus;

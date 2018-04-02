@@ -3,7 +3,7 @@ apply plugin: 'maven'
 
 
 android {
-    compileSdkVersion 23
+    compileSdkVersion 26
     buildToolsVersion '26.0.2'
     // resourcePrefix 'mpcht'
     defaultConfig {
@@ -32,6 +32,10 @@ android {
     lintOptions {
         abortOnError false
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 repositories {
@@ -43,7 +47,8 @@ repositories {
 dependencies {
     //compile fileTree(dir: 'libs', include: ['*.jar'])
     //compile 'com.android.support:support-v4:19.+'
-    provided 'io.realm:realm-android:0.87.5' // "optional" dependency to realm-database API
+    provided 'io.realm:realm-android:0.87.5'
+    // "optional" dependency to realm-database API
 }
 
 android.libraryVariants.all { variant ->
