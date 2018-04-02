@@ -96,4 +96,11 @@ public class UrlConst {
         return HOST + "Api/Digiccy/detail.html";
     }
 
+    /**
+     * 币行情页面
+     */
+    public static String getModifyNickName() {
+        return HOST + "Api/Users/edit_nickname.html";
+    }
+
 }

@@ -81,6 +81,17 @@
                 android:layout_height="@dimen/ds2"
                 android:background="@color/c_bg_line_b" />
 
+            <com.hongyan.xcj.widget.view.ItemCommonClickView
+                android:id="@+id/linear_set_nike_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:title="设置昵称" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/ds2"
+                android:background="@color/c_bg_line_b" />
+
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/ds20"

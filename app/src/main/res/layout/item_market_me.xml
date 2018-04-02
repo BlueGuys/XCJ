@@ -53,7 +53,7 @@
             android:lines="1"
             android:text="今日成交量/额 44.53万/303.14亿"
             android:textColor="#999999"
-            android:textSize="11dp" />
+            android:textSize="10dp" />
 
     </LinearLayout>
 
@@ -81,7 +81,7 @@
             android:layout_marginTop="@dimen/ds10"
             android:text="¥23243.33"
             android:textColor="#888888"
-            android:textSize="14dp" />
+            android:textSize="13dp" />
     </LinearLayout>
 
     <LinearLayout

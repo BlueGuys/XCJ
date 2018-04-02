@@ -90,6 +90,8 @@ public class AccountManager {
                     accountInfo.setId(result.data.id);
                     accountInfo.setEmail(result.data.email);
                     accountInfo.setStatus(result.data.status);
+                    accountInfo.setNickname(result.data.nickname);
+                    accountInfo.setMobile(result.data.mobile);
                     accountInfo.setToken(token);
                     Toast.makeText(BaseApplication.getInstance().getApplicationContext(), "登录成功", Toast.LENGTH_LONG).show();
                     mAccountInfo = accountInfo;

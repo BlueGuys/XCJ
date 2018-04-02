@@ -24,8 +24,8 @@
 
             <ImageView
                 android:id="@+id/market_logo"
-                android:layout_width="@dimen/ds60"
-                android:layout_height="@dimen/ds60" />
+                android:layout_width="@dimen/ds70"
+                android:layout_height="@dimen/ds70" />
 
             <TextView
                 android:id="@+id/market_currency_name"
@@ -42,12 +42,12 @@
             android:id="@+id/market_currency_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/ds30"
+            android:layout_marginTop="@dimen/ds20"
             android:gravity="center"
             android:lines="1"
             android:text="今日成交量/额 44.53万/303.14亿"
             android:textColor="#999999"
-            android:textSize="11dp" />
+            android:textSize="10dp" />
 
     </LinearLayout>
 
@@ -75,7 +75,7 @@
             android:layout_marginTop="@dimen/ds10"
             android:text="¥23243.33"
             android:textColor="#888888"
-            android:textSize="14dp" />
+            android:textSize="13dp" />
     </LinearLayout>
 
     <LinearLayout

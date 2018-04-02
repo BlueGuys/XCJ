@@ -8,6 +8,8 @@ public class AccountInfo extends JPResult {
     private String email;
     private String status;
     private String token;
+    private String nickname;
+    private String mobile;
 
     public String getId() {
         return id;
@@ -39,5 +41,21 @@ public class AccountInfo extends JPResult {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 }

@@ -16,16 +16,14 @@ import com.hongyan.xcj.base.BaseWebViewActivity;
 import com.hongyan.xcj.core.AccountInfo;
 import com.hongyan.xcj.core.AccountManager;
 import com.hongyan.xcj.core.AccountMessageEvent;
-import com.hongyan.xcj.modules.coin.CoinDetailActivity;
-import com.hongyan.xcj.modules.coin.CoinDetail2Activity;
 import com.hongyan.xcj.modules.collect.CollectActivity;
+import com.hongyan.xcj.modules.setting.SetNickNameActivity;
+import com.hongyan.xcj.utils.StringUtils;
 import com.hongyan.xcj.widget.view.ItemCommonClickView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-
-import java.util.ArrayList;
 
 public class MeFragment extends BaseFragment implements View.OnClickListener {
 
@@ -50,11 +48,13 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
         ItemCommonClickView linearMarket = view.findViewById(R.id.linear_market);
         ItemCommonClickView linearClear = view.findViewById(R.id.linear_clear);
         ItemCommonClickView linearLogout = view.findViewById(R.id.linear_logout);
+        ItemCommonClickView linearNickName = view.findViewById(R.id.linear_set_nike_name);
         tvLogin.setOnClickListener(this);
         linearCollection.setOnClickListener(this);
         linearMarket.setOnClickListener(this);
         linearClear.setOnClickListener(this);
         linearLogout.setOnClickListener(this);
+        linearNickName.setOnClickListener(this);
         checkLogin(AccountManager.getInstance().isLogin());
         return view;
     }
@@ -78,13 +78,17 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
 //                showErrorToast(arrayList.get(5));
 //                startActivity(new Intent(getActivity(), CoinDetailActivity.class));
                 break;
+            case R.id.linear_set_nike_name:
+                startActivity(new Intent(getActivity(), SetNickNameActivity.class));
+                break;
             case R.id.linear_clear:
-                Toast.makeText(getActivity(),"缓存已清理",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "缓存已清理", Toast.LENGTH_SHORT).show();
 //                startActivity(new Intent(getActivity(), CoinDetail2Activity.class));
                 break;
             case R.id.linear_logout:
                 AccountManager.getInstance().logout();
                 break;
+
         }
     }
 
@@ -109,7 +113,20 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
             tvAccount.setVisibility(View.VISIBLE);
             AccountInfo info = AccountManager.getInstance().getAccountInfo();
             if (info != null) {
-                tvAccount.setText(info.getEmail());
+                String nickName = info.getNickname();
+                String email = info.getEmail();
+                String mobile = info.getMobile();
+                String text = "";
+                if (!StringUtils.isEmpty(nickName)) {
+                    text = nickName;
+                } else if (!StringUtils.isEmpty(mobile)) {
+                    text = mobile;
+                } else if (!StringUtils.isEmpty(email)) {
+                    text = email;
+                } else {
+                    text = "匿名";
+                }
+                tvAccount.setText(text);
             }
         } else {
             ivLogo.setImageResource(R.drawable.icon_account_logout);

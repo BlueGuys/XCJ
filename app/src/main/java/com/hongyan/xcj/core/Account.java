@@ -10,6 +10,8 @@ public class Account extends JPResult {
         public String id;
         public String email;
         public String status;
+        public String nickname;
+        public String mobile;
     }
 
 }

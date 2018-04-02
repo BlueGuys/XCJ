@@ -64,7 +64,7 @@ public class BaseWebViewActivity extends BaseActivity {
         mUrl = getIntent().getStringExtra(URL);
         setTitle();
         mWebView.loadUrl(mUrl);
-        mWebView.loadUrl("file:///android_asset/hello.html");
+//        mWebView.loadUrl("file:///android_asset/hello.html");
     }
 
     @Override
