@@ -48,7 +48,7 @@ public class MarketToggleButton extends LinearLayout {
         });
     }
 
-    private void slideLeft() {
+    public void slideLeft() {
         tvLeft.setBackgroundResource(R.drawable.bg_button_market_white);
         tvLeft.setTextColor(getResources().getColor(R.color.market_blue_bg));
         tvRight.setTextColor(getResources().getColor(R.color.white));
@@ -56,7 +56,7 @@ public class MarketToggleButton extends LinearLayout {
         isLeft = true;
     }
 
-    private void slideRight() {
+    public void slideRight() {
         tvRight.setBackgroundResource(R.drawable.bg_button_market_white);
         tvRight.setTextColor(getResources().getColor(R.color.market_blue_bg));
         tvLeft.setTextColor(getResources().getColor(R.color.white));

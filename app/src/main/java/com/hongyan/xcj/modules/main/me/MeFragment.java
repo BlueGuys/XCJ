@@ -18,6 +18,7 @@ import com.hongyan.xcj.core.AccountManager;
 import com.hongyan.xcj.core.AccountMessageEvent;
 import com.hongyan.xcj.modules.collect.CollectActivity;
 import com.hongyan.xcj.modules.event.MarketMeMessageEvent;
+import com.hongyan.xcj.modules.event.MarketMessageEvent;
 import com.hongyan.xcj.modules.event.TokenMessageEvent;
 import com.hongyan.xcj.modules.setting.SetNickNameActivity;
 import com.hongyan.xcj.utils.StringUtils;
@@ -77,6 +78,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
                 break;
             case R.id.linear_market:
                 EventBus.getDefault().post(new MarketMeMessageEvent());
+                EventBus.getDefault().post(new MarketMessageEvent());
                 break;
             case R.id.linear_set_nike_name:
                 startActivity(new Intent(getActivity(), SetNickNameActivity.class));
