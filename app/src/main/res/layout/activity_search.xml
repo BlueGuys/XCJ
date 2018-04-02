@@ -28,7 +28,8 @@
             android:inputType="text"
             android:lines="1"
             android:paddingLeft="@dimen/ds14"
-            android:textCursorDrawable="@drawable/shape_edit_text_background" />
+            android:textCursorDrawable="@drawable/shape_edit_text_background"
+            android:textSize="15dp" />
 
         <TextView
             android:layout_width="@dimen/ds140"
@@ -62,7 +63,9 @@
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:divider="@null"
+        android:dividerHeight="0dp" />
 
 </LinearLayout>

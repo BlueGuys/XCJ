@@ -107,7 +107,7 @@ public class UrlConst {
      * 搜索
      */
     public static String getSearchUrl() {
-        return HOST + "Api/Users/search.html";
+        return HOST + "Api/Search.html";
     }
 
 }

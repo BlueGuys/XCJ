@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ds100"
+        android:gravity="center_vertical|left"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/ds30"
+        android:paddingRight="@dimen/ds30">
+
+        <ImageView
+            android:id="@+id/iv_image_logo"
+            android:layout_width="@dimen/ds50"
+            android:layout_height="@dimen/ds50"
+            android:layout_marginLeft="@dimen/ds20"
+            android:layout_marginRight="@dimen/ds20"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/tv_coin_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|left"
+            android:text="Coin"
+            android:textColor="@color/xcj_blue"
+            android:textSize="14dp" />
+    </LinearLayout>
+
+</LinearLayout>
