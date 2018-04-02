@@ -1,10 +1,7 @@
 package com.hongyan.xcj.base;
 
-import android.util.Log;
-
 import com.hongyan.xcj.core.AccountManager;
-import com.hongyan.xcj.core.AccountMessageEvent;
-import com.hongyan.xcj.modules.main.TokenMessageEvent;
+import com.hongyan.xcj.modules.event.TokenMessageEvent;
 import com.hongyan.xcj.network.AuthFailureError;
 import com.hongyan.xcj.network.DefaultRetryPolicy;
 import com.hongyan.xcj.network.NetworkResponse;

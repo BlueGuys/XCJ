@@ -1,5 +1,6 @@
 package com.hongyan.xcj.modules.main.market;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
@@ -11,8 +12,13 @@ import android.widget.LinearLayout;
 
 import com.hongyan.xcj.R;
 import com.hongyan.xcj.base.BaseFragment;
+import com.hongyan.xcj.modules.event.MarketMeMessageEvent;
+import com.hongyan.xcj.modules.main.MainTabActivity;
 import com.hongyan.xcj.modules.main.market.all.MarketAllFragment;
 import com.hongyan.xcj.modules.main.market.my.MarketMyFragment;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 public class MarketFragment extends BaseFragment {
 

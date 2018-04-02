@@ -1,6 +1,5 @@
 package com.hongyan.xcj.modules.main;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -9,12 +8,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.KeyEvent;
-import android.view.ViewGroup;
-import android.view.WindowManager;
 
 import com.hongyan.xcj.R;
 import com.hongyan.xcj.base.BaseActivity;
 import com.hongyan.xcj.base.BaseWebViewActivity;
+import com.hongyan.xcj.modules.event.MarketMeMessageEvent;
+import com.hongyan.xcj.modules.event.TokenMessageEvent;
 import com.hongyan.xcj.modules.main.info.InfoFragment;
 import com.hongyan.xcj.modules.main.market.MarketFragment;
 import com.hongyan.xcj.modules.main.me.MeFragment;
@@ -29,6 +28,8 @@ import java.util.List;
 
 public class MainTabActivity extends BaseActivity {
 
+    public static int marketTabIndex = 0;
+
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
 
@@ -36,6 +37,7 @@ public class MainTabActivity extends BaseActivity {
     private ContentPagerAdapter contentAdapter;
     private long exitTime = 0;
     private final static long DOUBLE_BACK_TIME = 2000; // 两次back的间隔时间：2s
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -165,5 +167,14 @@ public class MainTabActivity extends BaseActivity {
             return;
         }
         BaseWebViewActivity.startActivity(this, "http://www.xicaijing.com/App/Users/login.html?title=登录");
+    }
+
+    @Subscribe(threadMode = ThreadMode.POSTING)
+    public void marketMeFragment(MarketMeMessageEvent message) {
+        if (message == null) {
+            return;
+        }
+        mViewPager.setCurrentItem(1);
+        marketTabIndex = 1;
     }
 }

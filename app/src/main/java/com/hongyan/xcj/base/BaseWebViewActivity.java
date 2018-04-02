@@ -23,7 +23,7 @@ import android.widget.TextView;
 
 import com.hongyan.xcj.R;
 import com.hongyan.xcj.core.AccountManager;
-import com.hongyan.xcj.modules.main.TokenMessageEvent;
+import com.hongyan.xcj.modules.event.TokenMessageEvent;
 import com.hongyan.xcj.utils.StringUtils;
 import com.hongyan.xcj.widget.loading.WebViewProgressView;
 import com.umeng.analytics.MobclickAgent;
