@@ -2,6 +2,7 @@ package com.hongyan.xcj.modules.main.info.analysis;
 
 
 import com.hongyan.xcj.base.JPResult;
+import com.hongyan.xcj.utils.StringUtils;
 
 import java.util.ArrayList;
 
@@ -38,14 +39,14 @@ public class InfoAnalysisResult extends JPResult {
          */
         public String url;
 
-        public boolean isCollect;
+        public String is_collection;//0未收藏 1收藏
 
         public boolean isCollect() {
-            return isCollect;
+            return !StringUtils.isEmpty(is_collection) && "1".equals(is_collection);
         }
 
         public void setCollect(boolean collect) {
-            isCollect = collect;
+            is_collection = collect ? "1" : "0";
         }
     }
 }

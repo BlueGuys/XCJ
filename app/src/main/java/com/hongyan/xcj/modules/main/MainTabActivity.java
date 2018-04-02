@@ -22,6 +22,7 @@ import com.hongyan.xcj.modules.main.market.MarketFragment;
 import com.hongyan.xcj.modules.main.me.MeFragment;
 import com.hongyan.xcj.network.Response;
 import com.hongyan.xcj.network.VolleyError;
+import com.umeng.analytics.MobclickAgent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -49,6 +50,18 @@ public class MainTabActivity extends BaseActivity {
         initContent();
         initTab();
         EventBus.getDefault().register(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
     @Override

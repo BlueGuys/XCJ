@@ -22,6 +22,7 @@ import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.nostra13.universalimageloader.core.display.RoundedVignetteBitmapDisplayer;
 import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 import com.nostra13.universalimageloader.utils.StorageUtils;
+import com.umeng.analytics.MobclickAgent;
 
 import java.io.File;
 
@@ -40,6 +41,7 @@ public class BaseApplication extends Application {
         this.mRequestQueue = Volley.newRequestQueue(this);
         AccountManager.getInstance().init();
         initImageLoader();
+        MobclickAgent.startWithConfigure(new MobclickAgent.UMAnalyticsConfig(this,"5ac189b2f29d987bdf0001be","Wandoujia"));
     }
 
     private void initImageLoader() {
