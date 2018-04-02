@@ -1,5 +1,6 @@
 package com.hongyan.xcj.modules.main.info;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,7 @@ import com.hongyan.xcj.modules.main.info.analysis.AnalysisFragment;
 import com.hongyan.xcj.modules.main.info.news.NewsFragment;
 import com.hongyan.xcj.modules.main.info.recommend.RecommendFragment;
 import com.hongyan.xcj.modules.main.info.reports.ReportFragment;
+import com.hongyan.xcj.modules.search.SearchActivity;
 
 import java.util.ArrayList;
 
@@ -53,7 +55,9 @@ public class InfoFragment extends BaseFragment {
         headerView.setOnSearchListener(new InfoHeaderView.OnSearchListener() {
             @Override
             public void onSearch(String text) {
-                showSuccessToast("搜索文案" + text);
+                Intent intent = new Intent(getActivity(), SearchActivity.class);
+                intent.putExtra("searchText", text);
+                startActivity(intent);
             }
         });
         mViewPager = view.findViewById(R.id.view_pager);

@@ -47,7 +47,7 @@ public class InfoHeaderView extends LinearLayout {
             }
         });
         Drawable drawable = getResources().getDrawable(R.drawable.icon_search);
-        drawable.setBounds(0, 0, 50, 50);
+        drawable.setBounds(0, 0, 40, 40);
         etSearch.setCompoundDrawables(drawable, null, null, null);
         initTabView(context, view);
     }

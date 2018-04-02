@@ -97,10 +97,17 @@ public class UrlConst {
     }
 
     /**
-     * 币行情页面
+     * 修改昵称
      */
     public static String getModifyNickName() {
         return HOST + "Api/Users/edit_nickname.html";
+    }
+
+    /**
+     * 搜索
+     */
+    public static String getSearchUrl() {
+        return HOST + "Api/Users/search.html";
     }
 
 }
