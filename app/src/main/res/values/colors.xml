@@ -294,6 +294,7 @@
     <color name="increasing_color">#CD2626</color>
     <color name="decreasing_color">#006400</color>
     <color name="xcj_background">#f9f9f9</color>
+    <color name="xcj_blue">#007AFF</color>
 
     <color name="xcj_text_a">#333333</color>
     <color name="xcj_text_b">#666666</color>

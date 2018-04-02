@@ -1,5 +1,6 @@
 package com.hongyan.xcj.modules.main;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -8,6 +9,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.KeyEvent;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 
 import com.hongyan.xcj.R;
 import com.hongyan.xcj.base.BaseActivity;
@@ -163,5 +166,4 @@ public class MainTabActivity extends BaseActivity {
         }
         BaseWebViewActivity.startActivity(this, "http://www.xicaijing.com/App/Users/login.html?title=登录");
     }
-
 }

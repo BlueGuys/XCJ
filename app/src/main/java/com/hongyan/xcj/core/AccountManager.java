@@ -66,6 +66,11 @@ public class AccountManager {
         EventBus.getDefault().post(new AccountMessageEvent(false));
     }
 
+    public void login() {
+        logout();
+
+    }
+
     /**
      * 从网络拉取账户信息
      */

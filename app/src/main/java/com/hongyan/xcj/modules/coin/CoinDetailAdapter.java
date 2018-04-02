@@ -3,15 +3,24 @@ package com.hongyan.xcj.modules.coin;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
+import android.text.style.URLSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hongyan.xcj.R;
+import com.hongyan.xcj.modules.article.ArticleActivity;
 import com.hongyan.xcj.modules.coin.widget.CoinProgressView;
 import com.hongyan.xcj.modules.coin.widget.CoinView;
 import com.hongyan.xcj.utils.JavaTypesHelper;
+import com.hongyan.xcj.utils.StringUtils;
 
 public class CoinDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -180,15 +189,16 @@ public class CoinDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             ((DealItem) holder).tvDealPrice.setTextColor(Color.parseColor(bean.textColor));
         } else if (holder instanceof DetailBrief) {
             CoinDetailResult.CoinDetailBean bean = this.mData.coinDetail;
+            DetailBrief detailBriefHolder = (DetailBrief) holder;
             if (bean != null) {
-                ((DetailBrief) holder).tvDetailBrief.setText(bean.brief);
-                ((DetailBrief) holder).tvDetailNameEN.setText(bean.ENName);
-                ((DetailBrief) holder).tvDetailNameCN.setText(bean.CNName);
-                ((DetailBrief) holder).tvDetailWebSite.setText(bean.webSiteName);
-                ((DetailBrief) holder).tvDetailBlock.setText(bean.blockName);
-                ((DetailBrief) holder).tvDetailWhitePaper.setText(bean.whitePaper);
-                ((DetailBrief) holder).tvDetailExchangeName.setText(bean.exchangeName);
-                ((DetailBrief) holder).tvDetailReleaseTime.setText(bean.releaseTime);
+                detailBriefHolder.tvDetailBrief.setText(bean.brief);
+                detailBriefHolder.tvDetailNameEN.setText(bean.ENName);
+                detailBriefHolder.tvDetailNameCN.setText(bean.CNName);
+                detailBriefHolder.tvDetailWhitePaper.setText(bean.whitePaper);
+                detailBriefHolder.tvDetailExchangeName.setText(bean.exchangeName);
+                detailBriefHolder.tvDetailReleaseTime.setText(bean.releaseTime);
+                setHtmlText(detailBriefHolder.tvDetailWebSite, bean.webSiteName);
+                setHtmlText(detailBriefHolder.tvDetailBlock, bean.blockName);
             }
         } else if (holder instanceof InfoHeader) {
         } else if (holder instanceof InfoItem) {
@@ -200,6 +210,28 @@ public class CoinDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 ((InfoItem) holder).bottomLine.setVisibility(View.GONE);
                 ((InfoItem) holder).bottomMargin.setVisibility(View.VISIBLE);
             }
+        }
+    }
+
+    private void setHtmlText(TextView textView, String htmlText) {
+        if (textView == null || StringUtils.isEmpty(htmlText)) {
+            return;
+        }
+        textView.setText(Html.fromHtml(htmlText));
+        textView.setMovementMethod(LinkMovementMethod.getInstance());
+        CharSequence text = textView.getText();
+        if (text instanceof Spannable) {
+            int end = text.length();
+            Spannable sp = (Spannable) textView.getText();
+            URLSpan[] urls = sp.getSpans(0, end, URLSpan.class);
+            SpannableStringBuilder style = new SpannableStringBuilder(text);
+            style.clearSpans();
+            for (URLSpan url : urls) {
+                MyURLSpan myURLSpan = new MyURLSpan(url.getURL());
+                style.setSpan(myURLSpan, sp.getSpanStart(url),
+                        sp.getSpanEnd(url), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            }
+            textView.setText(style);
         }
     }
 
@@ -299,6 +331,22 @@ public class CoinDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             tvInfoTime = itemView.findViewById(R.id.tv_info_time);
             bottomLine = itemView.findViewById(R.id.bottom_Line);
             bottomMargin = itemView.findViewById(R.id.bottom_Margin);
+        }
+    }
+
+    private class MyURLSpan extends ClickableSpan {
+        private String mUrl;
+
+        MyURLSpan(String url) {
+            mUrl = url;
+        }
+
+        @Override
+        public void onClick(View widget) {
+            if (StringUtils.isEmpty(mUrl)) {
+                return;
+            }
+            ArticleActivity.startActivity(mContext, mUrl);
         }
     }
 

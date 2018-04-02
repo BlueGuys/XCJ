@@ -23,9 +23,12 @@ import android.widget.TextView;
 
 import com.hongyan.xcj.R;
 import com.hongyan.xcj.core.AccountManager;
+import com.hongyan.xcj.modules.main.TokenMessageEvent;
 import com.hongyan.xcj.utils.StringUtils;
 import com.hongyan.xcj.widget.loading.WebViewProgressView;
 import com.umeng.analytics.MobclickAgent;
+
+import org.greenrobot.eventbus.EventBus;
 
 /**
  * com.jp.base.BaseWebViewActivity
@@ -61,7 +64,7 @@ public class BaseWebViewActivity extends BaseActivity {
         mUrl = getIntent().getStringExtra(URL);
         setTitle();
         mWebView.loadUrl(mUrl);
-//        mWebView.loadUrl("file:///android_asset/hello.html");
+        mWebView.loadUrl("file:///android_asset/hello.html");
     }
 
     @Override
@@ -180,6 +183,14 @@ public class BaseWebViewActivity extends BaseActivity {
         @JavascriptInterface
         public String getToken() {
             return AccountManager.getInstance().getToken();
+        }
+
+        @JavascriptInterface
+        public String checkLogin() {
+            if (!AccountManager.getInstance().isLogin()) {
+                EventBus.getDefault().post(new TokenMessageEvent());
+            }
+            return AccountManager.getInstance().isLogin() ? "1" : "0";
         }
     }
 
