@@ -12,7 +12,7 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="4"
+        android:layout_weight="2"
         android:focusable="true"
         android:gravity="center_horizontal"
         android:orientation="vertical">
@@ -84,74 +84,89 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="3"
-        android:gravity="center_vertical|left"
-        android:orientation="vertical"
-        android:paddingBottom="@dimen/ds10"
-        android:paddingTop="@dimen/ds20">
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_open_price"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:text="开盘:270932.23"
-            android:textColor="@color/white"
-            android:textSize="13dp" />
+            android:layout_weight="2">
 
-        <TextView
-            android:id="@+id/tv_high_price"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:text="最高:270932.23"
-            android:textColor="@color/white"
-            android:textSize="13dp" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center_vertical|left"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/ds10"
+                android:paddingTop="@dimen/ds20">
 
-        <TextView
-            android:id="@+id/tv_volume"
-            android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/tv_open_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="开盘:270932.23"
+                    android:textColor="@color/white"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/tv_high_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="最高:270932.23"
+                    android:textColor="@color/white"
+                    android:textSize="13dp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center_vertical|left"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/ds10"
+                android:paddingTop="@dimen/ds20">
+
+                <TextView
+                    android:id="@+id/tv_close_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="收盘:270932.23"
+                    android:textColor="@color/white"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/tv_low_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="最低:170932.23"
+                    android:textColor="@color/white"
+                    android:textSize="13dp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:singleLine="true"
-            android:text="成交量：1287"
-            android:textColor="@color/white"
-            android:textSize="13dp" />
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_volume"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:singleLine="true"
+                android:text="成交量：1287"
+                android:textColor="@color/white"
+                android:textSize="13dp" />
+        </LinearLayout>
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="3"
-        android:gravity="center_vertical|left"
-        android:orientation="vertical"
-        android:paddingBottom="@dimen/ds10"
-        android:paddingTop="@dimen/ds20">
 
-        <TextView
-            android:id="@+id/tv_close_price"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:text="收盘:270932.23"
-            android:textColor="@color/white"
-            android:textSize="13dp" />
-
-        <TextView
-            android:id="@+id/tv_low_price"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:text="最低:170932.23"
-            android:textColor="@color/white"
-            android:textSize="13dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:textColor="@color/white"
-            android:textSize="13dp" />
-
-    </LinearLayout>
 </LinearLayout>
