@@ -45,10 +45,17 @@
         android:layout_marginLeft="@dimen/ds30"
         android:layout_marginRight="@dimen/ds30"
         android:layout_marginTop="@dimen/ds40"
-        android:background="@drawable/bg_edit_text_set_nick_name"
+        android:background="@color/transparent"
         android:hint="请输入您的昵称"
         android:lines="1"
         android:textCursorDrawable="@drawable/shape_edit_text_background"
         android:textSize="16dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ds2"
+        android:layout_marginLeft="@dimen/ds30"
+        android:layout_marginRight="@dimen/ds30"
+        android:background="@color/xcj_blue" />
 
 </LinearLayout>

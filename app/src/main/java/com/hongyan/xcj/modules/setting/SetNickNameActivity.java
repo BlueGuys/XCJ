@@ -13,8 +13,10 @@ import com.hongyan.xcj.base.JPRequest;
 import com.hongyan.xcj.base.JPResponse;
 import com.hongyan.xcj.base.UrlConst;
 import com.hongyan.xcj.core.AccountManager;
+import com.hongyan.xcj.modules.search.SearchActivity;
 import com.hongyan.xcj.network.Response;
 import com.hongyan.xcj.network.VolleyError;
+import com.hongyan.xcj.utils.SoftInputUtils;
 import com.hongyan.xcj.utils.StringUtils;
 import com.umeng.analytics.MobclickAgent;
 
@@ -72,7 +74,7 @@ public class SetNickNameActivity extends BaseActivity {
                 if (result != null && result.isSuccessful()) {
                     showSuccessToast("昵称修改成功");
                     AccountManager.getInstance().refresh();
-
+                    SoftInputUtils.hideSoftKeyPad(SetNickNameActivity.this, editText);
                     finish();
                 }
             }

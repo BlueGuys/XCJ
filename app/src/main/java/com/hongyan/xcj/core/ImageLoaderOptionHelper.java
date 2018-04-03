@@ -57,9 +57,9 @@ public class ImageLoaderOptionHelper {
     public DisplayImageOptions getHeaderImageOption() {
         if (mHeaderImageOption == null) {
             mHeaderImageOption = new DisplayImageOptions.Builder()
-                    .showImageOnLoading(R.drawable.test)//设置图片在下载期间显示的图片
-                    .showImageForEmptyUri(R.drawable.test)//设置图片Uri为空或是错误的时候显示的图片
-                    .showImageOnFail(R.drawable.test)//设置图片加载/解码过程中错误时候显示的图片
+                    .showImageOnLoading(R.drawable.icon_net_loading)
+                    .showImageForEmptyUri(R.drawable.icon_start)
+                    .showImageOnFail(R.drawable.icon_net_fail)
                     .cacheInMemory(true)//设置下载的图片是否缓存在内存中
                     .cacheOnDisk(true)//设置是否缓存在SD卡中
                     .considerExifParams(true)//是否考虑JPEG图像EXIF参数（旋转，翻转）
