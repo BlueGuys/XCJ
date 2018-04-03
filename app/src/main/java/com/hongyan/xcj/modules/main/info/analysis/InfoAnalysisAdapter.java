@@ -48,6 +48,7 @@ public class InfoAnalysisAdapter extends RecyclerView.Adapter<InfoAnalysisAdapte
             holder.articleName.setText(article.title);
             holder.articleTime.setText(article.update_time);
             holder.articleWebSite.setText(article.source);
+            holder.collectImage.setImageResource(article.isCollect() ? R.drawable.icon_item_collection_s : R.drawable.icon_item_collection_n);
             ImageLoader.getInstance().displayImage(article.photo, holder.articleImage, ImageLoaderOptionHelper.getInstance().getListImageOption());
             holder.layout.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -60,14 +61,9 @@ public class InfoAnalysisAdapter extends RecyclerView.Adapter<InfoAnalysisAdapte
                 public void onClick(View view) {
                     if (article.isCollect()) {
                         CollectionManager.getInstance().cancelCollectionArticle(article.id, "0");
-//                            setCollection(position, false);
-                        holder.collectImage.setImageResource(R.drawable.icon_item_collection_n);
                     } else {
                         CollectionManager.getInstance().collectionArticle(article.id, "0");
-                        holder.collectImage.setImageResource(R.drawable.icon_item_collection_s);
-//                            setCollection(position, true);
                     }
-                    article.setCollect(!article.isCollect());
                 }
             });
         }

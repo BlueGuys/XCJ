@@ -47,6 +47,7 @@ public class InfoReportAdapter extends RecyclerView.Adapter<InfoReportAdapter.Vi
             holder.articleName.setText(report.title);
             holder.articleTime.setText(report.update_time);
             holder.articleWebSite.setText(report.source);
+            holder.collectImage.setImageResource(report.isCollect() ? R.drawable.icon_item_collection_s : R.drawable.icon_item_collection_n);
             ImageLoader.getInstance().displayImage(report.photo, holder.articleImage, ImageLoaderOptionHelper.getInstance().getListImageOption());
             holder.layout.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -59,14 +60,9 @@ public class InfoReportAdapter extends RecyclerView.Adapter<InfoReportAdapter.Vi
                 public void onClick(View view) {
                     if (report.isCollect()) {
                         CollectionManager.getInstance().cancelCollectionArticle(report.id, "1");
-//                            setCollection(position, false);
-                        holder.collectImage.setImageResource(R.drawable.icon_item_collection_n);
                     } else {
                         CollectionManager.getInstance().collectionArticle(report.id, "1");
-                        holder.collectImage.setImageResource(R.drawable.icon_item_collection_s);
-//                            setCollection(position, true);
                     }
-                    report.setCollect(!report.isCollect());
                 }
             });
         }

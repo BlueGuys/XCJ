@@ -132,14 +132,9 @@ public class InfoRecommendAdapter extends RecyclerView.Adapter<RecyclerView.View
                     public void onClick(View view) {
                         if (article.isCollect()) {
                             CollectionManager.getInstance().cancelCollectionArticle(article.id, "0");
-//                            setCollection(position, false);
-                            ((ItemViewHolder) holder).collectImage.setImageResource(R.drawable.icon_item_collection_n);
                         } else {
                             CollectionManager.getInstance().collectionArticle(article.id, "0");
-                            ((ItemViewHolder) holder).collectImage.setImageResource(R.drawable.icon_item_collection_s);
-//                            setCollection(position, true);
                         }
-                        article.setCollect(!article.isCollect());
                     }
                 });
             }

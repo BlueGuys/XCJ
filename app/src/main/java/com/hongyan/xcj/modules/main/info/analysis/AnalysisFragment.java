@@ -18,12 +18,18 @@ import com.hongyan.xcj.base.JPResponse;
 import com.hongyan.xcj.base.RecyclerItemClickListener;
 import com.hongyan.xcj.base.UrlConst;
 import com.hongyan.xcj.modules.article.ArticleActivity;
+import com.hongyan.xcj.modules.event.CollectMessageEvent;
 import com.hongyan.xcj.modules.main.info.recommend.InfoRecommendResult;
 import com.hongyan.xcj.network.Response;
 import com.hongyan.xcj.network.VolleyError;
 import com.hongyan.xcj.test.AdapterWrapper;
 import com.hongyan.xcj.test.DividerItemDecoration;
 import com.hongyan.xcj.test.SwipeToLoadHelper;
+import com.hongyan.xcj.utils.StringUtils;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 
@@ -47,6 +53,7 @@ public class AnalysisFragment extends BaseFragment {
             initView();
             refresh();
         }
+        EventBus.getDefault().register(this);
         return view;
     }
 
@@ -56,6 +63,12 @@ public class AnalysisFragment extends BaseFragment {
         if (null != view) {
             ((ViewGroup) view.getParent()).removeView(view);
         }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        EventBus.getDefault().unregister(this);
     }
 
     private void initView() {
@@ -168,6 +181,38 @@ public class AnalysisFragment extends BaseFragment {
         request.addParam("p", currentPage);
         JPBaseModel baseModel = new JPBaseModel();
         baseModel.sendRequest(request);
+    }
+
+    @Subscribe(threadMode = ThreadMode.POSTING)
+    public void collectMessage(CollectMessageEvent message) {
+        if (message == null) {
+            return;
+        }
+        String id = message.getId();
+        String action = message.getAction();
+        String type = message.getType();
+        if (StringUtils.isEmpty(id)) {
+            return;
+        }
+        if (StringUtils.isEmpty(type) || "1".equals(type)) {
+            return;
+        }
+        if (StringUtils.isEmpty(action)) {
+            return;
+        }
+        for (int i = 0; i < mArticleList.size(); i++) {
+            InfoAnalysisResult.Article article = mArticleList.get(i);
+            if (id.equals(article.id)) {
+                if ("1".equals(action)) {
+                    mArticleList.get(i).setCollect(true);
+                    notifyDataSetChanged();
+                } else if ("2".equals(action)) {
+                    mArticleList.get(i).setCollect(false);
+                    notifyDataSetChanged();
+                }
+                break;
+            }
+        }
     }
 
 }
