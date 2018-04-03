@@ -178,6 +178,8 @@ public class CoinDetailActivity extends BaseActivity {
                 Log.e("error", error.getErrorMessage());
             }
         });
+        request.addParam("id", coinID);
+        request.addParam("type", 1);
         JPBaseModel baseModel = new JPBaseModel();
         baseModel.sendRequest(request);
     }

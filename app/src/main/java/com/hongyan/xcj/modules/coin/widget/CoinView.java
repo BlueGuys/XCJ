@@ -160,6 +160,7 @@ public class CoinView extends LinearLayout {
         axisRightKline.setDrawAxisLine(true);
         axisRightKline.setDrawLabels(true);
         axisRightKline.setMinWidth(50);
+        axisRightKline.setMaxWidth(50);
         axisRightKline.enableGridDashedLine(10f, 10f, 0f);
         axisRightKline.setTextColor(getResources().getColor(R.color.white));
         axisRightKline.setLabelCount(4, false); //第一个参数是Y轴坐标的个数，第二个参数是 是否不均匀分布，true是不均匀分布
@@ -226,7 +227,7 @@ public class CoinView extends LinearLayout {
         axisLeftVolume.setDrawGridLines(false);
         axisLeftVolume.setDrawAxisLine(false);
 //        axisLeftVolume.setShowOnlyMinMax(true);
-        axisLeftVolume.setDrawLabels(true);
+        axisLeftVolume.setDrawLabels(false);
         axisLeftVolume.enableGridDashedLine(10f, 10f, 0f);
         axisLeftVolume.setTextColor(getResources().getColor(R.color.white));
 //        axisLeftVolume.setGridColor(getResources().getColor(R.color.minute_grayLine));
@@ -240,6 +241,7 @@ public class CoinView extends LinearLayout {
         axisRightVolume.setDrawAxisLine(true);
         axisRightVolume.setDrawLabels(true);
         axisRightVolume.setMinWidth(50);
+        axisRightVolume.setMaxWidth(50);
         axisRightVolume.enableGridDashedLine(10f, 10f, 0f);
         axisRightVolume.setTextColor(getResources().getColor(R.color.white));
         axisRightVolume.setLabelCount(4, false); //第一个参数是Y轴坐标的个数，第二个参数是 是否不均匀分布，true是不均匀分布

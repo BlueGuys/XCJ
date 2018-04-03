@@ -86,7 +86,7 @@ public class UrlConst {
      * 币行情页面
      */
     public static String getCoinCoreUrl() {
-        return HOST + "Api/Users/coinCore.html";
+        return HOST + "Api/Digiccy/coinCore.html";
     }
 
     /**

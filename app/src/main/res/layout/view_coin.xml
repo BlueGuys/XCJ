@@ -75,21 +75,21 @@
         <com.hongyan.xcj.modules.coin.mychart.MyCombinedChart
             android:id="@+id/coin_detail_chartK"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/ds400"
-            android:layout_marginBottom="-3dp" />
+            android:layout_height="@dimen/ds370"
+            android:layout_marginBottom="-2dp" />
 
 
         <com.hongyan.xcj.modules.coin.mychart.MyCombinedChart
             android:id="@+id/coin_detail_volume"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/ds400"
+            android:layout_height="@dimen/ds240"
             android:layout_below="@id/coin_detail_chartK"
-            android:layout_marginTop="-3dp" />
+            android:layout_marginTop="-2dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="@dimen/ds2"
-            android:layout_centerVertical="true"
+            android:layout_below="@id/coin_detail_chartK"
             android:background="@color/white" />
 
         <LinearLayout

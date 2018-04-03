@@ -31,9 +31,7 @@
             android:name=".modules.main.MainTabActivity"
             android:windowSoftInputMode="stateHidden|adjustPan"></activity>
         <activity android:name=".modules.coin.CoinDetail2Activity" />
-        <activity android:name=".modules.coin.CoinDetailActivity">
-
-        </activity>
+        <activity android:name=".modules.coin.CoinDetailActivity"></activity>
         <activity android:name=".test.RecycleViewActivity" />
         <activity android:name=".base.BaseWebViewActivity" />
         <activity android:name=".modules.collect.CollectActivity" />
