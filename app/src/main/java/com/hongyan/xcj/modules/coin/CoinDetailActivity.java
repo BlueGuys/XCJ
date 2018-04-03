@@ -102,6 +102,7 @@ public class CoinDetailActivity extends BaseActivity {
         mNavigation.setOnSelectChangeListener(new CoinDetailNavigation.OnSelectChangeListener() {
             @Override
             public void onSelectChange(String coinId) {
+                coinID = coinId;
                 requestPageData();
                 requestCoinCore(currentIndex);
             }

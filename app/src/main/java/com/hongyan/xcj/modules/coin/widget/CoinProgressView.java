@@ -58,6 +58,7 @@ public class CoinProgressView extends View {
         mPaint.setColor(Color.WHITE);
         mPaint.setTextSize(DisplayUtils.dip2px(mContext, 12));
         mPaint.setStrokeWidth(2);
+        mPaint.setAntiAlias(true);
         canvas.drawText(mCurrentProgress + "%", DisplayUtils.dip2px(mContext, 15), DisplayUtils.dip2px(mContext, 14), mPaint);
         canvas.drawText(decimalFormat.format((100.0f - mCurrentProgress)) + "%", getWidth() - DisplayUtils.dip2px(mContext, 50), DisplayUtils.dip2px(mContext, 14), mPaint);
         canvas.restore();

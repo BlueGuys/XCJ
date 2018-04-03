@@ -51,7 +51,7 @@ public class CoinViewHeader extends LinearLayout {
         if (data == null) {
             return;
         }
-        Date date = new Date(JavaTypesHelper.toLong(data.timeStamp));
+        Date date = new Date(JavaTypesHelper.toLong(data.timeStamp+"000"));
         String day = DateUtils.formatDate(date, DateUtils.MMDD);
         String hour = DateUtils.formatDate(date, DateUtils.HHmmss);
         tvPrice.setText(String.valueOf(data.price));
