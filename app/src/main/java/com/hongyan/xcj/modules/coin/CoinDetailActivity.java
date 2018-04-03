@@ -16,10 +16,16 @@ import com.hongyan.xcj.base.JPRequest;
 import com.hongyan.xcj.base.JPResponse;
 import com.hongyan.xcj.base.UrlConst;
 import com.hongyan.xcj.modules.coin.widget.CoinDetailNavigation;
+import com.hongyan.xcj.modules.event.ChartMessageEvent;
+import com.hongyan.xcj.modules.event.MarketMeMessageEvent;
 import com.hongyan.xcj.network.Response;
 import com.hongyan.xcj.network.VolleyError;
 import com.hongyan.xcj.utils.StringUtils;
 import com.umeng.analytics.MobclickAgent;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 
 public class CoinDetailActivity extends BaseActivity {
@@ -29,6 +35,12 @@ public class CoinDetailActivity extends BaseActivity {
     private CoinDetailAdapter mAdapter;
 
     private String coinID;
+    /**
+     * chart数据选择的是 时  分  秒
+     */
+    private int currentIndex;
+
+    private CoinDetailResult.Data mData;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,10 +49,11 @@ public class CoinDetailActivity extends BaseActivity {
         coinID = getIntent().getStringExtra("id");
         initView();
         requestPageData();
+        EventBus.getDefault().register(this);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                requestCoinCore();
+                requestCoinCore(1);
             }
         }, 500);
     }
@@ -55,6 +68,12 @@ public class CoinDetailActivity extends BaseActivity {
     protected void onPause() {
         super.onPause();
         MobclickAgent.onPause(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
     private void initView() {
@@ -77,22 +96,23 @@ public class CoinDetailActivity extends BaseActivity {
         mNavigation.setOnRefreshClickListener(new CoinDetailNavigation.OnRefreshClickListener() {
             @Override
             public void refresh() {
-                showSuccessToast("刷新");
+                requestCoinCore(currentIndex);
             }
         });
         mNavigation.setOnSelectChangeListener(new CoinDetailNavigation.OnSelectChangeListener() {
             @Override
             public void onSelectChange(String coinId) {
-                showErrorToast("刷新" + coinId);
+                requestPageData();
+                requestCoinCore(currentIndex);
             }
         });
         mNavigation.setOnCollectChangeListener(new CoinDetailNavigation.onCollectChangeListener() {
             @Override
-            public void onCollectChange(String coinId, boolean isCollect) {
+            public void onCollectChange(String id, boolean isCollect) {
                 if (isCollect) {
-                    showErrorToast("收藏" + coinId);
+                    CoinCollectManager.getInstance().cancelCollectCoin(coinID);
                 } else {
-                    showErrorToast("取消收藏" + coinId);
+                    CoinCollectManager.getInstance().collectCoin(coinID);
                 }
             }
         });
@@ -136,16 +156,17 @@ public class CoinDetailActivity extends BaseActivity {
                 }
                 CoinDetailResult result = (CoinDetailResult) response.getResult();
                 if (result != null && result.data != null) {
-                    int currentID = 0;
+                    mData = result.data;
+                    int currentIndex = 0;
                     if (result.data.titleList != null) {
                         for (int i = 0; i < result.data.titleList.size(); i++) {
                             CoinDetailResult.CoinTitleBean bean = result.data.titleList.get(i);
                             if (!StringUtils.isEmpty(bean.id) && bean.id.equals(coinID)) {
-                                currentID = i;
+                                currentIndex = i;
                             }
                         }
                     }
-                    mNavigation.setCoinTitleList(result.data.titleList, currentID);
+                    mNavigation.setCoinTitleList(result.data.titleList, currentIndex);
                     mAdapter.setData(result.data);
                 }
             }
@@ -160,7 +181,7 @@ public class CoinDetailActivity extends BaseActivity {
         baseModel.sendRequest(request);
     }
 
-    private void requestCoinCore() {
+    private void requestCoinCore(int index) {
         JPRequest request = new JPRequest<>(CoinResult.class, UrlConst.getCoinCoreUrl(), new Response.Listener<JPResponse>() {
             @Override
             public void onResponse(JPResponse response) {
@@ -179,7 +200,7 @@ public class CoinDetailActivity extends BaseActivity {
             }
         });
         request.addParam("id", coinID);
-        request.addParam("type", 1);
+        request.addParam("type", index);
         JPBaseModel baseModel = new JPBaseModel();
         baseModel.sendRequest(request);
     }
@@ -222,6 +243,30 @@ public class CoinDetailActivity extends BaseActivity {
             mRecyclerView.smoothScrollToPosition(position);
             mToPosition = position;
             mShouldScroll = true;
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.POSTING)
+    public void marketMeFragment(ChartMessageEvent message) {
+        if (message == null) {
+            return;
+        }
+        if (message.getId() != -1) {
+            currentIndex = message.getId();
+            requestCoinCore(message.getId());
+        }
+        if (message.getIsCollectSuccessful() != -1) {//不等于-1 代表发送了收藏/取消收藏消息
+            if (mData.titleList != null) {
+                for (int i = 0; i < mData.titleList.size(); i++) {
+                    CoinDetailResult.CoinTitleBean bean = mData.titleList.get(i);
+                    if (!StringUtils.isEmpty(bean.id) && bean.id.equals(coinID)) {
+                        mData.titleList.get(i).isCollected = String.valueOf(message.getIsCollectSuccessful());
+                        mNavigation.setCoinTitleList(mData.titleList, i);
+                        break;
+                    }
+                }
+            }
+
         }
     }
 }

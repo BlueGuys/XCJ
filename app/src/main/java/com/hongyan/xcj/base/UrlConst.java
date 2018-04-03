@@ -110,4 +110,18 @@ public class UrlConst {
         return HOST + "Api/Search.html";
     }
 
+    /**
+     * 收藏币
+     */
+    public static String getCollectCoinUrl() {
+        return HOST + "Api/Users/collect_digiccy.html";
+    }
+
+    /**
+     * 取消收藏币
+     */
+    public static String getCancelCollectCoinUrl() {
+        return HOST + "Api/Users/cancel_collect_digiccy.html";
+    }
+
 }

@@ -12,6 +12,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <com.hongyan.xcj.modules.coin.widget.ChartCollectView
+        android:id="@+id/coin_view_collect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/ds60"

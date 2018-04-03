@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/black"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/ds20"
+    android:paddingTop="@dimen/ds20">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ds70"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_00"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="分时"
+            android:textColor="@color/white"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/tv_01"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="1分"
+            android:textColor="@color/xcj_text_b"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/tv_02"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="5分"
+            android:textColor="@color/xcj_text_b"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/tv_03"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="15分"
+            android:textColor="@color/xcj_text_b"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/tv_04"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="30分"
+            android:textColor="@color/xcj_text_b"
+            android:textSize="14dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ds70"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_05"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="1小时"
+            android:textColor="@color/xcj_text_b"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/tv_06"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="4小时"
+            android:textColor="@color/xcj_text_b"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/tv_07"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="1天"
+            android:textColor="@color/xcj_text_b"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/tv_08"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="1周"
+            android:textColor="@color/xcj_text_b"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/tv_09"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="1月"
+            android:textColor="@color/xcj_text_b"
+            android:textSize="14dp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

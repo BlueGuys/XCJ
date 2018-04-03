@@ -28,8 +28,11 @@ import com.hongyan.xcj.modules.coin.CoinDataParser;
 import com.hongyan.xcj.modules.coin.CoinResult;
 import com.hongyan.xcj.modules.coin.mychart.CoupleChartGestureListener;
 import com.hongyan.xcj.modules.coin.mychart.MyCombinedChart;
+import com.hongyan.xcj.modules.event.ChartMessageEvent;
 import com.hongyan.xcj.utils.JavaTypesHelper;
 import com.hongyan.xcj.utils.StringUtils;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -39,6 +42,7 @@ public class CoinView extends LinearLayout {
 
     private View view;
     private CoinViewHeader mHeader;
+    private ChartCollectView mCollectView;
     private TextView tvCoinTime, tvCoinOpen, tvCoinHigh, tvCoinLow, tvCoinClose, tvCoinUp, tvCoinChange;
     protected MyCombinedChart mChartKline, mChartVolume;
     //X轴标签的类
@@ -61,11 +65,20 @@ public class CoinView extends LinearLayout {
         mParser = new CoinDataParser(context);
         view = View.inflate(context, R.layout.view_coin, this);
         mHeader = view.findViewById(R.id.coin_view_header);
+        mCollectView = view.findViewById(R.id.coin_view_collect);
         mChartKline = view.findViewById(R.id.coin_detail_chartK);
         mChartVolume = view.findViewById(R.id.coin_detail_volume);
         initChartKline();
         initChartVolume();
         initCurrentCoinView();
+        mCollectView.setOnSelectChangeListener(new ChartCollectView.OnSelectChangeListener() {
+            @Override
+            public void change(int index) {
+                ChartMessageEvent messageEvent = new ChartMessageEvent();
+                messageEvent.setId(index);
+                EventBus.getDefault().post(messageEvent);
+            }
+        });
     }
 
     private void initCurrentCoinView() {
@@ -113,7 +126,7 @@ public class CoinView extends LinearLayout {
         }
 
         //振幅
-        float change = (bean.high - bean.low) / bean.high;
+        float change = (bean.high - bean.low) / bean.high * 100;
         DecimalFormat decimalFormat = new DecimalFormat("0.00");//构造方法的字符格式这里如果小数不足2位,会以0补足.
         tvCoinChange.setText(decimalFormat.format(change) + "%");
     }
@@ -190,7 +203,17 @@ public class CoinView extends LinearLayout {
                 mChartKline.highlightValues(new Highlight[]{mHighLight});
             }
         });
-        mChartKline.setOnChartGestureListener(new CoupleChartGestureListener(mChartKline, new Chart[]{mChartVolume}));
+        // 将交易量控件的滑动事件传递给K线控件
+        mChartKline.setOnChartGestureListener(new CoupleChartGestureListener(mChartKline, new Chart[]{mChartVolume}) {
+            @Override
+            public void onChartGestureEnd(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
+                mHighLight = mChartKline.getHighlightByTouchPoint(me.getX(), me.getY());
+                mChartVolume.highlightValues(new Highlight[]{mHighLight});
+                mChartKline.highlightValues(new Highlight[]{mHighLight});
+                invalidateEntry(mHighLight.getXIndex());
+            }
+        });
+
     }
 
     /**
@@ -266,7 +289,15 @@ public class CoinView extends LinearLayout {
             }
         });
         // 将交易量控件的滑动事件传递给K线控件
-        mChartVolume.setOnChartGestureListener(new CoupleChartGestureListener(mChartVolume, new Chart[]{mChartKline}));
+        mChartVolume.setOnChartGestureListener(new CoupleChartGestureListener(mChartVolume, new Chart[]{mChartKline}) {
+            @Override
+            public void onChartGestureEnd(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
+                mHighLight = mChartKline.getHighlightByTouchPoint(me.getX(), me.getY());
+                mChartVolume.highlightValues(new Highlight[]{mHighLight});
+                mChartKline.highlightValues(new Highlight[]{mHighLight});
+                invalidateEntry(mHighLight.getXIndex());
+            }
+        });
     }
 
 }

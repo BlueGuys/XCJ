@@ -212,11 +212,10 @@ public class BaseWebViewActivity extends BaseActivity {
         }
 
         @JavascriptInterface
-        public String checkLogin() {
+        public void login() {
             if (!AccountManager.getInstance().isLogin()) {
                 EventBus.getDefault().post(new TokenMessageEvent());
             }
-            return AccountManager.getInstance().isLogin() ? "1" : "0";
         }
     }
 

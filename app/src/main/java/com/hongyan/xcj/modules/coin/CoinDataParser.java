@@ -65,7 +65,6 @@ public class CoinDataParser {
         return new CandleData(data.getXValList(), set);
     }
 
-
     private BarData getBarData(CoinResult.Data data) {
         BarDataSet set = new BarDataSet(data.getBarEntries(), "成交量");
         set.setBarSpacePercent(20); //bar空隙

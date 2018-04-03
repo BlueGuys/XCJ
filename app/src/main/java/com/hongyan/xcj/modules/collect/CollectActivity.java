@@ -42,9 +42,7 @@ import java.util.ArrayList;
 public class CollectActivity extends BaseActivity {
 
     private SwipeRefreshLayout mRefreshLayout;
-    private RecyclerView mRecyclerView;
     private CollectionAdapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
     private AdapterWrapper adapterWrapper;
     private SwipeToLoadHelper helper;
     private int currentPage = 1;
@@ -82,9 +80,9 @@ public class CollectActivity extends BaseActivity {
     private void initView() {
         tvNotLogin = findViewById(R.id.tv_login_text);
         initNoDataView();
-        mLayoutManager = new LinearLayoutManager(CollectActivity.this, LinearLayoutManager.VERTICAL, false);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(CollectActivity.this, LinearLayoutManager.VERTICAL, false);
         mRefreshLayout = findViewById(R.id.layout_swipe_refresh);
-        mRecyclerView = findViewById(R.id.recycler_view);
+        RecyclerView mRecyclerView = findViewById(R.id.recycler_view);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(CollectActivity.this,
                 DividerItemDecoration.VERTICAL_LIST));
         mRecyclerView.setLayoutManager(mLayoutManager);

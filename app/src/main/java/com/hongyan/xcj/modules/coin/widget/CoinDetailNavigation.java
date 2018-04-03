@@ -20,11 +20,7 @@ import java.util.Date;
 
 public class CoinDetailNavigation extends LinearLayout {
 
-    private ImageView imageBack;
     private ImageView imageAdd;
-    private ImageView imageLeft;
-    private ImageView imageRight;
-    private ImageView imageRefresh;
     private TextView tvTitle;
 
     private OnBackClickListener mOnBackClickListener;
@@ -42,11 +38,11 @@ public class CoinDetailNavigation extends LinearLayout {
     public CoinDetailNavigation(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         View view = View.inflate(context, R.layout.view_coin_navigation, this);
-        imageBack = view.findViewById(R.id.icon_navigation_back);
+        ImageView imageBack = view.findViewById(R.id.icon_navigation_back);
         imageAdd = view.findViewById(R.id.icon_navigation_add);
-        imageLeft = view.findViewById(R.id.icon_navigation_left);
-        imageRight = view.findViewById(R.id.icon_navigation_right);
-        imageRefresh = view.findViewById(R.id.icon_navigation_refresh);
+        ImageView imageLeft = view.findViewById(R.id.icon_navigation_left);
+        ImageView imageRight = view.findViewById(R.id.icon_navigation_right);
+        ImageView imageRefresh = view.findViewById(R.id.icon_navigation_refresh);
         tvTitle = view.findViewById(R.id.tv_coin_navigation_title);
 
         imageBack.setOnClickListener(new OnClickListener() {
@@ -65,13 +61,12 @@ public class CoinDetailNavigation extends LinearLayout {
                 }
                 CoinDetailResult.CoinTitleBean bean = mTitleList.get(currentIndex);
                 mOnCollectChangeListener.onCollectChange(bean.id, bean.isCollected());
-                imageAdd.setImageResource(bean.isCollected() ? R.drawable.icon_navigation_add : R.drawable.icon_navigation_delete);
             }
         });
         imageLeft.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (currentIndex <= 0) {
+                if (currentIndex - 1 <= 0) {
                     return;
                 }
                 currentIndex--;
@@ -83,7 +78,7 @@ public class CoinDetailNavigation extends LinearLayout {
         imageRight.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (currentIndex > mTitleList.size() - 1) {
+                if (currentIndex + 1 >= mTitleList.size() - 1) {
                     return;
                 }
                 currentIndex++;
@@ -104,6 +99,7 @@ public class CoinDetailNavigation extends LinearLayout {
 
     public void setCoinTitleList(ArrayList<CoinDetailResult.CoinTitleBean> titleList, int currentIndex) {
         if (titleList != null && titleList.size() > 0) {
+            this.mTitleList.clear();
             this.mTitleList.addAll(titleList);
             this.currentIndex = currentIndex;
             CoinDetailResult.CoinTitleBean bean = mTitleList.get(currentIndex);
