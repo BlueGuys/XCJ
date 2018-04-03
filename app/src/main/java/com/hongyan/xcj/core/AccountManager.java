@@ -4,10 +4,12 @@ package com.hongyan.xcj.core;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.hongyan.xcj.base.BaseWebViewActivity;
 import com.hongyan.xcj.base.JPBaseModel;
 import com.hongyan.xcj.base.JPRequest;
 import com.hongyan.xcj.base.JPResponse;
 import com.hongyan.xcj.base.UrlConst;
+import com.hongyan.xcj.modules.event.TokenMessageEvent;
 import com.hongyan.xcj.network.Response;
 import com.hongyan.xcj.network.VolleyError;
 import com.hongyan.xcj.utils.GsonUtils;
@@ -64,11 +66,11 @@ public class AccountManager {
     public void logout() {
         SharePreferenceManager.getInstance().deleteStr("account");
         EventBus.getDefault().post(new AccountMessageEvent(false));
+        mAccountInfo = null;
     }
 
     public void login() {
-        logout();
-
+        EventBus.getDefault().post(new TokenMessageEvent());
     }
 
     /**

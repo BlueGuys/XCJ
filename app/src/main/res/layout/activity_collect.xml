@@ -3,7 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.hongyan.xcj.modules.splash.AppStartActivity">
+
+    <TextView
+        android:id="@+id/tv_login_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/ds120"
+        android:layout_marginRight="@dimen/ds120"
+        android:layout_marginTop="@dimen/ds80"
+        android:background="@color/xcj_background"
+        android:gravity="left"
+        android:maxLines="2"
+        android:textSize="15dp" />
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/layout_swipe_refresh"

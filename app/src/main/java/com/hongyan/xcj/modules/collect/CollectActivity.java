@@ -1,13 +1,20 @@
 package com.hongyan.xcj.modules.collect;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextPaint;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.hongyan.xcj.R;
 import com.hongyan.xcj.base.BaseActivity;
@@ -16,6 +23,7 @@ import com.hongyan.xcj.base.JPRequest;
 import com.hongyan.xcj.base.JPResponse;
 import com.hongyan.xcj.base.RecyclerItemClickListener;
 import com.hongyan.xcj.base.UrlConst;
+import com.hongyan.xcj.core.AccountManager;
 import com.hongyan.xcj.modules.article.ArticleActivity;
 import com.hongyan.xcj.modules.main.info.recommend.InfoRecommendAdapter;
 import com.hongyan.xcj.modules.main.info.recommend.InfoRecommendResult;
@@ -41,6 +49,7 @@ public class CollectActivity extends BaseActivity {
     private SwipeToLoadHelper helper;
     private int currentPage = 1;
     private ArrayList<CollectionResult.Collection> mArticleList = new ArrayList<>();
+    private TextView tvNotLogin;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,8 +62,15 @@ public class CollectActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        refresh();
         MobclickAgent.onResume(this);
+        if (AccountManager.getInstance().isLogin()) {
+            refresh();
+            tvNotLogin.setVisibility(View.GONE);
+            mRefreshLayout.setVisibility(View.VISIBLE);
+        } else {
+            tvNotLogin.setVisibility(View.VISIBLE);
+            mRefreshLayout.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -64,6 +80,8 @@ public class CollectActivity extends BaseActivity {
     }
 
     private void initView() {
+        tvNotLogin = findViewById(R.id.tv_login_text);
+        initNoDataView();
         mLayoutManager = new LinearLayoutManager(CollectActivity.this, LinearLayoutManager.VERTICAL, false);
         mRefreshLayout = findViewById(R.id.layout_swipe_refresh);
         mRecyclerView = findViewById(R.id.recycler_view);
@@ -101,6 +119,27 @@ public class CollectActivity extends BaseActivity {
                     }
                 })
         );
+    }
+
+    private void initNoDataView() {
+        String text = "现在登录，选择要特别关注的资讯主题告别被快讯刷屏的困扰";
+        SpannableString spStr = new SpannableString(text);
+        spStr.setSpan(new ClickableSpan() {
+            @Override
+            public void updateDrawState(TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setColor(getResources().getColor(R.color.xcj_blue));       //设置文件颜色
+                ds.setUnderlineText(true);      //设置下划线
+            }
+
+            @Override
+            public void onClick(View widget) {
+                AccountManager.getInstance().login();
+            }
+        }, 0, 4, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        tvNotLogin.setHighlightColor(Color.TRANSPARENT); //设置点击后的颜色为透明，否则会一直出现高亮
+        tvNotLogin.append(spStr);
+        tvNotLogin.setMovementMethod(LinkMovementMethod.getInstance());//开始响应点击事件
     }
 
     private void notifyDataSetChanged() {
@@ -151,7 +190,7 @@ public class CollectActivity extends BaseActivity {
                     boolean hasMore = "1".equals(result.data.hasMore);
                     if (hasMore) {
                         currentPage++;
-                    }else{
+                    } else {
                         helper.setSwipeToLoadEnabled(false);
                     }
                     notifyDataSetChanged();
