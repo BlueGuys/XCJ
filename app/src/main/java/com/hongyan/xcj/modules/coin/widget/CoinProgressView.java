@@ -10,6 +10,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.hongyan.xcj.R;
+import com.hongyan.xcj.utils.DisplayUtils;
 
 
 /**
@@ -21,6 +22,7 @@ public class CoinProgressView extends View {
     private Paint mPaint;
     private float mCurrentProgress = 50.0f;
     private Rect mRect;
+    private Context mContext;
 
     public CoinProgressView(Context context) {
         super(context);
@@ -28,6 +30,7 @@ public class CoinProgressView extends View {
 
     public CoinProgressView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        this.mContext = context;
         mPaint = new Paint();
         mRect = new Rect();
     }
@@ -48,10 +51,10 @@ public class CoinProgressView extends View {
         canvas.drawRect(mRect, mPaint);
 
         mPaint.setColor(Color.WHITE);
-        mPaint.setTextSize(30);
+        mPaint.setTextSize(DisplayUtils.dip2px(mContext, 12));
         mPaint.setStrokeWidth(2);
-        canvas.drawText(mCurrentProgress + "%", 30, 37, mPaint);
-        canvas.drawText((100.0f - mCurrentProgress) + "%", getWidth() - 120, 37, mPaint);
+        canvas.drawText(mCurrentProgress + "%", DisplayUtils.dip2px(mContext, 15), DisplayUtils.dip2px(mContext, 14), mPaint);
+        canvas.drawText((100.0f - mCurrentProgress) + "%", getWidth() - DisplayUtils.dip2px(mContext, 50), DisplayUtils.dip2px(mContext, 14), mPaint);
         canvas.restore();
     }
 

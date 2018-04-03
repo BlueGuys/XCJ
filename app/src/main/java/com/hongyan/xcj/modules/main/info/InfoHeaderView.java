@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.hongyan.xcj.R;
 import com.hongyan.xcj.utils.DeviceUtils;
+import com.hongyan.xcj.utils.DisplayUtils;
 
 public class InfoHeaderView extends LinearLayout {
 
@@ -47,7 +48,7 @@ public class InfoHeaderView extends LinearLayout {
             }
         });
         Drawable drawable = getResources().getDrawable(R.drawable.icon_search);
-        drawable.setBounds(0, 0, 40, 40);
+        drawable.setBounds(0, 0, DisplayUtils.dip2px(context, 15), DisplayUtils.dip2px(context, 15));
         etSearch.setCompoundDrawables(drawable, null, null, null);
         initTabView(context, view);
     }
