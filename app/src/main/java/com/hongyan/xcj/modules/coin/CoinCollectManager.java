@@ -46,11 +46,16 @@ public class CoinCollectManager {
                     return;
                 }
                 EmptyResult result = (EmptyResult) response.getResult();
-                if (result != null && result.isSuccessful()) {
+                if (result == null) {
+                    return;
+                }
+                if (result.isSuccessful()) {
                     Toast.makeText(BaseApplication.getInstance().getApplicationContext(), "收藏成功", Toast.LENGTH_SHORT).show();
                     ChartMessageEvent messageEvent = new ChartMessageEvent();
                     messageEvent.setIsCollectSuccessful(1);
                     EventBus.getDefault().post(messageEvent);
+                } else {
+                    Toast.makeText(BaseApplication.getInstance().getApplicationContext(), result.getReturnMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         }, new Response.ErrorListener() {

@@ -70,6 +70,7 @@ public class CoinDetailNavigation extends LinearLayout {
                     return;
                 }
                 currentIndex--;
+                update();
                 if (mOnSelectChangeListener != null) {
                     mOnSelectChangeListener.onSelectChange(mTitleList.get(currentIndex).id);
                 }
@@ -82,6 +83,7 @@ public class CoinDetailNavigation extends LinearLayout {
                     return;
                 }
                 currentIndex++;
+                update();
                 if (mOnSelectChangeListener != null) {
                     mOnSelectChangeListener.onSelectChange(mTitleList.get(currentIndex).id);
                 }
@@ -102,10 +104,14 @@ public class CoinDetailNavigation extends LinearLayout {
             this.mTitleList.clear();
             this.mTitleList.addAll(titleList);
             this.currentIndex = currentIndex;
-            CoinDetailResult.CoinTitleBean bean = mTitleList.get(currentIndex);
-            tvTitle.setText(bean.title);
-            imageAdd.setImageResource(bean.isCollected() ? R.drawable.icon_navigation_delete : R.drawable.icon_navigation_add);
+            update();
         }
+    }
+
+    private void update() {
+        CoinDetailResult.CoinTitleBean bean = mTitleList.get(currentIndex);
+        tvTitle.setText(bean.title);
+        imageAdd.setImageResource(bean.isCollected() ? R.drawable.icon_navigation_delete : R.drawable.icon_navigation_add);
     }
 
     public void setOnBackClickListener(OnBackClickListener onBackClickListener) {

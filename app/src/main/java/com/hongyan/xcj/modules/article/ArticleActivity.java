@@ -12,8 +12,12 @@ import com.hongyan.xcj.R;
 import com.hongyan.xcj.base.BaseWebViewActivity;
 import com.hongyan.xcj.core.AccountManager;
 import com.hongyan.xcj.core.CollectionManager;
+import com.hongyan.xcj.modules.event.TokenMessageEvent;
+import com.hongyan.xcj.modules.main.info.recommend.InfoRecommendResult;
 import com.hongyan.xcj.utils.StringUtils;
 import com.umeng.analytics.MobclickAgent;
+
+import org.greenrobot.eventbus.EventBus;
 
 /**
  * Created by wangning on 2018/3/24.
@@ -75,13 +79,44 @@ public class ArticleActivity extends BaseWebViewActivity {
         MobclickAgent.onPause(this);
     }
 
-
-
     public class ClientFunction {
+        
         @JavascriptInterface
         public void setCollection(String str) {
             isCollection = "0".equals(str);
             imageCollection.setImageResource(isCollection ? R.drawable.icon_collection : R.drawable.icon_cancel_collection);
+        }
+
+        @JavascriptInterface
+        public void finish() {
+            ArticleActivity.this.finish();
+        }
+
+        @JavascriptInterface
+        public void setToken(String token) {
+            AccountManager.getInstance().setToken(token);
+        }
+
+        @JavascriptInterface
+        public void getToken() {
+            String token = AccountManager.getInstance().getToken();
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (StringUtils.isEmpty(token)) {
+                        mWebView.loadUrl("javascript:onTokenResult('" + "" + "')");
+                    } else {
+                        mWebView.loadUrl("javascript:onTokenResult('" + token + "')");
+                    }
+                }
+            });
+        }
+
+        @JavascriptInterface
+        public void login() {
+            if (!AccountManager.getInstance().isLogin()) {
+                EventBus.getDefault().post(new TokenMessageEvent());
+            }
         }
     }
 }
