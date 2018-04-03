@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -19,6 +20,8 @@ import com.github.mikephil.charting.data.CombinedData;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.ICandleDataSet;
+import com.github.mikephil.charting.listener.ChartTouchListener;
+import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.hongyan.xcj.R;
 import com.hongyan.xcj.modules.coin.CoinDataParser;
@@ -115,6 +118,8 @@ public class CoinView extends LinearLayout {
         tvCoinChange.setText(decimalFormat.format(change) + "%");
     }
 
+    private Highlight mHighLight;
+
     /**
      * 初始化上面的chart公共属性
      */
@@ -173,22 +178,16 @@ public class CoinView extends LinearLayout {
         mChartKline.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
-                Highlight highlight = new Highlight(h.getXIndex(), h.getValue(), h.getDataIndex(), h.getDataSetIndex());
-                float touchY = h.getTouchY() - mChartKline.getHeight();
-                Highlight h1 = mChartVolume.getHighlightByTouchPoint(h.getXIndex(), touchY);
-                highlight.setTouchY(touchY);
-                if (null == h1) {
-                    highlight.setTouchYValue(0);
-                } else {
-                    highlight.setTouchYValue(h1.getTouchYValue());
-                }
-                mChartVolume.highlightValues(new Highlight[]{highlight});
+                mHighLight = h;
+                mChartVolume.highlightValues(new Highlight[]{mHighLight});
+                mChartKline.highlightValues(new Highlight[]{mHighLight});
                 invalidateEntry(e.getXIndex());
             }
 
             @Override
             public void onNothingSelected() {
-                mChartVolume.highlightValue(null);
+                mChartVolume.highlightValues(new Highlight[]{mHighLight});
+                mChartKline.highlightValues(new Highlight[]{mHighLight});
             }
         });
         mChartKline.setOnChartGestureListener(new CoupleChartGestureListener(mChartKline, new Chart[]{mChartVolume}));
@@ -254,23 +253,16 @@ public class CoinView extends LinearLayout {
         mChartVolume.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
-                Highlight highlight = new Highlight(h.getXIndex(), h.getValue(), h.getDataIndex(), h.getDataSetIndex());
-
-                float touchY = h.getTouchY() + mChartKline.getHeight();
-                Highlight h1 = mChartKline.getHighlightByTouchPoint(h.getXIndex(), touchY);
-                highlight.setTouchY(touchY);
-                if (null == h1) {
-                    highlight.setTouchYValue(0);
-                } else {
-                    highlight.setTouchYValue(h1.getTouchYValue());
-                }
-                mChartKline.highlightValues(new Highlight[]{highlight});
+                mHighLight = h;
+                mChartVolume.highlightValues(new Highlight[]{mHighLight});
+                mChartKline.highlightValues(new Highlight[]{mHighLight});
                 invalidateEntry(e.getXIndex());
             }
 
             @Override
             public void onNothingSelected() {
-                mChartKline.highlightValue(null);
+                mChartVolume.highlightValues(new Highlight[]{mHighLight});
+                mChartKline.highlightValues(new Highlight[]{mHighLight});
             }
         });
         // 将交易量控件的滑动事件传递给K线控件

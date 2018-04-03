@@ -1,6 +1,7 @@
 package com.hongyan.xcj.modules.coin.widget;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
@@ -59,7 +60,9 @@ public class CoinViewHeader extends LinearLayout {
         tvHighPrice.setText("最高：" + String.valueOf(data.highPrice));
         tvLowPrice.setText("最低：" + String.valueOf(data.lowPrice));
         tvChangePrice.setText(String.valueOf(data.changePrice));
-        tvChangeRate.setText(String.valueOf(data.changeRate));
+        tvChangeRate.setText(String.valueOf(data.changeRate + "%"));
+        tvChangeRate.setTextColor(data.changeRate >= 0f ? getResources().getColor(R.color.increasing_color) : getResources().getColor(R.color.decreasing_color));
+        tvChangePrice.setTextColor(data.changePrice >= 0f ? getResources().getColor(R.color.increasing_color) : getResources().getColor(R.color.decreasing_color));
         tvTimeDate.setText(day);
         tvTimeHour.setText(hour);
         tvVolume.setText("成交量：" + String.valueOf(data.volume));

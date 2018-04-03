@@ -76,7 +76,7 @@
             android:id="@+id/coin_detail_chartK"
             android:layout_width="match_parent"
             android:layout_height="@dimen/ds370"
-            android:layout_marginBottom="-2dp" />
+            android:layout_marginBottom="-3dp" />
 
 
         <com.hongyan.xcj.modules.coin.mychart.MyCombinedChart
@@ -84,7 +84,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/ds240"
             android:layout_below="@id/coin_detail_chartK"
-            android:layout_marginTop="-2dp" />
+            android:layout_marginTop="-3dp" />
 
         <TextView
             android:layout_width="match_parent"

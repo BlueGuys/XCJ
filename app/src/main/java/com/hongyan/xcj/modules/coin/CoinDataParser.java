@@ -31,6 +31,7 @@ public class CoinDataParser {
                 combinedData.setData(getCandleData(data));
                 break;
             case TYPE_BAR:
+                combinedData.setData(getCandleData(data));
                 combinedData.setData(getBarData(data));
                 break;
         }
@@ -77,9 +78,7 @@ public class CoinDataParser {
         list.add(mContext.getResources().getColor(R.color.increasing_color));
         list.add(mContext.getResources().getColor(R.color.decreasing_color));
         set.setColors(list);
-
-        BarData barData = new BarData(data.getXValList(), set);
-        return barData;
+        return new BarData(data.getXValList(), set);
     }
 
 }

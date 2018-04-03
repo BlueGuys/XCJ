@@ -1,5 +1,7 @@
 package com.hongyan.xcj.utils;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
@@ -70,6 +72,7 @@ public class GsonUtils {
             Gson gson = new Gson();
             return gson.fromJson(jsonString, className);
         } catch (Exception e) {
+            Log.e("test",e.getMessage());
         }
 
         return null;
