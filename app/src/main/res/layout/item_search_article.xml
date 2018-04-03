@@ -2,11 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/white"
     android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/linear_padding"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ds20"
+        android:background="@color/xcj_background" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/ds100"
+        android:layout_height="@dimen/ds110"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingLeft="@dimen/ds30"
@@ -18,7 +25,13 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical|left"
             android:text="Article"
-            android:textSize="13dp" />
+            android:textSize="14dp"
+            android:textStyle="bold" />
     </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ds2"
+        android:background="@color/c_bg_line_b" />
 
 </LinearLayout>

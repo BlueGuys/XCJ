@@ -17,9 +17,11 @@ import com.hongyan.xcj.base.JPBaseModel;
 import com.hongyan.xcj.base.JPRequest;
 import com.hongyan.xcj.base.JPResponse;
 import com.hongyan.xcj.base.UrlConst;
+import com.hongyan.xcj.modules.coin.CoinDetailActivity;
 import com.hongyan.xcj.modules.setting.SetNickNameResult;
 import com.hongyan.xcj.network.Response;
 import com.hongyan.xcj.network.VolleyError;
+import com.hongyan.xcj.utils.SoftInputUtils;
 import com.hongyan.xcj.utils.StringUtils;
 import com.umeng.analytics.MobclickAgent;
 
@@ -92,6 +94,7 @@ public class SearchActivity extends BaseActivity {
                     } else {
                         linearNoData.setVisibility(View.VISIBLE);
                     }
+                    SoftInputUtils.hideSoftKeyPad(SearchActivity.this, editText);
                     adapter.setData(result);
                 }
             }
@@ -101,7 +104,7 @@ public class SearchActivity extends BaseActivity {
                 showErrorToast(error.getErrorMessage());
             }
         });
-        request.addParam("key", searchKey);
+        request.addParam("k", searchKey);
         JPBaseModel baseModel = new JPBaseModel();
         baseModel.sendRequest(request);
     }

@@ -2,7 +2,9 @@ package com.hongyan.xcj.modules.setting;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.hongyan.xcj.R;
 import com.hongyan.xcj.base.BaseActivity;
@@ -10,6 +12,7 @@ import com.hongyan.xcj.base.JPBaseModel;
 import com.hongyan.xcj.base.JPRequest;
 import com.hongyan.xcj.base.JPResponse;
 import com.hongyan.xcj.base.UrlConst;
+import com.hongyan.xcj.core.AccountManager;
 import com.hongyan.xcj.network.Response;
 import com.hongyan.xcj.network.VolleyError;
 import com.hongyan.xcj.utils.StringUtils;
@@ -25,7 +28,21 @@ public class SetNickNameActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_nick_name);
         hideNavigationView();
-        editText = findViewById(R.id.et_search);
+        ImageView imageClose = findViewById(R.id.image_close);
+        ImageView imageCommit = findViewById(R.id.image_commit);
+        editText = findViewById(R.id.et_set_nick_name);
+        imageClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+        imageCommit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                modifyNickName();
+            }
+        });
     }
 
     @Override
@@ -54,6 +71,8 @@ public class SetNickNameActivity extends BaseActivity {
                 SetNickNameResult result = (SetNickNameResult) response.getResult();
                 if (result != null && result.isSuccessful()) {
                     showSuccessToast("昵称修改成功");
+                    AccountManager.getInstance().refresh();
+
                     finish();
                 }
             }

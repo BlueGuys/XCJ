@@ -26,7 +26,8 @@ public class SearchResult extends JPResult {
     }
 
     static class CoinBean {
-        public String photo;
+        public String id;
+        public String logo;
         public String name;
         public String url;
     }

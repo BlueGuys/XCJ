@@ -1,6 +1,8 @@
 package com.hongyan.xcj.core;
 
 import android.app.Application;
+import android.os.Handler;
+import android.os.Looper;
 
 import com.hongyan.xcj.network.RequestQueue;
 import com.hongyan.xcj.network.toolbox.Volley;
@@ -25,6 +27,7 @@ public class BaseApplication extends Application {
 
     private static BaseApplication _instance;
     private RequestQueue mRequestQueue;
+    protected Handler mHandler = new Handler(Looper.getMainLooper());
 
     @Override
     public void onCreate() {
@@ -71,5 +74,9 @@ public class BaseApplication extends Application {
 
     public RequestQueue getRequestQueue() {
         return mRequestQueue;
+    }
+
+    public void postTaskInUIThread(Runnable runnable, int delayMillis) {
+        mHandler.postDelayed(runnable, delayMillis);
     }
 }

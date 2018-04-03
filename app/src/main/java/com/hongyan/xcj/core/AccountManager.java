@@ -73,6 +73,10 @@ public class AccountManager {
         EventBus.getDefault().post(new TokenMessageEvent());
     }
 
+    public void refresh(){
+        getAccountInfoFromServer(this.token);
+    }
+
     /**
      * 从网络拉取账户信息
      */

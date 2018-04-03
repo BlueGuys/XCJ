@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -22,6 +23,7 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.hongyan.xcj.R;
 import com.hongyan.xcj.modules.coin.CoinDataParser;
 import com.hongyan.xcj.modules.coin.CoinResult;
+import com.hongyan.xcj.modules.coin.mychart.CoupleChartGestureListener;
 import com.hongyan.xcj.modules.coin.mychart.MyCombinedChart;
 import com.hongyan.xcj.utils.JavaTypesHelper;
 import com.hongyan.xcj.utils.StringUtils;
@@ -188,6 +190,7 @@ public class CoinView extends LinearLayout {
                 mChartVolume.highlightValue(null);
             }
         });
+        mChartKline.setOnChartGestureListener(new CoupleChartGestureListener(mChartKline, new Chart[]{mChartVolume}));
     }
 
     /**
@@ -268,6 +271,8 @@ public class CoinView extends LinearLayout {
                 mChartKline.highlightValue(null);
             }
         });
+        // 将交易量控件的滑动事件传递给K线控件
+        mChartVolume.setOnChartGestureListener(new CoupleChartGestureListener(mChartVolume, new Chart[]{mChartKline}));
     }
 
 }

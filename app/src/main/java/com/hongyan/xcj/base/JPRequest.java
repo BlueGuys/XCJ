@@ -86,7 +86,7 @@ public class JPRequest<T extends JPResult> extends Request<JPResponse> {
             }
             response.setResponse(string);
             JPResult result = GsonUtils.gsonResolve(string, mResultClass);
-            if (result != null && "50002".equals(result.getReturnCode())) {
+            if (result != null && ("50002".equals(result.getReturnCode()) || "50003".equals(result.getReturnCode()))) {
                 EventBus.getDefault().post(new TokenMessageEvent());
             }
             response.setResult(result);
