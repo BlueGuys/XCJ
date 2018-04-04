@@ -43,7 +43,7 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.ViewHolder
         // 绑定数据
         final MarketResult.Market market = mList.get(position);
         if (market != null) {
-            ImageLoader.getInstance().displayImage(market.logo, holder.imageLogo, ImageLoaderOptionHelper.getInstance().getListImageOption());
+            ImageLoader.getInstance().displayImage(market.logo, holder.imageLogo, ImageLoaderOptionHelper.getInstance().getCircleImageOption());
             holder.tvCurrencyName.setText(market.name);
             holder.tvCurrencyDesc.setText(market.desc);
             holder.tvCurrencyPriceUS.setText("$" + market.dollar_price);

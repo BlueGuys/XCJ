@@ -24,6 +24,12 @@ public class ImageLoaderOptionHelper {
      */
     private DisplayImageOptions mHeaderImageOption;
 
+    /**
+     * 首页大图Image样式
+     */
+    private DisplayImageOptions mCircleImageOption;
+
+
     private ImageLoaderOptionHelper() {
     }
 
@@ -36,6 +42,19 @@ public class ImageLoaderOptionHelper {
             }
         }
         return instance;
+    }
+
+    public DisplayImageOptions getCircleImageOption() {
+        if (mCircleImageOption == null) {
+            mCircleImageOption = new DisplayImageOptions.Builder()
+                    .cacheInMemory(true)
+                    .cacheOnDisk(true)
+                    .considerExifParams(true)
+                    .bitmapConfig(Bitmap.Config.RGB_565)
+                    .displayer(new RoundedBitmapDisplayer(90))
+                    .build();
+        }
+        return mCircleImageOption;
     }
 
     public DisplayImageOptions getListImageOption() {

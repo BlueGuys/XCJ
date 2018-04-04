@@ -93,7 +93,7 @@
 
         <TextView
             android:id="@+id/market_currency_change_rate"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/ds150"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/ds10"
             android:background="@drawable/bg_market_item_button_red"
