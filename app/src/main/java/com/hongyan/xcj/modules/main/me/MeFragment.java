@@ -34,6 +34,8 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
     private TextView tvAccount;
     private TextView tvLogin;
     private ImageView ivLogo;
+    private View line;
+    ItemCommonClickView linearLogout;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,10 +50,11 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
         tvLogin = view.findViewById(R.id.tv_login);
         tvAccount = view.findViewById(R.id.tv_account);
         ivLogo = view.findViewById(R.id.logo);
+        line = view.findViewById(R.id.line1);
         ItemCommonClickView linearCollection = view.findViewById(R.id.linear_collection);
         ItemCommonClickView linearMarket = view.findViewById(R.id.linear_market);
         ItemCommonClickView linearClear = view.findViewById(R.id.linear_clear);
-        ItemCommonClickView linearLogout = view.findViewById(R.id.linear_logout);
+        linearLogout = view.findViewById(R.id.linear_logout);
         ItemCommonClickView linearNickName = view.findViewById(R.id.linear_set_nike_name);
         tvLogin.setOnClickListener(this);
         linearCollection.setOnClickListener(this);
@@ -59,7 +62,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
         linearClear.setOnClickListener(this);
         linearLogout.setOnClickListener(this);
         linearNickName.setOnClickListener(this);
-        checkLogin(AccountManager.getInstance().isLogin());
+        checkLogin();
         return view;
     }
 
@@ -85,8 +88,8 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
                 startActivity(new Intent(getActivity(), SetNickNameActivity.class));
                 break;
             case R.id.linear_clear:
-//                Toast.makeText(getActivity(), "缓存已清理", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getActivity(), CoinDetail2Activity.class));
+                Toast.makeText(getActivity(), "缓存已清理", Toast.LENGTH_SHORT).show();
+//                startActivity(new Intent(getActivity(), CoinDetail2Activity.class));
                 break;
             case R.id.linear_logout:
                 AccountManager.getInstance().logout();
@@ -106,14 +109,16 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
         if (message == null) {
             return;
         }
-        checkLogin(message.isLogin());
+        checkLogin();
     }
 
-    private void checkLogin(boolean isLogin) {
-        if (isLogin) {
+    private void checkLogin() {
+        if (AccountManager.getInstance().isLogin()) {
             ivLogo.setImageResource(R.drawable.icon_account_login);
             tvLogin.setVisibility(View.GONE);
             tvAccount.setVisibility(View.VISIBLE);
+            line.setVisibility(View.VISIBLE);
+            linearLogout.setVisibility(View.VISIBLE);
             AccountInfo info = AccountManager.getInstance().getAccountInfo();
             if (info != null) {
                 String nickName = info.getNickname();
@@ -135,6 +140,8 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
             ivLogo.setImageResource(R.drawable.icon_account_logout);
             tvLogin.setVisibility(View.VISIBLE);
             tvAccount.setVisibility(View.GONE);
+            line.setVisibility(View.GONE);
+            linearLogout.setVisibility(View.GONE);
         }
     }
 }
