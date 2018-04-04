@@ -95,7 +95,7 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/ds2"
+            android:layout_height="@dimen/ds1"
             android:layout_below="@id/coin_detail_chartK"
             android:layout_marginRight="@dimen/ds114"
             android:background="@color/white" />

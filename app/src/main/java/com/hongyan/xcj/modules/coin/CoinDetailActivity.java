@@ -38,7 +38,7 @@ public class CoinDetailActivity extends BaseActivity {
     /**
      * chart数据选择的是 时  分  秒
      */
-    private int currentIndex;
+    public static  int currentIndex;
 
     private CoinDetailResult.Data mData;
 

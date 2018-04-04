@@ -606,11 +606,11 @@ public class CoinDetail2Activity extends BaseActivity {
         set.setAxisDependency(YAxis.AxisDependency.LEFT);
         set.setShadowWidth(1f);
         set.setValueTextSize(10f);
-        set.setDecreasingColor(getResources().getColor(R.color.decreasing_color));//设置开盘价高于收盘价的颜色
+        set.setDecreasingColor(getResources().getColor(R.color.increasing_color));//设置开盘价高于收盘价的颜色
         set.setDecreasingPaintStyle(Paint.Style.FILL);
-        set.setIncreasingColor(getResources().getColor(R.color.increasing_color));//设置开盘价地狱收盘价的颜色
+        set.setIncreasingColor(getResources().getColor(R.color.decreasing_color));//设置开盘价地狱收盘价的颜色
         set.setIncreasingPaintStyle(Paint.Style.STROKE);
-        set.setNeutralColor(getResources().getColor(R.color.decreasing_color));//设置开盘价等于收盘价的颜色
+        set.setNeutralColor(getResources().getColor(R.color.increasing_color));//设置开盘价等于收盘价的颜色
         set.setShadowColorSameAsCandle(true);
         set.setHighlightLineWidth(1f);
         set.setHighLightColor(getResources().getColor(R.color.marker_line_bg));

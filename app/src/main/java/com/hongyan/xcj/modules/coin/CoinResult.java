@@ -2,7 +2,9 @@ package com.hongyan.xcj.modules.coin;
 
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.CandleEntry;
+import com.github.mikephil.charting.data.Entry;
 import com.hongyan.xcj.base.JPResult;
+import com.hongyan.xcj.modules.coin.bean.KMAEntity;
 
 import java.util.ArrayList;
 
@@ -47,6 +49,25 @@ public class CoinResult extends JPResult {
             }
             return candleEntries;
         }
+
+        public ArrayList<Entry> getMa1DataL() {
+            XCJKMAEntity kmaEntity = new XCJKMAEntity(coinHistory, 1);
+            ArrayList<Entry> ma1DataL = new ArrayList<>();
+            for (int i = 0; i < kmaEntity.getMAs().size(); i++) {
+                ma1DataL.add(new Entry(kmaEntity.getMAs().get(i), i));
+            }
+            return ma1DataL;
+        }
+
+        public ArrayList<Entry> getMa5DataL() {
+            XCJKMAEntity kmaEntity = new XCJKMAEntity(coinHistory, 1);
+            ArrayList<Entry> ma5DataL = new ArrayList<>();
+            for (int i = 0; i < kmaEntity.getMAs().size(); i++) {
+                ma5DataL.add(new Entry(kmaEntity.getMAs().get(i), i));
+            }
+            return ma5DataL;
+        }
+
 
         public ArrayList<KLineBean> getCoinHistory() {
             return coinHistory;

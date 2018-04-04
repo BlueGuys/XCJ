@@ -95,6 +95,7 @@ public class CoinView extends LinearLayout {
         mHeader.update(mParser.getCoinCurrent(data));
         coinHistory = data.getCoinHistory();
         invalidateEntry(coinHistory.size() - 1);
+//        mChartKline.setData(mParser.getCombinedData(data, CoinDataParser.TYPE_LINE));
         mChartKline.setData(mParser.getCombinedData(data, CoinDataParser.TYPE_CANDLE));
         mChartVolume.setData(mParser.getCombinedData(data, CoinDataParser.TYPE_BAR));
     }
@@ -191,6 +192,9 @@ public class CoinView extends LinearLayout {
         mChartKline.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
+                if(h == null){
+                    return;
+                }
                 mHighLight = h;
                 mChartVolume.highlightValues(new Highlight[]{mHighLight});
                 mChartKline.highlightValues(new Highlight[]{mHighLight});
@@ -208,6 +212,9 @@ public class CoinView extends LinearLayout {
             @Override
             public void onChartGestureEnd(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
                 mHighLight = mChartKline.getHighlightByTouchPoint(me.getX(), me.getY());
+                if(mHighLight == null){
+                    return;
+                }
                 mChartVolume.highlightValues(new Highlight[]{mHighLight});
                 mChartKline.highlightValues(new Highlight[]{mHighLight});
                 invalidateEntry(mHighLight.getXIndex());
@@ -276,6 +283,9 @@ public class CoinView extends LinearLayout {
         mChartVolume.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
+                if(h == null){
+                    return;
+                }
                 mHighLight = h;
                 mChartVolume.highlightValues(new Highlight[]{mHighLight});
                 mChartKline.highlightValues(new Highlight[]{mHighLight});
@@ -292,7 +302,10 @@ public class CoinView extends LinearLayout {
         mChartVolume.setOnChartGestureListener(new CoupleChartGestureListener(mChartVolume, new Chart[]{mChartKline}) {
             @Override
             public void onChartGestureEnd(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
-                mHighLight = mChartKline.getHighlightByTouchPoint(me.getX(), me.getY());
+                mHighLight = mChartVolume.getHighlightByTouchPoint(me.getX(), me.getY());
+                if(mHighLight == null){
+                    return;
+                }
                 mChartVolume.highlightValues(new Highlight[]{mHighLight});
                 mChartKline.highlightValues(new Highlight[]{mHighLight});
                 invalidateEntry(mHighLight.getXIndex());
