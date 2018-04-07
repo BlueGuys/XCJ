@@ -7,6 +7,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.Chart;
@@ -46,6 +47,7 @@ public class CoinView extends LinearLayout {
     protected YAxis axisRightKline, axisRightVolume;
 
     private CoinDataParser mParser;
+    private ProgressBar progressBar;
 
     private ArrayList<CoinResult.KLineBean> coinHistory;
 
@@ -61,6 +63,7 @@ public class CoinView extends LinearLayout {
         mCollectView = view.findViewById(R.id.coin_view_collect);
         mChartKline = view.findViewById(R.id.coin_detail_chartK);
         mChartVolume = view.findViewById(R.id.coin_detail_volume);
+        progressBar = view.findViewById(R.id.coin_progress);
         initChartKline();
         initChartVolume();
         initCurrentCoinView();
@@ -92,11 +95,19 @@ public class CoinView extends LinearLayout {
         mChartVolume.setData(mParser.getCombinedData(data, CoinDataParser.TYPE_BAR));
     }
 
+    public void showProgress() {
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    public void hideProgress() {
+        progressBar.setVisibility(View.GONE);
+    }
+
     /**
      * 渲染横条数据
      */
     private void invalidateEntry(int index) {
-        if (index <= 0 || index > coinHistory.size() - 1) {
+        if (index < 0 || index > coinHistory.size() - 1) {
             return;
         }
         CoinResult.KLineBean bean = this.coinHistory.get(index);
@@ -139,6 +150,7 @@ public class CoinView extends LinearLayout {
         mChartKline.setDescription("");//右下角对图表的描述信息
         mChartKline.setMinOffset(0f);
         mChartKline.setExtraOffsets(0f, 0f, 0f, 3f);
+        mChartKline.setTop(20);
 
         Legend lineChartLegend = mChartKline.getLegend();
         lineChartLegend.setEnabled(false);//是否绘制 Legend 图例

@@ -41,7 +41,7 @@ public class CoinDataParser {
                 break;
             case TYPE_BAR:
                 combinedData.setData(getBarData(data));
-                combinedData.setData(getLineData(data));
+                combinedData.setData(getLineData2(data));
                 break;
         }
         return combinedData;
@@ -96,6 +96,14 @@ public class CoinDataParser {
         return new LineData(data.getXValList(), list);
     }
 
+    private LineData getLineData2(CoinResult.Data data) {
+        ArrayList<ILineDataSet> list = new ArrayList<>();
+        list.add(setMaLine2(1, data.getMa1DataL()));
+        list.add(setMaLine2(7, data.getMa7DataL()));
+        list.add(setMaLine2(30, data.getMa30DataL()));
+        return new LineData(data.getXValList(), list);
+    }
+
     /**
      * @param ma
      * @param lineEntries
@@ -110,24 +118,65 @@ public class CoinDataParser {
         } else {/*此处必须得写*/
             lineDataSetMa.setHighlightEnabled(false);
         }
-        if (ma == 5) {
-            lineDataSetMa.setColor(mContext.getResources().getColor(R.color.white));
-        } else if (ma == 30) {
-            lineDataSetMa.setColor(mContext.getResources().getColor(R.color.orange));
-        } else if (ma == 7) {
-            lineDataSetMa.setColor(mContext.getResources().getColor(R.color.blue));
+        if (CoinDetailActivity.currentIndex == 0) {
+            if (ma == 1) {
+                lineDataSetMa.setColor(mContext.getResources().getColor(R.color.white));
+            } else {
+                lineDataSetMa.setColor(mContext.getResources().getColor(R.color.transparent));
+            }
         } else {
-            lineDataSetMa.setColor(mContext.getResources().getColor(R.color.white));
+            if (ma == 5) {
+                lineDataSetMa.setColor(mContext.getResources().getColor(R.color.white));
+            } else if (ma == 30) {
+                lineDataSetMa.setColor(mContext.getResources().getColor(R.color.orange));
+            } else if (ma == 7) {
+                lineDataSetMa.setColor(mContext.getResources().getColor(R.color.blue));
+            } else {
+                lineDataSetMa.setColor(mContext.getResources().getColor(R.color.transparent));
+            }
+        }
+        lineDataSetMa.setDrawValues(false);
+        lineDataSetMa.setLineWidth(0.5f);
+        lineDataSetMa.setDrawCircles(false);
+        lineDataSetMa.setAxisDependency(YAxis.AxisDependency.LEFT);
+        lineDataSetMa.setHighlightEnabled(true);
+        return lineDataSetMa;
+    }
+
+    /**
+     * @param ma
+     * @param lineEntries
+     * @return
+     */
+    @NonNull
+    private LineDataSet setMaLine2(int ma, ArrayList<Entry> lineEntries) {
+        LineDataSet lineDataSetMa = new LineDataSet(lineEntries, "ma" + ma);
+        if (ma == 7) {
+            lineDataSetMa.setHighlightEnabled(true);
+            lineDataSetMa.setDrawHorizontalHighlightIndicator(false);
+        } else {/*此处必须得写*/
+            lineDataSetMa.setHighlightEnabled(false);
         }
         if (CoinDetailActivity.currentIndex == 0) {
             if (ma == 1) {
                 lineDataSetMa.setColor(mContext.getResources().getColor(R.color.white));
             } else {
-                lineDataSetMa.setColor(mContext.getResources().getColor(R.color.black));
+                lineDataSetMa.setColor(mContext.getResources().getColor(R.color.transparent));
+            }
+        } else {
+            if (ma == 5) {
+                lineDataSetMa.setColor(mContext.getResources().getColor(R.color.white));
+            } else if (ma == 30) {
+                lineDataSetMa.setColor(mContext.getResources().getColor(R.color.orange));
+            } else if (ma == 7) {
+                lineDataSetMa.setColor(mContext.getResources().getColor(R.color.blue));
+            } else {
+                lineDataSetMa.setColor(mContext.getResources().getColor(R.color.transparent));
             }
         }
+        lineDataSetMa.setColor(mContext.getResources().getColor(R.color.transparent));
         lineDataSetMa.setDrawValues(false);
-        lineDataSetMa.setLineWidth(0.5f);
+        lineDataSetMa.setLineWidth(0f);
         lineDataSetMa.setDrawCircles(false);
         lineDataSetMa.setAxisDependency(YAxis.AxisDependency.LEFT);
         lineDataSetMa.setHighlightEnabled(true);

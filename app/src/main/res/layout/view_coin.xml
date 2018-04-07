@@ -75,6 +75,7 @@
     </LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/chart_linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -142,6 +143,14 @@
                 android:textSize="10dp" />
 
         </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/coin_progress"
+            android:layout_width="@dimen/ds50"
+            android:layout_height="@dimen/ds50"
+            android:layout_centerInParent="true"
+            android:indeterminateBehavior="repeat"
+            android:indeterminateDrawable="@drawable/progress_bar_circle" />
 
     </RelativeLayout>
 </LinearLayout>

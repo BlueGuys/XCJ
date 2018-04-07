@@ -38,7 +38,7 @@ public class CoinDetailActivity extends BaseActivity {
     /**
      * chart数据选择的是 时  分  秒
      */
-    public static  int currentIndex;
+    public static int currentIndex;
 
     private CoinDetailResult.Data mData;
 
@@ -183,6 +183,9 @@ public class CoinDetailActivity extends BaseActivity {
     }
 
     private void requestCoinCore(int index) {
+        if (mAdapter != null && mAdapter.coinView != null) {
+            mAdapter.coinView.showProgress();
+        }
         JPRequest request = new JPRequest<>(CoinResult.class, UrlConst.getCoinCoreUrl(), new Response.Listener<JPResponse>() {
             @Override
             public void onResponse(JPResponse response) {
@@ -197,6 +200,9 @@ public class CoinDetailActivity extends BaseActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                if (mAdapter != null && mAdapter.coinView != null) {
+                    mAdapter.coinView.hideProgress();
+                }
                 Log.e("error", error.getErrorMessage());
             }
         });

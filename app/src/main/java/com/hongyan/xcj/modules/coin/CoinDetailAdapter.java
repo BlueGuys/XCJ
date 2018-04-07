@@ -61,7 +61,7 @@ public class CoinDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     private CoinDetailResult.Data mData;
 
     private KLineHeader kLineHeader;
-    private CoinView coinView;
+    public CoinView coinView;
 
     public CoinDetailAdapter(Context context) {
         this.mContext = context;
@@ -83,6 +83,7 @@ public class CoinDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             return;
         }
         coinView.updateData(data);
+        coinView.hideProgress();
         notifyDataSetChanged();
     }
 
