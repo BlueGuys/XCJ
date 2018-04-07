@@ -1,6 +1,7 @@
 package com.hongyan.xcj.base;
 
 import com.hongyan.xcj.core.AccountManager;
+import com.hongyan.xcj.core.LogUtils;
 import com.hongyan.xcj.modules.event.TokenMessageEvent;
 import com.hongyan.xcj.network.AuthFailureError;
 import com.hongyan.xcj.network.DefaultRetryPolicy;
@@ -11,6 +12,7 @@ import com.hongyan.xcj.network.VolleyError;
 import com.hongyan.xcj.network.toolbox.HttpHeaderParser;
 import com.hongyan.xcj.utils.AppMD5Util;
 import com.hongyan.xcj.utils.GsonUtils;
+import com.hongyan.xcj.utils.MD5Utils;
 import com.hongyan.xcj.utils.SerializableHashMapUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -123,7 +125,9 @@ public class JPRequest<T extends JPResult> extends Request<JPResponse> {
     private void addCommonParams() {
         String currentTime = System.currentTimeMillis() + "";
         String time = currentTime.substring(0, 10);
-        String sign = AppMD5Util.getMD5(time + "086bb83dfd123ac1a012c58096bfea04");
+//        String sign = AppMD5Util.getMD5(time + "086bb83dfd123ac1a012c58096bfea04");
+        String sign = MD5Utils.toMD5(time + "086bb83dfd123ac1a012c58096bfea04").toLowerCase();
+//        LogUtils.e("时间戳：" + time + "\n验签字符串：" + time + "086bb83dfd123ac1a012c58096bfea04" + "\n验签结果：" + AppMD5Util.getMD5(time + "086bb83dfd123ac1a012c58096bfea04"));
         mMap.put("sdkClientVersion", "1.0.0");
         mMap.put("appID", "1");
         mMap.put("platform", "android");
