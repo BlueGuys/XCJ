@@ -36,7 +36,7 @@
             android:ellipsize="marquee"
             android:gravity="center"
             android:singleLine="true"
-            android:text="BTC"
+            android:text=""
             android:textColor="@color/white"
             android:textSize="19sp" />
 
