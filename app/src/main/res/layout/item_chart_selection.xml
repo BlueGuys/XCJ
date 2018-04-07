@@ -20,7 +20,7 @@
             android:gravity="center"
             android:text="分时"
             android:textColor="@color/white"
-            android:textSize="14dp" />
+            android:textSize="13dp" />
 
         <TextView
             android:id="@+id/tv_01"
@@ -30,7 +30,7 @@
             android:gravity="center"
             android:text="1分"
             android:textColor="@color/xcj_text_b"
-            android:textSize="14dp" />
+            android:textSize="13dp" />
 
         <TextView
             android:id="@+id/tv_02"
@@ -40,7 +40,7 @@
             android:gravity="center"
             android:text="5分"
             android:textColor="@color/xcj_text_b"
-            android:textSize="14dp" />
+            android:textSize="13dp" />
 
         <TextView
             android:id="@+id/tv_03"
@@ -50,7 +50,7 @@
             android:gravity="center"
             android:text="15分"
             android:textColor="@color/xcj_text_b"
-            android:textSize="14dp" />
+            android:textSize="13dp" />
 
         <TextView
             android:id="@+id/tv_04"
@@ -60,7 +60,7 @@
             android:gravity="center"
             android:text="30分"
             android:textColor="@color/xcj_text_b"
-            android:textSize="14dp" />
+            android:textSize="13dp" />
 
     </LinearLayout>
 
@@ -77,7 +77,7 @@
             android:gravity="center"
             android:text="1小时"
             android:textColor="@color/xcj_text_b"
-            android:textSize="14dp" />
+            android:textSize="13dp" />
 
         <TextView
             android:id="@+id/tv_06"
@@ -87,7 +87,7 @@
             android:gravity="center"
             android:text="4小时"
             android:textColor="@color/xcj_text_b"
-            android:textSize="14dp" />
+            android:textSize="13dp" />
 
         <TextView
             android:id="@+id/tv_07"
@@ -97,7 +97,7 @@
             android:gravity="center"
             android:text="1天"
             android:textColor="@color/xcj_text_b"
-            android:textSize="14dp" />
+            android:textSize="13dp" />
 
         <TextView
             android:id="@+id/tv_08"
@@ -107,7 +107,7 @@
             android:gravity="center"
             android:text="1周"
             android:textColor="@color/xcj_text_b"
-            android:textSize="14dp" />
+            android:textSize="13dp" />
 
         <TextView
             android:id="@+id/tv_09"
@@ -117,7 +117,7 @@
             android:gravity="center"
             android:text="1月"
             android:textColor="@color/xcj_text_b"
-            android:textSize="14dp" />
+            android:textSize="13dp" />
 
     </LinearLayout>
 

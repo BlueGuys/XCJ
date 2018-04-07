@@ -99,7 +99,7 @@ public class MarketMyFragment extends BaseFragment {
     }
 
     private void refresh() {
-        JPRequest request = new JPRequest<>(MarketResult.class, UrlConst.getMarketList(), new Response.Listener<JPResponse>() {
+        JPRequest request = new JPRequest<>(MarketResult.class, UrlConst.getMarketMyList(), new Response.Listener<JPResponse>() {
             @Override
             public void onResponse(JPResponse response) {
                 mRefreshLayout.setRefreshing(false);
@@ -128,7 +128,7 @@ public class MarketMyFragment extends BaseFragment {
     }
 
     private void loadMore() {
-        JPRequest request = new JPRequest<>(MarketResult.class, UrlConst.getMarketList(), new Response.Listener<JPResponse>() {
+        JPRequest request = new JPRequest<>(MarketResult.class, UrlConst.getMarketMyList(), new Response.Listener<JPResponse>() {
             @Override
             public void onResponse(JPResponse response) {
                 helper.setLoadMoreFinish();

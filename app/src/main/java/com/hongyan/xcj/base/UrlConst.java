@@ -27,6 +27,13 @@ public class UrlConst {
     }
 
     /**
+     * 行情我的页面接口
+     */
+    public static String getMarketMyList() {
+        return HOST + "Api/Digiccy/mylists.html";
+    }
+
+    /**
      * 获取用户信息
      */
     public static String getAccountInfo() {

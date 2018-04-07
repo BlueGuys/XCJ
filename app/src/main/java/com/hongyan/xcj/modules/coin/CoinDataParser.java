@@ -128,9 +128,9 @@ public class CoinDataParser {
             if (ma == 5) {
                 lineDataSetMa.setColor(mContext.getResources().getColor(R.color.white));
             } else if (ma == 30) {
-                lineDataSetMa.setColor(mContext.getResources().getColor(R.color.orange));
+                lineDataSetMa.setColor(mContext.getResources().getColor(R.color.chart_line_orange));
             } else if (ma == 7) {
-                lineDataSetMa.setColor(mContext.getResources().getColor(R.color.blue));
+                lineDataSetMa.setColor(mContext.getResources().getColor(R.color.chart_line_blue));
             } else {
                 lineDataSetMa.setColor(mContext.getResources().getColor(R.color.transparent));
             }
