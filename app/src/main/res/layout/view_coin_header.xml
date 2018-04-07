@@ -21,7 +21,6 @@
             android:id="@+id/tv_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="279038.54"
             android:textColor="@color/red"
             android:textSize="23dp"
             android:textStyle="bold" />
@@ -38,7 +37,6 @@
                 android:id="@+id/tv_change_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="+16.20"
                 android:textColor="@color/red"
                 android:textSize="14dp" />
 
@@ -47,7 +45,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/ds30"
-                android:text="+0.51%"
                 android:textColor="@color/red"
                 android:textSize="14dp" />
         </LinearLayout>
@@ -64,7 +61,6 @@
                 android:id="@+id/tv_time_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="04-05"
                 android:textColor="@color/gray"
                 android:textSize="14dp" />
 
@@ -73,7 +69,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/ds30"
-                android:text="12:34:53"
                 android:textColor="@color/gray"
                 android:textSize="14dp" />
 
@@ -105,7 +100,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="开盘:270932.23"
                     android:textColor="@color/white"
                     android:textSize="13dp" />
 
@@ -114,7 +108,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="最高:270932.23"
                     android:textColor="@color/white"
                     android:textSize="13dp" />
 
@@ -135,7 +128,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="收盘:270932.23"
                     android:textColor="@color/white"
                     android:textSize="13dp" />
 
@@ -144,7 +136,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="最低:170932.23"
                     android:textColor="@color/white"
                     android:textSize="13dp" />
 
@@ -161,7 +152,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:singleLine="true"
-                android:text="成交量：1287"
                 android:textColor="@color/white"
                 android:textSize="13dp" />
         </LinearLayout>
