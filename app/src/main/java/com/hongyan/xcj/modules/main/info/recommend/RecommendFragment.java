@@ -61,7 +61,7 @@ public class RecommendFragment extends BaseFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (null != view) {
+        if (null != view && view.getParent() != null) {
             ((ViewGroup) view.getParent()).removeView(view);
         }
     }

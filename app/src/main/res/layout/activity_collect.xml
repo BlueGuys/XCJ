@@ -4,15 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/xcj_background"
     tools:context="com.hongyan.xcj.modules.splash.AppStartActivity">
 
     <TextView
         android:id="@+id/tv_login_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/ds120"
-        android:layout_marginRight="@dimen/ds120"
-        android:layout_marginTop="@dimen/ds80"
+        android:paddingLeft="@dimen/ds120"
+        android:paddingRight="@dimen/ds120"
+        android:paddingTop="@dimen/ds80"
         android:background="@color/xcj_background"
         android:gravity="left"
         android:maxLines="2"

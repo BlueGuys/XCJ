@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        wangning {
+            keyAlias '25'
+            keyPassword 'hongyan123'
+            storeFile file('/Users/wangning/Desktop/wangning')
+            storePassword 'hongyan123'
+        }
+    }
     compileSdkVersion 26
     useLibrary 'org.apache.http.legacy'
     defaultConfig {
@@ -24,6 +32,9 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+    dexOptions {
+        incremental true
     }
 }
 
