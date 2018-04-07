@@ -67,7 +67,7 @@ public class ArticleActivity extends BaseWebViewActivity {
             }
         });
         mWebView.addJavascriptInterface(new ClientFunction(), "webView");
-        if (StringUtils.isEmpty(mUrl)) {
+        if (!StringUtils.isEmpty(mUrl)) {
             Uri uri = Uri.parse(mUrl);
             id = uri.getQueryParameter("id");
             type = uri.getQueryParameter("type");

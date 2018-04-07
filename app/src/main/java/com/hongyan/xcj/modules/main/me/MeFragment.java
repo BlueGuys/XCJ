@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hongyan.xcj.R;
+import com.hongyan.xcj.base.BaseActivity;
 import com.hongyan.xcj.base.BaseFragment;
 import com.hongyan.xcj.base.BaseWebViewActivity;
 import com.hongyan.xcj.core.AccountInfo;
@@ -80,21 +81,26 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
                 startActivity(new Intent(getActivity(), CollectActivity.class));
                 break;
             case R.id.linear_market:
+                if (!AccountManager.getInstance().isLogin()) {
+                    AccountManager.getInstance().login();
+                    return;
+                }
                 EventBus.getDefault().post(new MarketMeMessageEvent());
                 EventBus.getDefault().post(new MarketMessageEvent());
                 break;
             case R.id.linear_set_nike_name:
+                if (!AccountManager.getInstance().isLogin()) {
+                    AccountManager.getInstance().login();
+                    return;
+                }
                 startActivity(new Intent(getActivity(), SetNickNameActivity.class));
                 break;
             case R.id.linear_clear:
-//                Toast.makeText(getActivity(), "缓存已清理", Toast.LENGTH_SHORT).show();
-//                startActivity(new Intent(getActivity(), CoinDetail2Activity.class));
-                ShareManager.getInstance().share(getActivity(),"335","0");
+                Toast.makeText(getActivity(), "缓存已清理", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.linear_logout:
                 AccountManager.getInstance().logout();
                 break;
-
         }
     }
 

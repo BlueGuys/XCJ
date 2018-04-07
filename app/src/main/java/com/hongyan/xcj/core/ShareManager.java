@@ -12,7 +12,6 @@ import com.hongyan.xcj.base.UrlConst;
 import com.hongyan.xcj.network.Response;
 import com.hongyan.xcj.network.VolleyError;
 import com.hongyan.xcj.utils.GsonUtils;
-import com.hongyan.xcj.utils.JSONUtils;
 
 import cn.sharesdk.onekeyshare.OnekeyShare;
 
@@ -40,10 +39,6 @@ public class ShareManager {
         }
         activity.startLoading();
         LogUtils.e("ShareManager 开始分享");
-        if (null == articleId) {
-            LogUtils.e("ShareManager articleId为空 return");
-            return;
-        }
         JPRequest request = new JPRequest<>(ShareResult.class, UrlConst.getShareUrl(), new Response.Listener<JPResponse>() {
             @Override
             public void onResponse(JPResponse response) {
@@ -62,7 +57,7 @@ public class ShareManager {
             public void onErrorResponse(VolleyError error) {
                 activity.cancelLoading();
                 LogUtils.e("ShareManager 分享信息获取失败");
-                Toast.makeText(BaseApplication.getInstance().getApplicationContext(), "网络繁忙", Toast.LENGTH_SHORT).show();
+                Toast.makeText(BaseApplication.getInstance().getApplicationContext(), error.getErrorMessage(), Toast.LENGTH_SHORT).show();
             }
         });
         request.addParam("id", articleId);
