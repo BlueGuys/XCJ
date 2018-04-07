@@ -35,11 +35,10 @@ public class CoinDataParser {
         switch (type) {
             case TYPE_CANDLE:
                 combinedData.setData(getLineData(data));
-                if (CoinDetailActivity.currentIndex != 0) {
-                    combinedData.setData(getCandleData(data));
-                }
+                combinedData.setData(getCandleData(data));
                 break;
             case TYPE_BAR:
+                combinedData.setData(getCandleData(data));
                 combinedData.setData(getBarData(data));
                 combinedData.setData(getLineData(data));
                 break;
@@ -90,18 +89,19 @@ public class CoinDataParser {
 
     private LineData getLineData(CoinResult.Data data) {
         ArrayList<ILineDataSet> list = new ArrayList<>();
-        list.add(setMaLine(1, CoinDetailActivity.currentIndex == 0, data.getMa1DataL()));
+        list.add(setMaLine(1, data.getMa1DataL()));
+        list.add(setMaLine(5, data.getMa5DataL()));
+        list.add(setMaLine(10, data.getMa10DataL()));
         return new LineData(data.getXValList(), list);
     }
 
     /**
      * @param ma
-     * @param isShow
      * @param lineEntries
      * @return
      */
     @NonNull
-    private LineDataSet setMaLine(int ma, boolean isShow, ArrayList<Entry> lineEntries) {
+    private LineDataSet setMaLine(int ma, ArrayList<Entry> lineEntries) {
         LineDataSet lineDataSetMa = new LineDataSet(lineEntries, "ma" + ma);
         if (ma == 5) {
             lineDataSetMa.setHighlightEnabled(true);
@@ -118,11 +118,6 @@ public class CoinDataParser {
             lineDataSetMa.setColor(mContext.getResources().getColor(R.color.ma20));
         } else {
             lineDataSetMa.setColor(mContext.getResources().getColor(R.color.ma30));
-        }
-        if (isShow) {
-            lineDataSetMa.setColor(mContext.getResources().getColor(R.color.white));
-        } else {
-            lineDataSetMa.setColor(mContext.getResources().getColor(R.color.black));
         }
         lineDataSetMa.setDrawValues(false);
         lineDataSetMa.setLineWidth(0.5f);

@@ -4,7 +4,6 @@ package com.hongyan.xcj.core;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.hongyan.xcj.base.BaseWebViewActivity;
 import com.hongyan.xcj.base.JPBaseModel;
 import com.hongyan.xcj.base.JPRequest;
 import com.hongyan.xcj.base.JPResponse;
@@ -48,6 +47,7 @@ public class AccountManager {
 
     public void setToken(String token) {
         this.token = token;
+        Toast.makeText(BaseApplication.getInstance().getApplicationContext(), "登录成功", Toast.LENGTH_LONG).show();
         getAccountInfoFromServer(token);
     }
 
@@ -99,7 +99,6 @@ public class AccountManager {
                     accountInfo.setNickname(result.data.nickname);
                     accountInfo.setMobile(result.data.mobile);
                     accountInfo.setToken(token);
-                    Toast.makeText(BaseApplication.getInstance().getApplicationContext(), "登录成功", Toast.LENGTH_LONG).show();
                     mAccountInfo = accountInfo;
                     saveAccountInfo(GsonUtils.toJson(accountInfo));
                     EventBus.getDefault().post(new AccountMessageEvent(true));

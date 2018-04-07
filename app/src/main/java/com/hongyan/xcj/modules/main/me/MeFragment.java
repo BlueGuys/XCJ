@@ -18,6 +18,7 @@ import com.hongyan.xcj.core.AccountInfo;
 import com.hongyan.xcj.core.AccountManager;
 import com.hongyan.xcj.core.AccountMessageEvent;
 import com.hongyan.xcj.core.ShareManager;
+import com.hongyan.xcj.modules.coin.CoinDetail2Activity;
 import com.hongyan.xcj.modules.collect.CollectActivity;
 import com.hongyan.xcj.modules.event.MarketMeMessageEvent;
 import com.hongyan.xcj.modules.event.MarketMessageEvent;
@@ -78,6 +79,10 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
                 BaseWebViewActivity.startActivity(getActivity(), "http://www.xicaijing.com/App/Users/login.html?title=登录");
                 break;
             case R.id.linear_collection:
+                if (!AccountManager.getInstance().isLogin()) {
+                    AccountManager.getInstance().login();
+                    return;
+                }
                 startActivity(new Intent(getActivity(), CollectActivity.class));
                 break;
             case R.id.linear_market:
@@ -96,7 +101,8 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
                 startActivity(new Intent(getActivity(), SetNickNameActivity.class));
                 break;
             case R.id.linear_clear:
-                Toast.makeText(getActivity(), "缓存已清理", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "缓存已清理", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getActivity(), CoinDetail2Activity.class));
                 break;
             case R.id.linear_logout:
                 AccountManager.getInstance().logout();

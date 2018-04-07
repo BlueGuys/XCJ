@@ -95,7 +95,6 @@ public class CoinView extends LinearLayout {
         mHeader.update(mParser.getCoinCurrent(data));
         coinHistory = data.getCoinHistory();
         invalidateEntry(coinHistory.size() - 1);
-//        mChartKline.setData(mParser.getCombinedData(data, CoinDataParser.TYPE_LINE));
         mChartKline.setData(mParser.getCombinedData(data, CoinDataParser.TYPE_CANDLE));
         mChartVolume.setData(mParser.getCombinedData(data, CoinDataParser.TYPE_BAR));
     }
