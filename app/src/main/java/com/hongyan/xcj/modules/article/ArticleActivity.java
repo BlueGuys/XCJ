@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.webkit.JavascriptInterface;
 
@@ -12,6 +13,7 @@ import com.hongyan.xcj.R;
 import com.hongyan.xcj.base.BaseWebViewActivity;
 import com.hongyan.xcj.core.AccountManager;
 import com.hongyan.xcj.core.CollectionManager;
+import com.hongyan.xcj.core.LogUtils;
 import com.hongyan.xcj.core.ShareManager;
 import com.hongyan.xcj.modules.event.TokenMessageEvent;
 import com.hongyan.xcj.modules.main.info.recommend.InfoRecommendResult;
@@ -126,9 +128,8 @@ public class ArticleActivity extends BaseWebViewActivity {
 
         @JavascriptInterface
         public void share() {
-            if (!AccountManager.getInstance().isLogin()) {
-                ShareManager.getInstance().share(ArticleActivity.this, id, type);
-            }
+            LogUtils.e("ArticleActivity 开始分享");
+            ShareManager.getInstance().share(ArticleActivity.this, id, type);
         }
     }
 }

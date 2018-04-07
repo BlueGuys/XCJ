@@ -19,6 +19,8 @@ import android.content.Context;
 import android.os.Environment;
 import android.text.TextUtils;
 
+import com.hongyan.xcj.core.LogUtils;
+
 /**
  * 应用数据库导出工具类
  *

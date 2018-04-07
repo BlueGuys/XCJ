@@ -46,6 +46,8 @@ import android.renderscript.ScriptIntrinsicBlur;
 import android.util.Log;
 import android.view.View;
 
+import com.hongyan.xcj.core.LogUtils;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

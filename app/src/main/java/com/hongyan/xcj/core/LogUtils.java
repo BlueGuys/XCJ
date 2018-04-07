@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.hongyan.xcj.utils;
+package com.hongyan.xcj.core;
 
 import android.util.Log;
 
@@ -189,6 +189,19 @@ public final class LogUtils {
             Log.e(tag, msg);
         }
     }
+
+    /**
+     * Send an {@link Log#ERROR} log message.
+     *
+     * @param msg The message you would like logged.
+     */
+    public static void e(String msg) {
+        if (Log.ERROR > DEBUG_LEVEL) {
+            Log.e("烯财经", msg);
+        }
+    }
+
+
 
     /**
      * What a Terrible Failure: Report a condition that should never happen. The

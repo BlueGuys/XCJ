@@ -4,12 +4,15 @@ package com.hongyan.xcj.core;
 import android.app.Activity;
 import android.widget.Toast;
 
+import com.hongyan.xcj.base.BaseActivity;
 import com.hongyan.xcj.base.JPBaseModel;
 import com.hongyan.xcj.base.JPRequest;
 import com.hongyan.xcj.base.JPResponse;
 import com.hongyan.xcj.base.UrlConst;
 import com.hongyan.xcj.network.Response;
 import com.hongyan.xcj.network.VolleyError;
+import com.hongyan.xcj.utils.GsonUtils;
+import com.hongyan.xcj.utils.JSONUtils;
 
 import cn.sharesdk.onekeyshare.OnekeyShare;
 
@@ -31,24 +34,34 @@ public class ShareManager {
         return instance;
     }
 
-    public void share(Activity activity, String articleId, String type) {
+    public void share(BaseActivity activity, String articleId, String type) {
+        if (activity == null) {
+            return;
+        }
+        activity.startLoading();
+        LogUtils.e("ShareManager 开始分享");
         if (null == articleId) {
+            LogUtils.e("ShareManager articleId为空 return");
             return;
         }
         JPRequest request = new JPRequest<>(ShareResult.class, UrlConst.getShareUrl(), new Response.Listener<JPResponse>() {
             @Override
             public void onResponse(JPResponse response) {
+                activity.cancelLoading();
                 if (null == response || null == response.getResult()) {
                     return;
                 }
                 ShareResult result = (ShareResult) response.getResult();
                 if (result != null && result.data != null && result.data.share_info != null) {
+                    LogUtils.e("ShareManager 分享信息获取成功");
                     showShare(activity, result.data.share_info);
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                activity.cancelLoading();
+                LogUtils.e("ShareManager 分享信息获取失败");
                 Toast.makeText(BaseApplication.getInstance().getApplicationContext(), "网络繁忙", Toast.LENGTH_SHORT).show();
             }
         });
@@ -58,6 +71,7 @@ public class ShareManager {
     }
 
     private void showShare(Activity activity, ShareResult.ShareInfo info) {
+        LogUtils.e("ShareManager 分享成功" + GsonUtils.toJson(info));
         OnekeyShare oks = new OnekeyShare();
         //关闭sso授权
         oks.disableSSOWhenAuthorize();

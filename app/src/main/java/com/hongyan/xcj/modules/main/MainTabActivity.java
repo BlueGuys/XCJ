@@ -12,11 +12,15 @@ import android.view.KeyEvent;
 import com.hongyan.xcj.R;
 import com.hongyan.xcj.base.BaseActivity;
 import com.hongyan.xcj.base.BaseWebViewActivity;
+import com.hongyan.xcj.core.AccountManager;
+import com.hongyan.xcj.core.BaseApplication;
+import com.hongyan.xcj.modules.article.ArticleActivity;
 import com.hongyan.xcj.modules.event.MarketMeMessageEvent;
 import com.hongyan.xcj.modules.event.TokenMessageEvent;
 import com.hongyan.xcj.modules.main.info.InfoFragment;
 import com.hongyan.xcj.modules.main.market.MarketFragment;
 import com.hongyan.xcj.modules.main.me.MeFragment;
+import com.hongyan.xcj.utils.StringUtils;
 import com.umeng.analytics.MobclickAgent;
 
 import org.greenrobot.eventbus.EventBus;
@@ -54,6 +58,7 @@ public class MainTabActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         MobclickAgent.onResume(this);
+        handleAction();
     }
 
     @Override
@@ -66,6 +71,19 @@ public class MainTabActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
+    }
+
+    private void handleAction() {
+        String url = BaseApplication.getInstance().getActionUrl();
+        if (StringUtils.isEmpty(url)) {
+            return;
+        }
+        if (!AccountManager.getInstance().isLogin()) {
+            AccountManager.getInstance().login();
+            return;
+        }
+        ArticleActivity.startActivity(MainTabActivity.this, url);
+        BaseApplication.getInstance().setActionUrl("");
     }
 
     private void initTab() {

@@ -29,6 +29,8 @@ public class BaseApplication extends Application {
     private static BaseApplication _instance;
     private RequestQueue mRequestQueue;
     protected Handler mHandler = new Handler(Looper.getMainLooper());
+    private String actionUrl;
+    private String pageID;
 
     @Override
     public void onCreate() {
@@ -80,5 +82,21 @@ public class BaseApplication extends Application {
 
     public void postTaskInUIThread(Runnable runnable, int delayMillis) {
         mHandler.postDelayed(runnable, delayMillis);
+    }
+
+    public String getActionUrl() {
+        return actionUrl;
+    }
+
+    public void setActionUrl(String actionUrl) {
+        this.actionUrl = actionUrl;
+    }
+
+    public String getPageID() {
+        return pageID;
+    }
+
+    public void setPageID(String pageID) {
+        this.pageID = pageID;
     }
 }

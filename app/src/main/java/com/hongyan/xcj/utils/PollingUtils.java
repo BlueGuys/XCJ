@@ -22,6 +22,8 @@ import android.content.Intent;
 import android.os.SystemClock;
 import android.text.TextUtils;
 
+import com.hongyan.xcj.core.LogUtils;
+
 /**
  * 轮询服务工具类
  *
