@@ -6,8 +6,6 @@
     android:background="@color/xcj_blue"
     android:focusable="true"
     android:orientation="horizontal"
-    android:paddingLeft="@dimen/ds30"
-    android:paddingRight="@dimen/ds30"
     android:paddingTop="@dimen/ds30">
 
     <LinearLayout
