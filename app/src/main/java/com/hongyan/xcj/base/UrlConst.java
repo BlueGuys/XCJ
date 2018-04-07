@@ -123,5 +123,11 @@ public class UrlConst {
     public static String getCancelCollectCoinUrl() {
         return HOST + "Api/Users/cancel_collect_digiccy.html";
     }
+    /**
+     * 取消收藏币
+     */
+    public static String getShareUrl() {
+        return HOST + "Api/Article/share.html";
+    }
 
 }

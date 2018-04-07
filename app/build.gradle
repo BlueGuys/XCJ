@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.mob.sdk'
 
 android {
     signingConfigs {
@@ -35,6 +36,42 @@ android {
     }
     dexOptions {
         incremental true
+    }
+}
+
+MobSDK {
+    appKey "25101a06aaac2"
+    appSecret "34a3496278491c7e89d9a593157ca6a7"
+    ShareSDK {
+        //平台配置信息
+        devInfo {
+            SinaWeibo {
+                appKey "2591787669"
+                appSecret "56b08e466f180b72e05979ac86e649b0"
+                callbackUri "http://www.sharesdk.cn"
+                shareByAppClient true
+            }
+            QQ {
+                appId "1106744445"
+                appKey "sON2O1Bk0uIWVpmP"
+                shareByAppClient true
+            }
+            QZone{
+                appId "1106744445"
+                appKey "sON2O1Bk0uIWVpmP"
+                shareByAppClient true
+            }
+//            Wechat {
+//                appId "wx4868b35061f87885"
+//                appSecret "64020361b8ec4c99936c0e3999a9f249"
+//                shareByAppClient true
+//            }
+//            WechatMoments{
+//                appId "wx4868b35061f87885"
+//                appSecret "64020361b8ec4c99936c0e3999a9f249"
+//                shareByAppClient true
+//            }
+        }
     }
 }
 

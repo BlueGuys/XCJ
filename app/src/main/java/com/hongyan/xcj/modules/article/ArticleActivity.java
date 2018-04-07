@@ -12,6 +12,7 @@ import com.hongyan.xcj.R;
 import com.hongyan.xcj.base.BaseWebViewActivity;
 import com.hongyan.xcj.core.AccountManager;
 import com.hongyan.xcj.core.CollectionManager;
+import com.hongyan.xcj.core.ShareManager;
 import com.hongyan.xcj.modules.event.TokenMessageEvent;
 import com.hongyan.xcj.modules.main.info.recommend.InfoRecommendResult;
 import com.hongyan.xcj.utils.StringUtils;
@@ -26,6 +27,8 @@ import org.greenrobot.eventbus.EventBus;
 public class ArticleActivity extends BaseWebViewActivity {
 
     private boolean isCollection = false;
+    private String id;
+    private String type;
 
     public static void startActivity(Context context, String url) {
         Intent intent = new Intent(context, ArticleActivity.class);
@@ -48,9 +51,6 @@ public class ArticleActivity extends BaseWebViewActivity {
             @Override
             public void onClick(View view) {
                 try {
-                    Uri uri = Uri.parse(mUrl);
-                    String id = uri.getQueryParameter("id");
-                    String type = uri.getQueryParameter("type");
                     if (isCollection) {
                         CollectionManager.getInstance().cancelCollectionArticle(id, StringUtils.isEmpty(type) ? "0" : type);
                         isCollection = false;
@@ -65,6 +65,11 @@ public class ArticleActivity extends BaseWebViewActivity {
             }
         });
         mWebView.addJavascriptInterface(new ClientFunction(), "webView");
+        if (StringUtils.isEmpty(mUrl)) {
+            Uri uri = Uri.parse(mUrl);
+            id = uri.getQueryParameter("id");
+            type = uri.getQueryParameter("type");
+        }
     }
 
     @Override
@@ -80,7 +85,7 @@ public class ArticleActivity extends BaseWebViewActivity {
     }
 
     public class ClientFunction {
-        
+
         @JavascriptInterface
         public void setCollection(String str) {
             isCollection = "0".equals(str);
@@ -116,6 +121,13 @@ public class ArticleActivity extends BaseWebViewActivity {
         public void login() {
             if (!AccountManager.getInstance().isLogin()) {
                 EventBus.getDefault().post(new TokenMessageEvent());
+            }
+        }
+
+        @JavascriptInterface
+        public void share() {
+            if (!AccountManager.getInstance().isLogin()) {
+                ShareManager.getInstance().share(ArticleActivity.this, id, type);
             }
         }
     }

@@ -16,11 +16,10 @@ import com.hongyan.xcj.base.BaseWebViewActivity;
 import com.hongyan.xcj.core.AccountInfo;
 import com.hongyan.xcj.core.AccountManager;
 import com.hongyan.xcj.core.AccountMessageEvent;
-import com.hongyan.xcj.modules.coin.CoinDetail2Activity;
+import com.hongyan.xcj.core.ShareManager;
 import com.hongyan.xcj.modules.collect.CollectActivity;
 import com.hongyan.xcj.modules.event.MarketMeMessageEvent;
 import com.hongyan.xcj.modules.event.MarketMessageEvent;
-import com.hongyan.xcj.modules.event.TokenMessageEvent;
 import com.hongyan.xcj.modules.setting.SetNickNameActivity;
 import com.hongyan.xcj.utils.StringUtils;
 import com.hongyan.xcj.widget.view.ItemCommonClickView;
@@ -88,8 +87,9 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
                 startActivity(new Intent(getActivity(), SetNickNameActivity.class));
                 break;
             case R.id.linear_clear:
-                Toast.makeText(getActivity(), "缓存已清理", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "缓存已清理", Toast.LENGTH_SHORT).show();
 //                startActivity(new Intent(getActivity(), CoinDetail2Activity.class));
+                ShareManager.getInstance().share(getActivity(),"335","0");
                 break;
             case R.id.linear_logout:
                 AccountManager.getInstance().logout();
@@ -144,4 +144,5 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
             linearLogout.setVisibility(View.GONE);
         }
     }
+
 }
