@@ -2,10 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/black"
+    android:background="@color/white"
     android:gravity="center_vertical"
-    android:orientation="vertical"
-    android:paddingTop="@dimen/ds30">
+    android:orientation="vertical">
 
     <com.hongyan.xcj.modules.coin.widget.CoinViewHeader
         android:id="@+id/coin_view_header"
@@ -20,7 +19,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#54565d"
+        android:background="#e7e7e7"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingBottom="@dimen/ds8"
@@ -34,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@color/white"
+            android:textColor="@color/xcj_text_b"
             android:textSize="9dp" />
 
         <TextView
@@ -43,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@color/white"
+            android:textColor="@color/xcj_text_b"
             android:textSize="9dp" />
 
         <TextView
@@ -52,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@color/white"
+            android:textColor="@color/xcj_text_b"
             android:textSize="9dp" />
 
         <TextView
@@ -61,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@color/white"
+            android:textColor="@color/xcj_text_b"
             android:textSize="9dp" />
 
         <TextView
@@ -70,7 +69,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@color/white"
+            android:textColor="@color/xcj_text_b"
             android:textSize="9dp" />
     </LinearLayout>
 
@@ -100,7 +99,7 @@
             android:layout_below="@id/coin_detail_chartK"
             android:layout_marginLeft="@dimen/ds12"
             android:layout_marginRight="@dimen/ds114"
-            android:background="@color/white" />
+            android:background="@color/xcj_line" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -115,7 +114,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="涨幅："
-                android:textColor="@color/white"
+                android:textColor="@color/xcj_text_b"
                 android:textSize="10dp" />
 
             <TextView
@@ -131,7 +130,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/ds10"
                 android:text="振幅："
-                android:textColor="@color/white"
+                android:textColor="@color/xcj_text_b"
                 android:textSize="10dp" />
 
             <TextView
@@ -139,7 +138,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2.05%"
-                android:textColor="@color/white"
+                android:textColor="@color/xcj_text_b"
                 android:textSize="10dp" />
 
         </LinearLayout>

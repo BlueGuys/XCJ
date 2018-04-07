@@ -295,6 +295,10 @@
     <color name="decreasing_color">#006400</color>
     <color name="xcj_background">#edecf2</color>
     <color name="xcj_blue">#007AFF</color>
+    <color name="xcj_line">#000000</color>
+
+
+
 
     <color name="xcj_text_a">#333333</color>
     <color name="xcj_text_b">#666666</color>

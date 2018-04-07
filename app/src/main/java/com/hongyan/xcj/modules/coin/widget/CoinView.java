@@ -146,7 +146,7 @@ public class CoinView extends LinearLayout {
         mChartKline.setBorderWidth(1);//边线宽度，单位dp
         mChartKline.setDragEnabled(true);//启用图表拖拽事件
         mChartKline.setScaleYEnabled(false);//启用Y轴上的缩放
-        mChartKline.setBorderColor(getResources().getColor(R.color.border_color));//边线颜色
+        mChartKline.setBorderColor(getResources().getColor(R.color.xcj_line));//边线颜色
         mChartKline.setDescription("");//右下角对图表的描述信息
         mChartKline.setMinOffset(0f);
         mChartKline.setExtraOffsets(0f, 0f, 0f, 3f);
@@ -162,7 +162,7 @@ public class CoinView extends LinearLayout {
         xAxisKline.setDrawGridLines(false);//是否显示X坐标轴上的刻度竖线，默认是true
         xAxisKline.setDrawAxisLine(false); //是否绘制坐标轴的线，即含有坐标的那条线，默认是true
         xAxisKline.enableGridDashedLine(10f, 10f, 0f);//虚线表示X轴上的刻度竖线(float lineLength, float spaceLength, float phase)三个参数，1.线长，2.虚线间距，3.虚线开始坐标
-        xAxisKline.setTextColor(getResources().getColor(R.color.white));//设置字的颜色
+        xAxisKline.setTextColor(getResources().getColor(R.color.xcj_text_b));//设置字的颜色
         xAxisKline.setPosition(XAxis.XAxisPosition.BOTTOM);//设置值显示在什么位置
         xAxisKline.setAvoidFirstLastClipping(true);//设置首尾的值是否自动调整，避免被遮挡
 
@@ -172,7 +172,7 @@ public class CoinView extends LinearLayout {
         axisLeftKline.setDrawZeroLine(false);
         axisLeftKline.setDrawLabels(false);
         axisLeftKline.enableGridDashedLine(10f, 10f, 0f);
-        axisLeftKline.setTextColor(getResources().getColor(R.color.white));
+        axisLeftKline.setTextColor(getResources().getColor(R.color.xcj_text_b));
 //        axisLeftKline.setGridColor(getResources().getColor(R.color.minute_grayLine));
         axisLeftKline.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
         axisLeftKline.setLabelCount(4, false); //第一个参数是Y轴坐标的个数，第二个参数是 是否不均匀分布，true是不均匀分布
@@ -185,7 +185,7 @@ public class CoinView extends LinearLayout {
         axisRightKline.setMinWidth(50);
         axisRightKline.setMaxWidth(50);
         axisRightKline.enableGridDashedLine(10f, 10f, 0f);
-        axisRightKline.setTextColor(getResources().getColor(R.color.white));
+        axisRightKline.setTextColor(getResources().getColor(R.color.xcj_text_b));
         axisRightKline.setLabelCount(4, false); //第一个参数是Y轴坐标的个数，第二个参数是 是否不均匀分布，true是不均匀分布
 
         mChartKline.setDragDecelerationEnabled(true);
@@ -233,7 +233,7 @@ public class CoinView extends LinearLayout {
     private void initChartVolume() {
         mChartVolume.setDrawBorders(false);  //边框是否显示
         mChartVolume.setBorderWidth(1);//边框的宽度，float类型，dp单位
-        mChartVolume.setBorderColor(getResources().getColor(R.color.border_color));//边框颜色
+        mChartVolume.setBorderColor(getResources().getColor(R.color.xcj_line));//边框颜色
         mChartVolume.setDescription(""); //图表默认右下方的描述，参数是String对象
         mChartVolume.setDragEnabled(true);// 是否可以拖拽
         mChartVolume.setScaleYEnabled(false); //是否可以缩放 仅y轴
@@ -251,7 +251,7 @@ public class CoinView extends LinearLayout {
         xAxisVolume.setDrawGridLines(false);//是否显示X坐标轴上的刻度竖线，默认是true
         xAxisVolume.setDrawAxisLine(true); //是否绘制坐标轴的线，即含有坐标的那条线，默认是true
         xAxisVolume.enableGridDashedLine(10f, 10f, 0f);//虚线表示X轴上的刻度竖线(float lineLength, float spaceLength, float phase)三个参数，1.线长，2.虚线间距，3.虚线开始坐标
-        xAxisVolume.setTextColor(getResources().getColor(R.color.white));//设置字的颜色
+        xAxisVolume.setTextColor(getResources().getColor(R.color.xcj_text_b));//设置字的颜色
         xAxisVolume.setPosition(XAxis.XAxisPosition.BOTTOM);//设置值显示在什么位置
         xAxisVolume.setAvoidFirstLastClipping(true);//设置首尾的值是否自动调整，避免被遮挡
 
@@ -261,7 +261,7 @@ public class CoinView extends LinearLayout {
         axisLeftVolume.setDrawZeroLine(true);
         axisLeftVolume.setDrawLabels(false);
         axisLeftVolume.enableGridDashedLine(10f, 10f, 0f);
-        axisLeftVolume.setTextColor(getResources().getColor(R.color.white));
+        axisLeftVolume.setTextColor(getResources().getColor(R.color.xcj_text_b));
         axisLeftVolume.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
         axisLeftVolume.setLabelCount(4, false); //第一个参数是Y轴坐标的个数，第二个参数是 是否不均匀分布，true是不均匀分布
         axisLeftVolume.setSpaceTop(10);//距离顶部留白
@@ -273,7 +273,7 @@ public class CoinView extends LinearLayout {
         axisRightVolume.setMinWidth(50);
         axisRightVolume.setMaxWidth(50);
         axisRightVolume.enableGridDashedLine(10f, 10f, 0f);
-        axisRightVolume.setTextColor(getResources().getColor(R.color.white));
+        axisRightVolume.setTextColor(getResources().getColor(R.color.xcj_text_b));
         axisRightVolume.setLabelCount(4, false); //第一个参数是Y轴坐标的个数，第二个参数是 是否不均匀分布，true是不均匀分布
 
         mChartVolume.setDragDecelerationEnabled(true);

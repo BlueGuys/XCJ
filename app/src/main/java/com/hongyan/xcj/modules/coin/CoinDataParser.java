@@ -68,8 +68,8 @@ public class CoinDataParser {
         set.setNeutralColor(mContext.getResources().getColor(R.color.decreasing_color));//设置开盘价等于收盘价的颜色
         set.setShadowColorSameAsCandle(true);
         set.setHighlightLineWidth(1f);
-        set.setHighLightColor(mContext.getResources().getColor(R.color.white));
-        set.setValueTextColor(mContext.getResources().getColor(R.color.white));
+        set.setHighLightColor(mContext.getResources().getColor(R.color.xcj_line));
+        set.setValueTextColor(mContext.getResources().getColor(R.color.xcj_line));
         return new CandleData(data.getXValList(), set);
     }
 
@@ -78,7 +78,7 @@ public class CoinDataParser {
         set.setBarSpacePercent(20); //bar空隙
         set.setHighlightEnabled(false);
         set.setHighLightAlpha(255);
-        set.setHighLightColor(mContext.getResources().getColor(R.color.white));
+        set.setHighLightColor(mContext.getResources().getColor(R.color.xcj_line));
         set.setDrawValues(false);
 
         List<Integer> list = new ArrayList<>();
@@ -120,13 +120,13 @@ public class CoinDataParser {
         }
         if (CoinDetailActivity.currentIndex == 0) {
             if (ma == 1) {
-                lineDataSetMa.setColor(mContext.getResources().getColor(R.color.white));
+                lineDataSetMa.setColor(mContext.getResources().getColor(R.color.xcj_line));
             } else {
                 lineDataSetMa.setColor(mContext.getResources().getColor(R.color.transparent));
             }
         } else {
             if (ma == 5) {
-                lineDataSetMa.setColor(mContext.getResources().getColor(R.color.white));
+                lineDataSetMa.setColor(mContext.getResources().getColor(R.color.xcj_line));
             } else if (ma == 30) {
                 lineDataSetMa.setColor(mContext.getResources().getColor(R.color.chart_line_orange));
             } else if (ma == 7) {
@@ -159,13 +159,13 @@ public class CoinDataParser {
         }
         if (CoinDetailActivity.currentIndex == 0) {
             if (ma == 1) {
-                lineDataSetMa.setColor(mContext.getResources().getColor(R.color.white));
+                lineDataSetMa.setColor(mContext.getResources().getColor(R.color.xcj_line));
             } else {
                 lineDataSetMa.setColor(mContext.getResources().getColor(R.color.transparent));
             }
         } else {
             if (ma == 5) {
-                lineDataSetMa.setColor(mContext.getResources().getColor(R.color.white));
+                lineDataSetMa.setColor(mContext.getResources().getColor(R.color.xcj_line));
             } else if (ma == 30) {
                 lineDataSetMa.setColor(mContext.getResources().getColor(R.color.orange));
             } else if (ma == 7) {

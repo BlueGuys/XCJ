@@ -107,7 +107,7 @@ public class ChartCollectView extends LinearLayout implements View.OnClickListen
         }
         for (int i = 0; i < textViews.length; i++) {
             if (currentIndex == i) {
-                textViews[i].setTextColor(getResources().getColor(R.color.white));
+                textViews[i].setTextColor(getResources().getColor(R.color.xcj_blue));
             } else {
                 textViews[i].setTextColor(getResources().getColor(R.color.xcj_text_b));
             }
