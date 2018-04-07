@@ -55,6 +55,7 @@ public class CollectionManager {
         });
         request.addParam("aid", articleId);
         request.addParam("type", type);
+        request.setCheckLogin(true);
         new JPBaseModel().sendRequest(request);
     }
 
@@ -82,6 +83,7 @@ public class CollectionManager {
         });
         request.addParam("aid", articleId);
         request.addParam("type", type);
+        request.setCheckLogin(true);
         new JPBaseModel().sendRequest(request);
     }
 

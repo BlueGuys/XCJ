@@ -85,6 +85,7 @@ public class SetNickNameActivity extends BaseActivity {
             }
         });
         request.addParam("nickname", nickName);
+        request.setCheckLogin(true);
         JPBaseModel baseModel = new JPBaseModel();
         baseModel.sendRequest(request);
     }

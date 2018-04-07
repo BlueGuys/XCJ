@@ -26,6 +26,7 @@ public class JPRequest<T extends JPResult> extends Request<JPResponse> {
     private String mUrl;
     private Class<T> mResultClass = null;
     private SerializableHashMapUtils mMap = new SerializableHashMapUtils();
+    private boolean checkLogin = false;
 
 
     public JPRequest(Class<T> resultClass, String url, Response.Listener<JPResponse> listener, Response.ErrorListener errorListener) {
@@ -86,7 +87,7 @@ public class JPRequest<T extends JPResult> extends Request<JPResponse> {
             }
             response.setResponse(string);
             JPResult result = GsonUtils.gsonResolve(string, mResultClass);
-            if (result != null && ("50002".equals(result.getReturnCode()) || "50003".equals(result.getReturnCode()))) {
+            if (checkLogin && result != null && ("50002".equals(result.getReturnCode()) || "50003".equals(result.getReturnCode()))) {
                 EventBus.getDefault().post(new TokenMessageEvent());
             }
             response.setResult(result);
@@ -105,6 +106,10 @@ public class JPRequest<T extends JPResult> extends Request<JPResponse> {
             return;
         }
         mMap.put(key, value);
+    }
+
+    public void setCheckLogin(boolean checkLogin) {
+        this.checkLogin = checkLogin;
     }
 
     public void addParam(String key, int value) {

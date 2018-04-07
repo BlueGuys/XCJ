@@ -65,6 +65,7 @@ public class CoinCollectManager {
             }
         });
         request.addParam("did", coinId);
+        request.setCheckLogin(true);
         new JPBaseModel().sendRequest(request);
     }
 
@@ -93,6 +94,7 @@ public class CoinCollectManager {
             }
         });
         request.addParam("did", coinId);
+        request.setCheckLogin(true);
         new JPBaseModel().sendRequest(request);
     }
 
