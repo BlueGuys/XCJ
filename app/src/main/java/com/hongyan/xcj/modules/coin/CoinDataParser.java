@@ -35,10 +35,11 @@ public class CoinDataParser {
         switch (type) {
             case TYPE_CANDLE:
                 combinedData.setData(getLineData(data));
-                combinedData.setData(getCandleData(data));
+                if (CoinDetailActivity.currentIndex != 0) {
+                    combinedData.setData(getCandleData(data));
+                }
                 break;
             case TYPE_BAR:
-                combinedData.setData(getCandleData(data));
                 combinedData.setData(getBarData(data));
                 combinedData.setData(getLineData(data));
                 break;
@@ -90,8 +91,8 @@ public class CoinDataParser {
     private LineData getLineData(CoinResult.Data data) {
         ArrayList<ILineDataSet> list = new ArrayList<>();
         list.add(setMaLine(1, data.getMa1DataL()));
-        list.add(setMaLine(5, data.getMa5DataL()));
-        list.add(setMaLine(10, data.getMa10DataL()));
+        list.add(setMaLine(7, data.getMa7DataL()));
+        list.add(setMaLine(30, data.getMa30DataL()));
         return new LineData(data.getXValList(), list);
     }
 
@@ -103,21 +104,27 @@ public class CoinDataParser {
     @NonNull
     private LineDataSet setMaLine(int ma, ArrayList<Entry> lineEntries) {
         LineDataSet lineDataSetMa = new LineDataSet(lineEntries, "ma" + ma);
-        if (ma == 5) {
+        if (ma == 7) {
             lineDataSetMa.setHighlightEnabled(true);
             lineDataSetMa.setDrawHorizontalHighlightIndicator(false);
-            lineDataSetMa.setHighLightColor(mContext.getResources().getColor(R.color.white));
         } else {/*此处必须得写*/
             lineDataSetMa.setHighlightEnabled(false);
         }
         if (ma == 5) {
             lineDataSetMa.setColor(mContext.getResources().getColor(R.color.white));
-        } else if (ma == 10) {
-            lineDataSetMa.setColor(mContext.getResources().getColor(R.color.ma10));
-        } else if (ma == 20) {
-            lineDataSetMa.setColor(mContext.getResources().getColor(R.color.ma20));
+        } else if (ma == 30) {
+            lineDataSetMa.setColor(mContext.getResources().getColor(R.color.orange));
+        } else if (ma == 7) {
+            lineDataSetMa.setColor(mContext.getResources().getColor(R.color.blue));
         } else {
-            lineDataSetMa.setColor(mContext.getResources().getColor(R.color.ma30));
+            lineDataSetMa.setColor(mContext.getResources().getColor(R.color.white));
+        }
+        if (CoinDetailActivity.currentIndex == 0) {
+            if (ma == 1) {
+                lineDataSetMa.setColor(mContext.getResources().getColor(R.color.white));
+            } else {
+                lineDataSetMa.setColor(mContext.getResources().getColor(R.color.black));
+            }
         }
         lineDataSetMa.setDrawValues(false);
         lineDataSetMa.setLineWidth(0.5f);

@@ -59,26 +59,26 @@ public class CoinResult extends JPResult {
             return ma1DataL;
         }
 
-        public ArrayList<Entry> getMa5DataL() {
-            XCJKMAEntity kmaEntity = new XCJKMAEntity(coinHistory, 5);
-            ArrayList<Entry> ma5DataL = new ArrayList<>();
+        public ArrayList<Entry> getMa7DataL() {
+            XCJKMAEntity kmaEntity = new XCJKMAEntity(coinHistory, 7);
+            ArrayList<Entry> ma7DataL = new ArrayList<>();
             for (int i = 0; i < kmaEntity.getMAs().size(); i++) {
-                if (i >= 5) {
-                    ma5DataL.add(new Entry(kmaEntity.getMAs().get(i), i));
+                if (i >= 7) {
+                    ma7DataL.add(new Entry(kmaEntity.getMAs().get(i), i));
                 }
             }
-            return ma5DataL;
+            return ma7DataL;
         }
 
-        public ArrayList<Entry> getMa10DataL() {
-            XCJKMAEntity kmaEntity = new XCJKMAEntity(coinHistory, 10);
-            ArrayList<Entry> ma10DataL = new ArrayList<>();
+        public ArrayList<Entry> getMa30DataL() {
+            XCJKMAEntity kmaEntity = new XCJKMAEntity(coinHistory, 30);
+            ArrayList<Entry> ma30DataL = new ArrayList<>();
             for (int i = 0; i < kmaEntity.getMAs().size(); i++) {
-                if (i >= 10) {
-                    ma10DataL.add(new Entry(kmaEntity.getMAs().get(i), i));
+                if (i >= 30) {
+                    ma30DataL.add(new Entry(kmaEntity.getMAs().get(i), i));
                 }
             }
-            return ma10DataL;
+            return ma30DataL;
         }
 
 

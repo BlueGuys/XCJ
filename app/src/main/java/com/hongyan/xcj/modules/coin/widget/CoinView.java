@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -14,14 +13,9 @@ import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
-import com.github.mikephil.charting.data.CandleData;
-import com.github.mikephil.charting.data.CandleEntry;
-import com.github.mikephil.charting.data.CombinedData;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.highlight.Highlight;
-import com.github.mikephil.charting.interfaces.datasets.ICandleDataSet;
 import com.github.mikephil.charting.listener.ChartTouchListener;
-import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.hongyan.xcj.R;
 import com.hongyan.xcj.modules.coin.CoinDataParser;
@@ -36,7 +30,6 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.List;
 
 public class CoinView extends LinearLayout {
 
@@ -163,7 +156,7 @@ public class CoinView extends LinearLayout {
 
         axisLeftKline = mChartKline.getAxisLeft();
         axisLeftKline.setDrawGridLines(false);
-        axisLeftKline.setDrawAxisLine(false);
+        axisLeftKline.setDrawAxisLine(true);
         axisLeftKline.setDrawZeroLine(false);
         axisLeftKline.setDrawLabels(false);
         axisLeftKline.enableGridDashedLine(10f, 10f, 0f);
@@ -191,7 +184,7 @@ public class CoinView extends LinearLayout {
         mChartKline.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
-                if(h == null){
+                if (h == null) {
                     return;
                 }
                 mHighLight = h;
@@ -211,7 +204,7 @@ public class CoinView extends LinearLayout {
             @Override
             public void onChartGestureEnd(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
                 mHighLight = mChartKline.getHighlightByTouchPoint(me.getX(), me.getY());
-                if(mHighLight == null){
+                if (mHighLight == null) {
                     return;
                 }
                 mChartVolume.highlightValues(new Highlight[]{mHighLight});
@@ -235,8 +228,9 @@ public class CoinView extends LinearLayout {
         mChartVolume.setMinOffset(3f);
         mChartVolume.setExtraOffsets(0f, 0f, 0f, 5f);
 
-        Legend combinedchartLegend = mChartVolume.getLegend(); // 设置比例图标示，就是那个一组y的value的
-        combinedchartLegend.setEnabled(false);//是否绘制比例图
+        Legend lineChartLegend = mChartVolume.getLegend();
+        lineChartLegend.setEnabled(false);//是否绘制 Legend 图例
+        lineChartLegend.setForm(Legend.LegendForm.CIRCLE);
 
         //bar x y轴
         xAxisVolume = mChartVolume.getXAxis();
@@ -250,19 +244,15 @@ public class CoinView extends LinearLayout {
         xAxisVolume.setAvoidFirstLastClipping(true);//设置首尾的值是否自动调整，避免被遮挡
 
         axisLeftVolume = mChartVolume.getAxisLeft();
-        axisLeftVolume.setAxisMinValue(0);//设置Y轴坐标最小为多少
-//        axisLeftVolume.setShowOnlyMinMax(true);//设置Y轴坐标最小为多少
         axisLeftVolume.setDrawGridLines(false);
-        axisLeftVolume.setDrawAxisLine(false);
-//        axisLeftVolume.setShowOnlyMinMax(true);
+        axisLeftVolume.setDrawAxisLine(true);
+        axisLeftVolume.setDrawZeroLine(true);
         axisLeftVolume.setDrawLabels(false);
         axisLeftVolume.enableGridDashedLine(10f, 10f, 0f);
         axisLeftVolume.setTextColor(getResources().getColor(R.color.white));
-//        axisLeftVolume.setGridColor(getResources().getColor(R.color.minute_grayLine));
-        axisLeftVolume.setPosition(YAxis.YAxisLabelPosition.INSIDE_CHART);
-        axisLeftVolume.setLabelCount(1, false); //第一个参数是Y轴坐标的个数，第二个参数是 是否不均匀分布，true是不均匀分布
-        axisLeftVolume.setSpaceTop(20);//距离顶部留白
-//        axisLeftVolume.setSpaceBottom(0);//距离顶部留白
+        axisLeftVolume.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
+        axisLeftVolume.setLabelCount(4, false); //第一个参数是Y轴坐标的个数，第二个参数是 是否不均匀分布，true是不均匀分布
+        axisLeftVolume.setSpaceTop(10);//距离顶部留白
 
         axisRightVolume = mChartVolume.getAxisRight();
         axisRightVolume.setDrawGridLines(false);
@@ -282,7 +272,7 @@ public class CoinView extends LinearLayout {
         mChartVolume.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
-                if(h == null){
+                if (h == null) {
                     return;
                 }
                 mHighLight = h;
@@ -302,7 +292,7 @@ public class CoinView extends LinearLayout {
             @Override
             public void onChartGestureEnd(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
                 mHighLight = mChartVolume.getHighlightByTouchPoint(me.getX(), me.getY());
-                if(mHighLight == null){
+                if (mHighLight == null) {
                     return;
                 }
                 mChartVolume.highlightValues(new Highlight[]{mHighLight});
