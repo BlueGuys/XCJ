@@ -131,5 +131,15 @@ public class ArticleActivity extends BaseWebViewActivity {
             LogUtils.e("ArticleActivity 开始分享");
             ShareManager.getInstance().share(ArticleActivity.this, id, type);
         }
+
+        @JavascriptInterface
+        public void collection() {
+            CollectionManager.getInstance().collectionArticle(id, StringUtils.isEmpty(type) ? "0" : type);
+        }
+
+        @JavascriptInterface
+        public void cancelCollection() {
+            CollectionManager.getInstance().cancelCollectionArticle(id, StringUtils.isEmpty(type) ? "0" : type);
+        }
     }
 }
