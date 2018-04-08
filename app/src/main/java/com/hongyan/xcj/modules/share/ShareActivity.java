@@ -13,6 +13,7 @@ public class ShareActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransition(0, 0);
         setContentView(R.layout.activity_share);
         hideNavigationView();
 
@@ -30,4 +31,9 @@ public class ShareActivity extends BaseActivity {
         MobclickAgent.onPause(this);
     }
 
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(0, 0);
+    }
 }

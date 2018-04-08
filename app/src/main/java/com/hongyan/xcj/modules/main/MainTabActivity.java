@@ -173,7 +173,7 @@ public class MainTabActivity extends BaseActivity {
                 showErrorToast("再按一次退出程序");
                 exitTime = System.currentTimeMillis();
             } else {
-                moveTaskToBack(true);
+                System.exit(0);
             }
         }
         return true;

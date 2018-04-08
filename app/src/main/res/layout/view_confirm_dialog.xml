@@ -3,26 +3,98 @@
     android:id="@+id/image"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/white"
     android:gravity="center"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/dialog_message"
         android:gravity="center"
-        android:paddingBottom="30dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:paddingTop="30dp">
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/ds30"
+        android:paddingLeft="@dimen/ds30"
+        android:paddingRight="@dimen/ds30"
+        android:paddingTop="@dimen/ds30">
 
-        <TextView
-            android:id="@+id/dialog_message"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:id="@+id/share_weibo"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:gravity="center_vertical|left"
-            android:text="你好"
-            android:textColor="@color/c_font_a" />
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/ds100"
+                android:layout_height="@dimen/ds100"
+                android:src="@drawable/ic_launcher" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ds10"
+                android:gravity="center"
+                android:text="微博"
+                android:textColor="@color/xcj_text_b"
+                android:textSize="14dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/share_qq"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/ds100"
+                android:layout_height="@dimen/ds100"
+                android:src="@drawable/ic_launcher" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ds10"
+                android:gravity="center"
+                android:text="QQ"
+                android:textColor="@color/xcj_text_b"
+                android:textSize="14dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/share_qqzone"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/ds100"
+                android:layout_height="@dimen/ds100"
+                android:src="@drawable/ic_launcher" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ds10"
+                android:gravity="center"
+                android:text="QQ空间"
+                android:textColor="@color/xcj_text_b"
+                android:textSize="14dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/share_null"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -37,27 +109,14 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/dialog_confirm"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:background="@drawable/dialog_left_button"
-            android:text="退出"
-            android:textColor="@color/c_font_b" />
-
-        <View
-            android:layout_width="1px"
-            android:layout_height="match_parent"
-            android:background="@color/line" />
-
-        <Button
             android:id="@+id/dialog_cancel"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
             android:background="@drawable/dialog_right_button"
             android:text="取消"
-            android:textColor="@color/c_main_blue_n" />
+            android:textColor="@color/c_main_blue_n"
+            android:textSize="14dp" />
 
     </LinearLayout>
 
