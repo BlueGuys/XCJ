@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.KeyEvent;
 import android.view.View;
+import android.webkit.ConsoleMessage;
 import android.webkit.JavascriptInterface;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
@@ -151,7 +152,14 @@ public class BaseWebViewActivity extends BaseActivity {
             super.onProgressChanged(view, newProgress);
         }
 
-//        @Override
+        @Override
+        public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
+            String token = AccountManager.getInstance().getToken();
+            mWebView.loadUrl("javascript:onTokenResult('" + token + "')");
+            return true;
+        }
+
+        //        @Override
 //        public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
 //            AlertDialog.Builder b = new AlertDialog.Builder(BaseWebViewActivity.this);
 //            b.setTitle("Alert");

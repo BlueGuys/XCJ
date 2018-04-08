@@ -16,12 +16,12 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.hongyan.xcj.R;
 import com.hongyan.xcj.test.TestActivity;
 import com.hongyan.xcj.widget.NavigationView;
 import com.hongyan.xcj.widget.loading.LoadingDialog;
-import com.hongyan.xcj.widget.tost.IToast;
 
 
 /**
@@ -100,11 +100,11 @@ public abstract class BaseActivity extends FragmentActivity {
     }
 
     public void showSuccessToast(String message) {
-        IToast.showSuccessToast(message);
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     public void showErrorToast(String message) {
-        IToast.showWarnToast(message);
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     public void startLoading() {

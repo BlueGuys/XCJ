@@ -14,13 +14,13 @@
 
     <application
         android:name=".core.BaseApplication"
-        tools:replace="android:name"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:replace="android:name">
         <activity
             android:name=".modules.splash.AppStartActivity"
             android:theme="@style/AppStart">
@@ -29,10 +29,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="xcj" android:host="main" android:pathPrefix="/open"/>
+
+                <data
+                    android:host="main"
+                    android:pathPrefix="/open"
+                    android:scheme="xcj" />
             </intent-filter>
         </activity>
         <activity
@@ -46,6 +51,9 @@
         <activity android:name=".modules.article.ArticleActivity" />
         <activity android:name=".modules.setting.SetNickNameActivity" />
         <activity android:name=".modules.search.SearchActivity" />
+        <activity
+            android:name=".modules.share.ShareActivity"
+            android:theme="@style/Share" />
         <activity
             android:name=".test.TestActivity"
             android:launchMode="singleTask" />

@@ -67,13 +67,14 @@ public class AccountManager {
         SharePreferenceManager.getInstance().deleteStr("account");
         EventBus.getDefault().post(new AccountMessageEvent(false));
         mAccountInfo = null;
+        this.token = "";
     }
 
     public void login() {
         EventBus.getDefault().post(new TokenMessageEvent());
     }
 
-    public void refresh(){
+    public void refresh() {
         getAccountInfoFromServer(this.token);
     }
 

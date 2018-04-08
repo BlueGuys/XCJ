@@ -49,6 +49,8 @@ public class ShareManager {
                 ShareResult result = (ShareResult) response.getResult();
                 if (result != null && result.data != null && result.data.share_info != null) {
                     LogUtils.e("ShareManager 分享信息获取成功");
+//                    activity.startActivity(new Intent(activity, ShareActivity.class));
+//                    activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                     showShare(activity, result.data.share_info);
                 }
             }

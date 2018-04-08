@@ -15,12 +15,15 @@ import com.hongyan.xcj.core.AccountManager;
 import com.hongyan.xcj.core.CollectionManager;
 import com.hongyan.xcj.core.LogUtils;
 import com.hongyan.xcj.core.ShareManager;
+import com.hongyan.xcj.modules.event.CollectMessageEvent;
 import com.hongyan.xcj.modules.event.TokenMessageEvent;
 import com.hongyan.xcj.modules.main.info.recommend.InfoRecommendResult;
 import com.hongyan.xcj.utils.StringUtils;
 import com.umeng.analytics.MobclickAgent;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 /**
  * Created by wangning on 2018/3/24.
@@ -29,7 +32,7 @@ import org.greenrobot.eventbus.EventBus;
 public class ArticleActivity extends BaseWebViewActivity {
 
     private boolean isCollection = false;
-    private String id;
+    private String aid;
     private String type;
 
     public static void startActivity(Context context, String url) {
@@ -54,10 +57,10 @@ public class ArticleActivity extends BaseWebViewActivity {
             public void onClick(View view) {
                 try {
                     if (isCollection) {
-                        CollectionManager.getInstance().cancelCollectionArticle(id, StringUtils.isEmpty(type) ? "0" : type);
+                        CollectionManager.getInstance().cancelCollectionArticle(aid, StringUtils.isEmpty(type) ? "0" : type);
                         isCollection = false;
                     } else {
-                        CollectionManager.getInstance().collectionArticle(id, StringUtils.isEmpty(type) ? "0" : type);
+                        CollectionManager.getInstance().collectionArticle(aid, StringUtils.isEmpty(type) ? "0" : type);
                         isCollection = true;
                     }
                     imageCollection.setImageResource(isCollection ? R.drawable.icon_cancel_collection : R.drawable.icon_collection);
@@ -69,9 +72,10 @@ public class ArticleActivity extends BaseWebViewActivity {
         mWebView.addJavascriptInterface(new ClientFunction(), "webView");
         if (!StringUtils.isEmpty(mUrl)) {
             Uri uri = Uri.parse(mUrl);
-            id = uri.getQueryParameter("id");
+            aid = uri.getQueryParameter("id");
             type = uri.getQueryParameter("type");
         }
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -84,6 +88,12 @@ public class ArticleActivity extends BaseWebViewActivity {
     protected void onPause() {
         super.onPause();
         MobclickAgent.onPause(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
     public class ClientFunction {
@@ -129,17 +139,48 @@ public class ArticleActivity extends BaseWebViewActivity {
         @JavascriptInterface
         public void share() {
             LogUtils.e("ArticleActivity 开始分享");
-            ShareManager.getInstance().share(ArticleActivity.this, id, type);
+            ShareManager.getInstance().share(ArticleActivity.this, aid, type);
         }
 
         @JavascriptInterface
         public void collection() {
-            CollectionManager.getInstance().collectionArticle(id, StringUtils.isEmpty(type) ? "0" : type);
+            CollectionManager.getInstance().collectionArticle(aid, StringUtils.isEmpty(type) ? "0" : type);
         }
 
         @JavascriptInterface
         public void cancelCollection() {
-            CollectionManager.getInstance().cancelCollectionArticle(id, StringUtils.isEmpty(type) ? "0" : type);
+            CollectionManager.getInstance().cancelCollectionArticle(aid, StringUtils.isEmpty(type) ? "0" : type);
         }
+    }
+
+    @Subscribe(threadMode = ThreadMode.POSTING)
+    public void collectMessage(CollectMessageEvent message) {
+        if (message == null) {
+            return;
+        }
+        String id = message.getId();
+        String action = message.getAction();
+        String type = message.getType();
+        if (!StringUtils.isEmpty(id) && id.equals(aid)) {
+            if (!StringUtils.isEmpty(action) && "1".equals(action)) {//收藏
+                isCollection = true;
+                imageCollection.setImageResource(R.drawable.icon_cancel_collection);
+            }
+            if (!StringUtils.isEmpty(action) && "2".equals(action)) {//取消收藏
+                isCollection = false;
+                imageCollection.setImageResource(R.drawable.icon_collection);
+            }
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (isCollection) {
+                        mWebView.loadUrl("javascript:setCollect()");
+                    } else {
+                        mWebView.loadUrl("javascript:cancelCollection()");
+                    }
+                }
+            });
+        }
+
     }
 }
