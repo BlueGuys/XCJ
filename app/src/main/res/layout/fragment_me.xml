@@ -114,6 +114,7 @@
                 app:title="行情自选" />
 
             <View
+                android:id="@+id/line_nick"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/ds2"
                 android:background="@color/c_bg_line_b" />

@@ -36,7 +36,8 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
     private TextView tvLogin;
     private ImageView ivLogo;
     private View line;
-    ItemCommonClickView linearLogout;
+    ItemCommonClickView linearLogout, linearNickName;
+    private View lineNickName;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,11 +53,12 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
         tvAccount = view.findViewById(R.id.tv_account);
         ivLogo = view.findViewById(R.id.logo);
         line = view.findViewById(R.id.line1);
+        lineNickName = view.findViewById(R.id.line_nick);
         ItemCommonClickView linearCollection = view.findViewById(R.id.linear_collection);
         ItemCommonClickView linearMarket = view.findViewById(R.id.linear_market);
         ItemCommonClickView linearClear = view.findViewById(R.id.linear_clear);
         linearLogout = view.findViewById(R.id.linear_logout);
-        ItemCommonClickView linearNickName = view.findViewById(R.id.linear_set_nike_name);
+        linearNickName = view.findViewById(R.id.linear_set_nike_name);
         tvLogin.setOnClickListener(this);
         linearCollection.setOnClickListener(this);
         linearMarket.setOnClickListener(this);
@@ -131,6 +133,8 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
             tvAccount.setVisibility(View.VISIBLE);
             line.setVisibility(View.VISIBLE);
             linearLogout.setVisibility(View.VISIBLE);
+            lineNickName.setVisibility(View.VISIBLE);
+            linearNickName.setVisibility(View.VISIBLE);
             AccountInfo info = AccountManager.getInstance().getAccountInfo();
             if (info != null) {
                 String nickName = info.getNickname();
@@ -154,6 +158,8 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
             tvAccount.setVisibility(View.GONE);
             line.setVisibility(View.GONE);
             linearLogout.setVisibility(View.GONE);
+            lineNickName.setVisibility(View.GONE);
+            linearNickName.setVisibility(View.GONE);
         }
     }
 

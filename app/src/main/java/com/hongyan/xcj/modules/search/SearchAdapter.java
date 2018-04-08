@@ -88,7 +88,7 @@ public class SearchAdapter extends BaseAdapter {
             }
             SearchResult.CoinBean bean = this.mResult.data.coinList.get(position);
             holder.textView.setText(Html.fromHtml(bean.name));
-            ImageLoader.getInstance().displayImage(bean.logo, holder.imageView, ImageLoaderOptionHelper.getInstance().getListImageOption());
+            ImageLoader.getInstance().displayImage(bean.logo, holder.imageView, ImageLoaderOptionHelper.getInstance().getCircleImageOption());
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
