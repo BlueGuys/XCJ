@@ -116,15 +116,11 @@ public class ArticleActivity extends BaseWebViewActivity {
 
         @JavascriptInterface
         public void getToken() {
-            String token = AccountManager.getInstance().getToken();
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    if (StringUtils.isEmpty(token)) {
-                        mWebView.loadUrl("javascript:onTokenResult('" + "" + "')");
-                    } else {
-                        mWebView.loadUrl("javascript:onTokenResult('" + token + "')");
-                    }
+                    String token = AccountManager.getInstance().getToken();
+                    mWebView.loadUrl("javascript:onTokenResult('" + token + "')");
                 }
             });
         }
@@ -174,7 +170,7 @@ public class ArticleActivity extends BaseWebViewActivity {
                 @Override
                 public void run() {
                     if (isCollection) {
-                        mWebView.loadUrl("javascript:setCollect()");
+                        mWebView.loadUrl("javascript:setCollect('')");
                     } else {
                         mWebView.loadUrl("javascript:cancelCollection()");
                     }
