@@ -12,6 +12,7 @@ import android.text.style.URLSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -207,6 +208,12 @@ public class CoinDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             CoinDetailResult.Info bean = this.mData.infoList.get(realPosition);
             ((InfoItem) holder).tvInfoTitle.setText(bean.title);
             ((InfoItem) holder).tvInfoTime.setText(bean.timeStamp);
+            ((InfoItem) holder).linearLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ArticleActivity.startActivity(mContext, bean.url);
+                }
+            });
             if (realPosition == this.mData.infoList.size() - 1) {
                 ((InfoItem) holder).bottomLine.setVisibility(View.GONE);
                 ((InfoItem) holder).bottomMargin.setVisibility(View.VISIBLE);
@@ -321,6 +328,7 @@ public class CoinDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     }
 
     public class InfoItem extends RecyclerView.ViewHolder {
+        LinearLayout linearLayout;
         TextView tvInfoTitle;
         TextView tvInfoTime;
         View bottomLine;
@@ -328,6 +336,7 @@ public class CoinDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
         public InfoItem(View itemView) {
             super(itemView);
+            linearLayout = itemView.findViewById(R.id.linear_detail_item);
             tvInfoTitle = itemView.findViewById(R.id.tv_info_title);
             tvInfoTime = itemView.findViewById(R.id.tv_info_time);
             bottomLine = itemView.findViewById(R.id.bottom_Line);

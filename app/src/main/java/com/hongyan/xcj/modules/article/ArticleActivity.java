@@ -170,9 +170,11 @@ public class ArticleActivity extends BaseWebViewActivity {
                 @Override
                 public void run() {
                     if (isCollection) {
+                        LogUtils.e("调用webview收藏");
                         mWebView.loadUrl("javascript:setCollect('')");
                     } else {
-                        mWebView.loadUrl("javascript:cancelCollection()");
+                        LogUtils.e("调用webview取消收藏");
+                        mWebView.loadUrl("javascript:cancelCollect('')");
                     }
                 }
             });

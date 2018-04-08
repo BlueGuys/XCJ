@@ -11,11 +11,13 @@
 
     <ImageView
         android:id="@+id/icon_navigation_back"
-        android:layout_width="@dimen/ds24"
-        android:layout_height="@dimen/ds40"
+        android:layout_width="@dimen/ds60"
+        android:paddingRight="@dimen/ds36"
+        android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:src="@drawable/icon_arrow_back" />
+        android:src="@drawable/icon_arrow_back"
+        />
 
     <LinearLayout
         android:layout_width="wrap_content"

@@ -56,7 +56,7 @@ public class MarketResult extends JPResult {
         public String desc;
 
         public boolean isUp() {
-            return !StringUtils.isEmpty(change) && "0".equals(change);
+            return !StringUtils.isEmpty(change) && "1".equals(change);
         }
     }
 }
