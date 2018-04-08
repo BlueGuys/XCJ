@@ -51,7 +51,7 @@ public class CoinViewHeader extends LinearLayout {
         if (data == null) {
             return;
         }
-        Date date = new Date(JavaTypesHelper.toLong(data.timeStamp+"000"));
+        Date date = new Date(JavaTypesHelper.toLong(data.timeStamp + "000"));
         String day = DateUtils.formatDate(date, DateUtils.MMDD);
         String hour = DateUtils.formatDate(date, DateUtils.HHmmss);
         tvPrice.setText(String.valueOf(data.price));
@@ -61,8 +61,8 @@ public class CoinViewHeader extends LinearLayout {
         tvLowPrice.setText("最低：" + String.valueOf(data.lowPrice));
         tvChangePrice.setText(String.valueOf(data.changePrice));
         tvChangeRate.setText(String.valueOf(data.changeRate + "%"));
-        tvChangeRate.setTextColor(data.changeRate >= 0f ? getResources().getColor(R.color.increasing_color) : getResources().getColor(R.color.decreasing_color));
-        tvChangePrice.setTextColor(data.changePrice >= 0f ? getResources().getColor(R.color.increasing_color) : getResources().getColor(R.color.decreasing_color));
+        tvChangeRate.setTextColor(data.changeRate >= 0f ? getResources().getColor(R.color.xcj_chart_red) : getResources().getColor(R.color.xcj_chart_green));
+        tvChangePrice.setTextColor(data.changePrice >= 0f ? getResources().getColor(R.color.xcj_chart_red) : getResources().getColor(R.color.xcj_chart_green));
         tvTimeDate.setText(day);
         tvTimeHour.setText(hour);
         tvVolume.setText("成交量：" + String.valueOf(data.volume));
