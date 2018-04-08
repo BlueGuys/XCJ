@@ -54,8 +54,6 @@ public class CoinCollectManager {
                     ChartMessageEvent messageEvent = new ChartMessageEvent();
                     messageEvent.setIsCollectSuccessful(1);
                     EventBus.getDefault().post(messageEvent);
-                } else {
-                    Toast.makeText(BaseApplication.getInstance().getApplicationContext(), result.getReturnMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         }, new Response.ErrorListener() {
