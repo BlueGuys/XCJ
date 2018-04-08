@@ -28,12 +28,12 @@
             <ImageView
                 android:layout_width="@dimen/ds100"
                 android:layout_height="@dimen/ds100"
-                android:src="@drawable/ic_launcher" />
+                android:src="@drawable/icon_share_weibo" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/ds10"
+                android:layout_marginTop="@dimen/ds20"
                 android:gravity="center"
                 android:text="微博"
                 android:textColor="@color/xcj_text_b"
@@ -51,12 +51,12 @@
             <ImageView
                 android:layout_width="@dimen/ds100"
                 android:layout_height="@dimen/ds100"
-                android:src="@drawable/ic_launcher" />
+                android:src="@drawable/icon_share_qq" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/ds10"
+                android:layout_marginTop="@dimen/ds20"
                 android:gravity="center"
                 android:text="QQ"
                 android:textColor="@color/xcj_text_b"
@@ -74,12 +74,12 @@
             <ImageView
                 android:layout_width="@dimen/ds100"
                 android:layout_height="@dimen/ds100"
-                android:src="@drawable/ic_launcher" />
+                android:src="@drawable/icon_share_qq_zone" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/ds10"
+                android:layout_marginTop="@dimen/ds20"
                 android:gravity="center"
                 android:text="QQ空间"
                 android:textColor="@color/xcj_text_b"
@@ -113,9 +113,9 @@
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:background="@drawable/dialog_right_button"
+            android:background="@color/white"
             android:text="取消"
-            android:textColor="@color/c_main_blue_n"
+            android:textColor="@color/xcj_text_b"
             android:textSize="14dp" />
 
     </LinearLayout>

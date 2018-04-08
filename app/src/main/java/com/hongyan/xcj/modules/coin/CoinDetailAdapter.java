@@ -20,8 +20,11 @@ import com.hongyan.xcj.R;
 import com.hongyan.xcj.modules.article.ArticleActivity;
 import com.hongyan.xcj.modules.coin.widget.CoinProgressView;
 import com.hongyan.xcj.modules.coin.widget.CoinView;
+import com.hongyan.xcj.utils.DateUtils;
 import com.hongyan.xcj.utils.JavaTypesHelper;
 import com.hongyan.xcj.utils.StringUtils;
+
+import java.util.Date;
 
 public class CoinDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -185,7 +188,9 @@ public class CoinDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         } else if (holder instanceof DealItem) {
             int realPosition = position - this.mData.mmList.size() - 3;
             CoinDetailResult.DealBean bean = this.mData.dealList.get(realPosition);
-            ((DealItem) holder).tvDealTime.setText(bean.timeStamp);
+            Date date = new Date(JavaTypesHelper.toLong(bean.timeStamp + "000"));
+            String time = DateUtils.formatDate(date, DateUtils.HHmmss);
+            ((DealItem) holder).tvDealTime.setText(time);
             ((DealItem) holder).tvDealPrice.setText(bean.price);
             ((DealItem) holder).tvDealVolume.setText(bean.volume);
             ((DealItem) holder).tvDealPrice.setTextColor(Color.parseColor(bean.textColor));
