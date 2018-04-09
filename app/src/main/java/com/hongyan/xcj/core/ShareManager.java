@@ -90,6 +90,7 @@ public class ShareManager {
 //                sp.setSite("发布分享的网站名称");
 //                sp.setSiteUrl("发布分享网站的地址");
                 Platform weibo = ShareSDK.getPlatform(SinaWeibo.NAME);
+                weibo.SSOSetting(true);
                 weibo.setPlatformActionListener(new PlatformActionListener() {
                     public void onError(Platform arg0, int arg1, Throwable arg2) {
                         //失败的回调，arg:平台对象，arg1:表示当前的动作，arg2:异常信息
