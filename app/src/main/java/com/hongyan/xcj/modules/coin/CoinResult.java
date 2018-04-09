@@ -63,9 +63,7 @@ public class CoinResult extends JPResult {
             XCJKMAEntity kmaEntity = new XCJKMAEntity(coinHistory, 7);
             ArrayList<Entry> ma7DataL = new ArrayList<>();
             for (int i = 0; i < kmaEntity.getMAs().size(); i++) {
-                if (i >= 7) {
-                    ma7DataL.add(new Entry(kmaEntity.getMAs().get(i), i));
-                }
+                ma7DataL.add(new Entry(kmaEntity.getMAs().get(i), i));
             }
             return ma7DataL;
         }
@@ -74,9 +72,7 @@ public class CoinResult extends JPResult {
             XCJKMAEntity kmaEntity = new XCJKMAEntity(coinHistory, 30);
             ArrayList<Entry> ma30DataL = new ArrayList<>();
             for (int i = 0; i < kmaEntity.getMAs().size(); i++) {
-                if (i >= 30) {
-                    ma30DataL.add(new Entry(kmaEntity.getMAs().get(i), i));
-                }
+                ma30DataL.add(new Entry(kmaEntity.getMAs().get(i), i));
             }
             return ma30DataL;
         }

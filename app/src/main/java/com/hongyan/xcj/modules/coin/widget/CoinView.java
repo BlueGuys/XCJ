@@ -37,7 +37,7 @@ public class CoinView extends LinearLayout {
     private View view;
     private CoinViewHeader mHeader;
     private ChartCollectView mCollectView;
-    private TextView tvCoinTime, tvCoinOpen, tvCoinHigh, tvCoinLow, tvCoinClose, tvCoinUp, tvCoinChange;
+    private TextView tvCoinTime, tvCoinOpen, tvCoinHigh, tvCoinLow, tvCoinClose, tvCoinUp, tvCoinChange, tvMA7, tvMA30;
     protected MyCombinedChart mChartKline, mChartVolume;
     //X轴标签的类
     protected XAxis xAxisKline, xAxisVolume;
@@ -49,6 +49,7 @@ public class CoinView extends LinearLayout {
     private CoinDataParser mParser;
     private ProgressBar progressBar;
 
+    private CoinResult.Data mData;
     private ArrayList<CoinResult.KLineBean> coinHistory;
 
     public CoinView(Context context) {
@@ -85,9 +86,15 @@ public class CoinView extends LinearLayout {
         tvCoinClose = view.findViewById(R.id.tv_chart_close);
         tvCoinUp = view.findViewById(R.id.tv_chart_up);
         tvCoinChange = view.findViewById(R.id.tv_chart_change);
+        tvMA7 = view.findViewById(R.id.tv_chart_ma7);
+        tvMA30 = view.findViewById(R.id.tv_chart_ma30);
     }
 
     public void updateData(CoinResult.Data data) {
+        if (data == null) {
+            return;
+        }
+        this.mData = data;
         mHeader.update(mParser.getCoinCurrent(data));
         coinHistory = data.getCoinHistory();
         invalidateEntry(coinHistory.size() - 1);
@@ -116,6 +123,18 @@ public class CoinView extends LinearLayout {
         tvCoinClose.setText("收：" + bean.close);
         tvCoinHigh.setText("高：" + bean.high);
         tvCoinLow.setText("低：" + bean.low);
+
+        if (mData != null) {
+            ArrayList<Entry> ma7 = mData.getMa7DataL();
+            Entry entry = ma7.get(index);
+            tvMA7.setText("" + entry.getVal());
+        }
+
+        if (mData != null) {
+            ArrayList<Entry> ma30 = mData.getMa30DataL();
+            Entry entry = ma30.get(index);
+            tvMA30.setText("" + entry.getVal());
+        }
 
         //涨幅
         if (StringUtils.isEmpty(bean.rose)) {
@@ -176,7 +195,7 @@ public class CoinView extends LinearLayout {
 //        axisLeftKline.setGridColor(getResources().getColor(R.color.minute_grayLine));
         axisLeftKline.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
         axisLeftKline.setLabelCount(4, false); //第一个参数是Y轴坐标的个数，第二个参数是 是否不均匀分布，true是不均匀分布
-        axisLeftKline.setSpaceTop(10);//距离顶部留白
+        axisLeftKline.setSpaceTop(50);//距离顶部留白
 
         axisRightKline = mChartKline.getAxisRight();
         axisRightKline.setDrawGridLines(false);

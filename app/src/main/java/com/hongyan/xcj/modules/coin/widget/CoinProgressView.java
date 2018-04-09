@@ -51,7 +51,7 @@ public class CoinProgressView extends View {
         canvas.drawColor(getResources().getColor(R.color.text_color_green));
         //画矩形
         int right = (int) (getWidth() * mCurrentProgress / 100);
-        mPaint.setColor(Color.RED);
+        mPaint.setColor(getResources().getColor(R.color.xcj_chart_red));
         mRect.set(0, 0, right, getHeight());
         canvas.drawRect(mRect, mPaint);
 

@@ -121,11 +121,19 @@ public class CoinDataParser {
         if (CoinDetailActivity.currentIndex == 0) {
             if (ma == 1) {
                 lineDataSetMa.setColor(mContext.getResources().getColor(R.color.xcj_line));
+            } else if (ma == 5) {
+                lineDataSetMa.setColor(mContext.getResources().getColor(R.color.xcj_line));
+            } else if (ma == 30) {
+                lineDataSetMa.setColor(mContext.getResources().getColor(R.color.chart_line_orange));
+            } else if (ma == 7) {
+                lineDataSetMa.setColor(mContext.getResources().getColor(R.color.chart_line_blue));
             } else {
                 lineDataSetMa.setColor(mContext.getResources().getColor(R.color.transparent));
             }
         } else {
-            if (ma == 5) {
+            if (ma == 1) {
+                lineDataSetMa.setColor(mContext.getResources().getColor(R.color.transparent));
+            } else if (ma == 5) {
                 lineDataSetMa.setColor(mContext.getResources().getColor(R.color.xcj_line));
             } else if (ma == 30) {
                 lineDataSetMa.setColor(mContext.getResources().getColor(R.color.chart_line_orange));

@@ -16,73 +16,48 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/ds380">
 
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/top_linear"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/ds80"
-                android:layout_alignParentLeft="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:layout_marginTop="@dimen/ds10"
-                android:layout_alignParentTop="true"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/logo"
-                    android:layout_width="@dimen/ds60"
-                    android:layout_height="@dimen/ds60"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/ds50"
-                    android:layout_marginRight="@dimen/ds6"
+                    android:layout_width="@dimen/ds80"
+                    android:layout_height="@dimen/ds80"
                     android:src="@drawable/icon_account_logout" />
 
-                <TextView
-                    android:id="@+id/tv_account"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@id/logo"
-                    android:text="hongyan@163.com"
-                    android:textColor="@color/white"
-                    android:textSize="15dp"
-                    android:visibility="gone" />
-
-                <TextView
-                    android:id="@+id/tv_login"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@id/logo"
-                    android:padding="@dimen/ds12"
-                    android:text="点击登录"
-                    android:textColor="@color/white"
-                    android:textSize="15dp" />
-            </RelativeLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="@dimen/ds100"
-                android:gravity="center_horizontal|bottom"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:text="烯财经"
-                    android:textColor="@color/white"
-                    android:textSize="19dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/ds30"
-                    android:text="专业     链接价值"
-                    android:textColor="@color/white"
-                    android:textSize="21dp"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_account"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="hongyan@163.com"
+                        android:textColor="@color/white"
+                        android:lines="1"
+                        android:textSize="15dp"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/tv_login"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_button_corner_white"
+                        android:padding="@dimen/ds12"
+                        android:text="点击登录"
+                        android:lines="1"
+                        android:textColor="@color/white"
+                        android:textSize="15dp" />
+                </LinearLayout>
             </LinearLayout>
 
         </RelativeLayout>
