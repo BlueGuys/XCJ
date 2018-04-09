@@ -67,7 +67,7 @@ public class ImageLoaderOptionHelper {
                     .cacheOnDisk(true)
                     .considerExifParams(true)
                     .bitmapConfig(Bitmap.Config.RGB_565)
-                    .displayer(new RoundedVignetteBitmapDisplayer(7, 5))
+                    .displayer(new RoundedBitmapDisplayer(7))//是否设置为圆角,弧度为多少
                     .build();
         }
         return mListImageOption;

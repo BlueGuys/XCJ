@@ -29,8 +29,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="币种"
-            android:textColor="@color/black"
-            android:textSize="13dp" />
+            android:textColor="@color/xcj_text_b"
+            android:textSize="15dp" />
 
         <TextView
             android:layout_width="0dp"
@@ -41,8 +41,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="最新价"
-            android:textColor="@color/black"
-            android:textSize="13dp" />
+            android:textColor="@color/xcj_text_b"
+            android:textSize="15dp" />
 
         <TextView
             android:layout_width="0dp"
@@ -53,8 +53,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="涨跌幅"
-            android:textColor="@color/black"
-            android:textSize="13dp" />
+            android:textColor="@color/xcj_text_b"
+            android:textSize="15dp" />
 
     </LinearLayout>
 

@@ -27,8 +27,8 @@
 
                 <ImageView
                     android:id="@+id/logo"
-                    android:layout_width="@dimen/ds80"
-                    android:layout_height="@dimen/ds80"
+                    android:layout_width="@dimen/ds110"
+                    android:layout_height="@dimen/ds110"
                     android:src="@drawable/icon_account_logout" />
 
                 <LinearLayout
@@ -41,9 +41,8 @@
                         android:id="@+id/tv_account"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="hongyan@163.com"
-                        android:textColor="@color/white"
                         android:lines="1"
+                        android:textColor="@color/white"
                         android:textSize="15dp"
                         android:visibility="gone" />
 
@@ -52,11 +51,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/bg_button_corner_white"
+                        android:lines="1"
                         android:padding="@dimen/ds12"
                         android:text="点击登录"
-                        android:lines="1"
                         android:textColor="@color/white"
-                        android:textSize="15dp" />
+                        android:textSize="14dp" />
                 </LinearLayout>
             </LinearLayout>
 

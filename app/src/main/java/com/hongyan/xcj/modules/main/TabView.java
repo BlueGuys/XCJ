@@ -14,11 +14,9 @@ import com.hongyan.xcj.R;
 public class TabView extends LinearLayout {
 
     private View view;
-    private TextView tv;
     private ImageView iv;
 
     private int[] icons;
-    private String label;
 
     private boolean isSelected;
 
@@ -33,7 +31,6 @@ public class TabView extends LinearLayout {
     public TabView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         view = LayoutInflater.from(context).inflate(R.layout.item_tab_layout_custom, this, true);
-        tv = view.findViewById(R.id.tv);
         iv = view.findViewById(R.id.logo);
     }
 
@@ -51,13 +48,10 @@ public class TabView extends LinearLayout {
      */
     public void setResource(int[] drawable, String text) {
         this.icons = drawable;
-        this.label = text;
         updateView();
     }
 
     private void updateView() {
-        tv.setText(label);
-        tv.setTextColor(isSelected ? getResources().getColor(R.color.c_main_blue_n) : getResources().getColor(R.color.black));
         iv.setImageResource(isSelected ? icons[1] : icons[0]);
     }
 }

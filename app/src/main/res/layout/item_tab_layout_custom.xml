@@ -7,13 +7,9 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="@dimen/ds44"
-        android:layout_height="@dimen/ds44"
-        android:src="@drawable/ic_launcher"
-        android:button="@null"/>
-    <TextView
-        android:id="@+id/tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="11dp"/>
+        android:src="@drawable/icon_tab_index_n"
+        android:paddingTop="@dimen/ds10"
+        android:paddingBottom="@dimen/ds10"/>
 </LinearLayout>
