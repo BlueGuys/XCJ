@@ -142,9 +142,9 @@ public class CoinView extends LinearLayout {
         } else {
             tvCoinUp.setText(bean.rose + "%");
             if (JavaTypesHelper.toFloat(bean.rose) > 0) {
-                tvCoinUp.setTextColor(Color.RED);
+                tvCoinUp.setTextColor(getResources().getColor(R.color.xcj_chart_red));
             } else {
-                tvCoinUp.setTextColor(getResources().getColor(R.color.text_color_green));
+                tvCoinUp.setTextColor(getResources().getColor(R.color.xcj_chart_green));
             }
         }
 
