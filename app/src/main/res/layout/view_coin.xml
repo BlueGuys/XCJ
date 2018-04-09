@@ -109,6 +109,46 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/ds30"
+                android:paddingTop="@dimen/ds10">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MA7："
+                    android:textColor="@color/chart_line_blue"
+                    android:textSize="10dp" />
+
+                <TextView
+                    android:id="@+id/tv_chart_ma7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/chart_line_blue"
+                    android:textSize="10dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/ds10"
+                    android:text="MA30："
+                    android:textColor="@color/chart_line_orange"
+                    android:textSize="10dp" />
+
+                <TextView
+                    android:id="@+id/tv_chart_ma30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/chart_line_orange"
+                    android:textSize="10dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:orientation="horizontal"
@@ -144,46 +184,6 @@
                     android:layout_height="wrap_content"
                     android:text="2.05%"
                     android:textColor="@color/xcj_text_b"
-                    android:textSize="10dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingLeft="@dimen/ds30"
-                android:paddingTop="@dimen/ds10">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="MA7："
-                    android:textColor="@color/chart_line_blue"
-                    android:textSize="10dp" />
-
-                <TextView
-                    android:id="@+id/tv_chart_ma7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textColor="@color/chart_line_blue"
-                    android:textSize="10dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/ds10"
-                    android:text="MA30："
-                    android:textColor="@color/chart_line_orange"
-                    android:textSize="10dp" />
-
-                <TextView
-                    android:id="@+id/tv_chart_ma30"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textColor="@color/chart_line_orange"
                     android:textSize="10dp" />
 
             </LinearLayout>
