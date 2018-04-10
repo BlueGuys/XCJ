@@ -7,96 +7,13 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <LinearLayout
+    <GridView
+        android:id="@+id/share_gridView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal"
+        android:numColumns="4"
         android:paddingBottom="@dimen/ds30"
-        android:paddingLeft="@dimen/ds30"
-        android:paddingRight="@dimen/ds30"
-        android:paddingTop="@dimen/ds30">
-
-        <LinearLayout
-            android:id="@+id/share_weibo"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="@dimen/ds100"
-                android:layout_height="@dimen/ds100"
-                android:src="@drawable/icon_share_weibo" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/ds20"
-                android:gravity="center"
-                android:text="微博"
-                android:textColor="@color/xcj_text_b"
-                android:textSize="14dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/share_qq"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="@dimen/ds100"
-                android:layout_height="@dimen/ds100"
-                android:src="@drawable/icon_share_qq" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/ds20"
-                android:gravity="center"
-                android:text="QQ"
-                android:textColor="@color/xcj_text_b"
-                android:textSize="14dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/share_qqzone"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="@dimen/ds100"
-                android:layout_height="@dimen/ds100"
-                android:src="@drawable/icon_share_qq_zone" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/ds20"
-                android:gravity="center"
-                android:text="QQ空间"
-                android:textColor="@color/xcj_text_b"
-                android:textSize="14dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/share_null"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-
-        </LinearLayout>
-
-    </LinearLayout>
+        android:paddingTop="@dimen/ds30" />
 
     <View
         android:layout_width="match_parent"

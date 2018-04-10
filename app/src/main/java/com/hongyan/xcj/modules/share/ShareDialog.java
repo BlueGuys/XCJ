@@ -10,7 +10,9 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.LinearLayout;
 
 import com.hongyan.xcj.R;
@@ -19,7 +21,8 @@ public class ShareDialog extends Dialog {
 
     private Button button;
     private Activity mActivity;
-    private LinearLayout linearWeibo, linearQQ, linearQQZone;
+    private GridView gridView;
+    private ShareAdapter adapter;
     private OnShareClickListener listener;
 
     public ShareDialog(Activity activity) {
@@ -51,35 +54,14 @@ public class ShareDialog extends Dialog {
     }
 
     public void initView() {
-        linearWeibo = this.findViewById(R.id.share_weibo);
-        linearQQ = this.findViewById(R.id.share_qq);
-        linearQQZone = this.findViewById(R.id.share_qqzone);
+        gridView = this.findViewById(R.id.share_gridView);
         button = this.findViewById(R.id.dialog_cancel);
-        linearWeibo.setOnClickListener(new View.OnClickListener() {
+        adapter = new ShareAdapter(mActivity);
+        gridView.setAdapter(adapter);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View view) {
-                if (listener != null) {
-                    listener.onShareWeibo();
-                }
-                dismiss();
-            }
-        });
-        linearQQ.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (listener != null) {
-                    listener.onShareQQ();
-                }
-                dismiss();
-            }
-        });
-        linearQQZone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (listener != null) {
-                    listener.onShareQQZone();
-                }
-                dismiss();
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                listener.onChannelSelect(position);
             }
         });
         button.setOnClickListener(new View.OnClickListener() {
@@ -95,10 +77,6 @@ public class ShareDialog extends Dialog {
     }
 
     public interface OnShareClickListener {
-        void onShareWeibo();
-
-        void onShareQQ();
-
-        void onShareQQZone();
+        void onChannelSelect(int channelId);
     }
 }

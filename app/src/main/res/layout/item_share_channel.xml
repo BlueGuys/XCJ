@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/ds10"
+    android:paddingTop="@dimen/ds10">
+
+    <ImageView
+        android:id="@+id/image_channel"
+        android:layout_width="@dimen/ds100"
+        android:layout_height="@dimen/ds100"
+        android:src="@drawable/icon_share_qq_zone" />
+
+    <TextView
+        android:id="@+id/tv_channel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ds20"
+        android:gravity="center"
+        android:text="QQ空间"
+        android:textColor="@color/xcj_text_b"
+        android:textSize="14dp" />
+</LinearLayout>

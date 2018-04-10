@@ -11,14 +11,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hongyan.xcj.R;
-import com.hongyan.xcj.base.BaseActivity;
 import com.hongyan.xcj.base.BaseFragment;
 import com.hongyan.xcj.base.BaseWebViewActivity;
 import com.hongyan.xcj.core.AccountInfo;
 import com.hongyan.xcj.core.AccountManager;
 import com.hongyan.xcj.core.AccountMessageEvent;
-import com.hongyan.xcj.core.ShareManager;
-import com.hongyan.xcj.modules.coin.CoinDetail2Activity;
 import com.hongyan.xcj.modules.collect.CollectActivity;
 import com.hongyan.xcj.modules.event.MarketMeMessageEvent;
 import com.hongyan.xcj.modules.event.MarketMessageEvent;

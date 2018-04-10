@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
 import android.webkit.JavascriptInterface;
 
@@ -14,10 +13,9 @@ import com.hongyan.xcj.base.BaseWebViewActivity;
 import com.hongyan.xcj.core.AccountManager;
 import com.hongyan.xcj.core.CollectionManager;
 import com.hongyan.xcj.core.LogUtils;
-import com.hongyan.xcj.core.ShareManager;
+import com.hongyan.xcj.modules.share.ShareManager;
 import com.hongyan.xcj.modules.event.CollectMessageEvent;
 import com.hongyan.xcj.modules.event.TokenMessageEvent;
-import com.hongyan.xcj.modules.main.info.recommend.InfoRecommendResult;
 import com.hongyan.xcj.utils.StringUtils;
 import com.umeng.analytics.MobclickAgent;
 

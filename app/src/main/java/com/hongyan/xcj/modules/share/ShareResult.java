@@ -1,4 +1,4 @@
-package com.hongyan.xcj.core;
+package com.hongyan.xcj.modules.share;
 
 
 import com.hongyan.xcj.base.JPResult;
