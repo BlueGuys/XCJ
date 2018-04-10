@@ -189,6 +189,15 @@
             </LinearLayout>
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/tv_chart_volume"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/coin_detail_chartK"
+            android:layout_marginLeft="@dimen/ds30"
+            android:layout_marginTop="@dimen/ds6"
+            android:textColor="@color/xcj_text_b"
+            android:textSize="10dp" />
 
         <ProgressBar
             android:id="@+id/coin_progress"

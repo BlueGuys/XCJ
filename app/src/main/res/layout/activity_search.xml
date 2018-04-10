@@ -27,9 +27,10 @@
             android:imeOptions="actionSearch"
             android:inputType="text"
             android:lines="1"
+            android:hint="搜索 平台/币种"
             android:paddingLeft="@dimen/ds14"
             android:textCursorDrawable="@drawable/shape_edit_text_background"
-            android:textSize="15dp" />
+            android:textSize="13dp" />
 
         <TextView
             android:layout_width="@dimen/ds140"

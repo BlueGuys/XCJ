@@ -1,21 +1,16 @@
 package com.hongyan.xcj.modules.main.market;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.hongyan.xcj.R;
 import com.hongyan.xcj.base.BaseFragment;
-import com.hongyan.xcj.modules.event.MarketMeMessageEvent;
 import com.hongyan.xcj.modules.event.MarketMessageEvent;
-import com.hongyan.xcj.modules.main.MainTabActivity;
 import com.hongyan.xcj.modules.main.market.all.MarketAllFragment;
 import com.hongyan.xcj.modules.main.market.my.MarketMyFragment;
 
@@ -29,6 +24,7 @@ public class MarketFragment extends BaseFragment {
     private MarketMyFragment marketMyFragment = new MarketMyFragment();
     private FragmentManager fragmentManager;
     private MarketToggleButton toggleButton;
+    private boolean isAttch = false;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,13 +46,13 @@ public class MarketFragment extends BaseFragment {
             @Override
             public void onChange(int buttonId) {
                 if (buttonId == 0) {
-                    getTransaction().replace(R.id.fragment_layout, marketAllFragment).commit();
+                    switchFragment(0);
                 } else {
-                    getTransaction().replace(R.id.fragment_layout, marketMyFragment).commit();
+                    switchFragment(1);
                 }
             }
         });
-        getTransaction().add(R.id.fragment_layout, marketAllFragment).commit();
+        switchFragment(0);
     }
 
     private FragmentTransaction getTransaction() {
@@ -77,7 +73,20 @@ public class MarketFragment extends BaseFragment {
         if (message == null) {
             return;
         }
-        getTransaction().replace(R.id.fragment_layout, marketMyFragment).commit();
+        switchFragment(1);
         toggleButton.slideRight();
+    }
+
+    private void switchFragment(int type) {
+        if (isAttch) {
+            if (type == 0) {
+                getTransaction().show(marketAllFragment).hide(marketMyFragment).commit();
+            } else {
+                getTransaction().show(marketMyFragment).hide(marketAllFragment).commit();
+            }
+        } else {
+            getTransaction().add(R.id.fragment_layout, marketAllFragment).add(R.id.fragment_layout, marketMyFragment).show(marketAllFragment).hide(marketMyFragment).commit();
+            isAttch = true;
+        }
     }
 }

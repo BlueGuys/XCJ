@@ -22,10 +22,11 @@
             android:background="@drawable/bg_search_edit_text"
             android:imeOptions="actionSearch"
             android:inputType="text"
+            android:hint="搜索 平台/币种"
             android:lines="1"
             android:paddingLeft="@dimen/ds24"
             android:textCursorDrawable="@drawable/shape_edit_text_background"
-            android:textSize="15dp" />
+            android:textSize="13dp" />
     </LinearLayout>
 
     <LinearLayout

@@ -37,7 +37,7 @@ public class CoinView extends LinearLayout {
     private View view;
     private CoinViewHeader mHeader;
     private ChartCollectView mCollectView;
-    private TextView tvCoinTime, tvCoinOpen, tvCoinHigh, tvCoinLow, tvCoinClose, tvCoinUp, tvCoinChange, tvMA7, tvMA30;
+    private TextView tvCoinTime, tvCoinOpen, tvCoinHigh, tvCoinLow, tvCoinClose, tvCoinUp, tvCoinChange, tvMA7, tvMA30, tvVolume;
     protected MyCombinedChart mChartKline, mChartVolume;
     //X轴标签的类
     protected XAxis xAxisKline, xAxisVolume;
@@ -88,6 +88,7 @@ public class CoinView extends LinearLayout {
         tvCoinChange = view.findViewById(R.id.tv_chart_change);
         tvMA7 = view.findViewById(R.id.tv_chart_ma7);
         tvMA30 = view.findViewById(R.id.tv_chart_ma30);
+        tvVolume = view.findViewById(R.id.tv_chart_volume);
     }
 
     public void updateData(CoinResult.Data data) {
@@ -123,6 +124,7 @@ public class CoinView extends LinearLayout {
         tvCoinClose.setText("收：" + bean.close);
         tvCoinHigh.setText("高：" + bean.high);
         tvCoinLow.setText("低：" + bean.low);
+        tvVolume.setText("量：" + bean.vol);
 
         if (mData != null) {
             ArrayList<Entry> ma7 = mData.getMa7DataL();
