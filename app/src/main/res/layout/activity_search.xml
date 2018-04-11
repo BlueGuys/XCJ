@@ -27,7 +27,7 @@
             android:imeOptions="actionSearch"
             android:inputType="text"
             android:lines="1"
-            android:hint="搜索 平台/币种"
+            android:hint="搜索 币种/资讯"
             android:paddingLeft="@dimen/ds14"
             android:textCursorDrawable="@drawable/shape_edit_text_background"
             android:textSize="13dp" />

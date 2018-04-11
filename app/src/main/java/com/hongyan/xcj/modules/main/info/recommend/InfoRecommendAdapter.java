@@ -119,6 +119,7 @@ public class InfoRecommendAdapter extends RecyclerView.Adapter<RecyclerView.View
                 ((ItemViewHolder) holder).articleName.setText(article.title);
                 ((ItemViewHolder) holder).articleTime.setText(article.update_time);
                 ((ItemViewHolder) holder).articleWebSite.setText(article.source);
+                ((ItemViewHolder) holder).articleComment.setText(article.comment);
                 ((ItemViewHolder) holder).collectImage.setImageResource(article.isCollect() ? R.drawable.icon_item_collection_s : R.drawable.icon_item_collection_n);
                 ImageLoader.getInstance().displayImage(article.photo, ((ItemViewHolder) holder).articleImage, ImageLoaderOptionHelper.getInstance().getListImageOption());
                 ((ItemViewHolder) holder).layout.setOnClickListener(new View.OnClickListener() {
@@ -167,6 +168,7 @@ public class InfoRecommendAdapter extends RecyclerView.Adapter<RecyclerView.View
         TextView articleName;
         TextView articleTime;
         TextView articleWebSite;
+        TextView articleComment;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
@@ -176,6 +178,7 @@ public class InfoRecommendAdapter extends RecyclerView.Adapter<RecyclerView.View
             articleName = itemView.findViewById(R.id.article_title);
             articleTime = itemView.findViewById(R.id.article_time);
             articleWebSite = itemView.findViewById(R.id.article_website);
+            articleComment = itemView.findViewById(R.id.article_comment);
         }
     }
 }

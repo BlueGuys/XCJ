@@ -37,6 +37,7 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.Vi
             holder.articleName.setText(collection.title);
             holder.articleTime.setText(collection.update_time);
             holder.articleWebSite.setText(collection.source);
+            holder.articleComment.setText(collection.comment);
             ImageLoader.getInstance().displayImage(collection.photo, holder.articleImage, ImageLoaderOptionHelper.getInstance().getListImageOption());
         }
     }
@@ -52,6 +53,7 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.Vi
         TextView articleName;
         TextView articleTime;
         TextView articleWebSite;
+        TextView articleComment;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -59,6 +61,7 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.Vi
             articleTime = itemView.findViewById(R.id.collection_time);
             articleWebSite = itemView.findViewById(R.id.collection_website);
             articleImage = itemView.findViewById(R.id.collection_image);
+            articleComment = itemView.findViewById(R.id.article_comment);
         }
     }
 }

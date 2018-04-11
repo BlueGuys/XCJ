@@ -47,6 +47,7 @@ public class InfoReportAdapter extends RecyclerView.Adapter<InfoReportAdapter.Vi
             holder.articleName.setText(report.title);
             holder.articleTime.setText(report.update_time);
             holder.articleWebSite.setText(report.source);
+            holder.articleComment.setText(report.comment);
             holder.collectImage.setImageResource(report.isCollect() ? R.drawable.icon_item_collection_s : R.drawable.icon_item_collection_n);
             ImageLoader.getInstance().displayImage(report.photo, holder.articleImage, ImageLoaderOptionHelper.getInstance().getListImageOption());
             holder.layout.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +66,7 @@ public class InfoReportAdapter extends RecyclerView.Adapter<InfoReportAdapter.Vi
                     }
                 }
             });
+            holder.collectImage.setVisibility(View.GONE);
         }
     }
 
@@ -80,6 +82,7 @@ public class InfoReportAdapter extends RecyclerView.Adapter<InfoReportAdapter.Vi
         TextView articleName;
         TextView articleTime;
         TextView articleWebSite;
+        TextView articleComment;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -89,6 +92,7 @@ public class InfoReportAdapter extends RecyclerView.Adapter<InfoReportAdapter.Vi
             articleName = itemView.findViewById(R.id.article_title);
             articleTime = itemView.findViewById(R.id.article_time);
             articleWebSite = itemView.findViewById(R.id.article_website);
+            articleComment = itemView.findViewById(R.id.article_comment);
         }
     }
 }

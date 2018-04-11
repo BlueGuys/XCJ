@@ -29,5 +29,6 @@ public class CollectionResult extends JPResult {
         public String photo;
         public String update_time;
         public String url;
+        public String comment;
     }
 }

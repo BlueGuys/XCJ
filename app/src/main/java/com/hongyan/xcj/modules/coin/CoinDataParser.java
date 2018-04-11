@@ -61,11 +61,11 @@ public class CoinDataParser {
         set.setAxisDependency(YAxis.AxisDependency.LEFT);
         set.setShadowWidth(1f);
         set.setValueTextSize(10f);
-        set.setDecreasingColor(mContext.getResources().getColor(R.color.decreasing_color));//设置开盘价高于收盘价的颜色
+        set.setDecreasingColor(mContext.getResources().getColor(R.color.xcj_chart_green));//设置开盘价高于收盘价的颜色
         set.setDecreasingPaintStyle(Paint.Style.FILL);
-        set.setIncreasingColor(mContext.getResources().getColor(R.color.increasing_color));//设置开盘价地狱收盘价的颜色
+        set.setIncreasingColor(mContext.getResources().getColor(R.color.xcj_chart_red));//设置开盘价地狱收盘价的颜色
         set.setIncreasingPaintStyle(Paint.Style.FILL);
-        set.setNeutralColor(mContext.getResources().getColor(R.color.decreasing_color));//设置开盘价等于收盘价的颜色
+        set.setNeutralColor(mContext.getResources().getColor(R.color.xcj_chart_green));//设置开盘价等于收盘价的颜色
         set.setShadowColorSameAsCandle(true);
         set.setHighlightLineWidth(1f);
         set.setHighLightColor(mContext.getResources().getColor(R.color.xcj_line));
@@ -82,8 +82,8 @@ public class CoinDataParser {
         set.setDrawValues(false);
 
         List<Integer> list = new ArrayList<>();
-        list.add(mContext.getResources().getColor(R.color.increasing_color));
-        list.add(mContext.getResources().getColor(R.color.decreasing_color));
+        list.add(mContext.getResources().getColor(R.color.xcj_chart_red));
+        list.add(mContext.getResources().getColor(R.color.xcj_chart_green));
         set.setColors(list);
         return new BarData(data.getXValList(), set);
     }

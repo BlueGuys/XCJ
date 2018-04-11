@@ -38,6 +38,7 @@ public class InfoReportResult extends JPResult {
          * rmb价格
          */
         public String url;
+        public String comment;
 
         public String is_collection;//0未收藏 1收藏
 

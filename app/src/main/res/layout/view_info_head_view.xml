@@ -22,7 +22,7 @@
             android:background="@drawable/bg_search_edit_text"
             android:imeOptions="actionSearch"
             android:inputType="text"
-            android:hint="搜索 平台/币种"
+            android:hint="搜索 币种/资讯"
             android:lines="1"
             android:paddingLeft="@dimen/ds24"
             android:textCursorDrawable="@drawable/shape_edit_text_background"

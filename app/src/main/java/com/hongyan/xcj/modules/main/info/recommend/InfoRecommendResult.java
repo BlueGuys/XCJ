@@ -29,6 +29,7 @@ public class InfoRecommendResult extends JPResult {
         public String update_time;
         public String url;
         public String is_collection;//0未收藏 1收藏
+        public String comment;
 
         public boolean isCollect() {
             return !StringUtils.isEmpty(is_collection) && "1".equals(is_collection);

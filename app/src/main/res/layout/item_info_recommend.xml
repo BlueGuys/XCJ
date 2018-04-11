@@ -75,7 +75,8 @@
                 android:id="@+id/image_collection"
                 android:layout_width="@dimen/ds40"
                 android:layout_height="@dimen/ds40"
-                android:src="@drawable/icon_item_collection_n" />
+                android:src="@drawable/icon_item_collection_n"
+                android:visibility="gone" />
         </LinearLayout>
 
     </RelativeLayout>
