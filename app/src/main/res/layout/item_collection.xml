@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/ds220"
+    android:layout_height="@dimen/ds240"
     android:orientation="horizontal"
-    android:paddingBottom="@dimen/ds20"
+    android:paddingBottom="@dimen/ds24"
     android:paddingLeft="@dimen/ds30"
-    android:paddingRight="@dimen/ds20"
-    android:paddingTop="@dimen/ds16">
+    android:paddingRight="@dimen/ds30"
+    android:paddingTop="@dimen/ds24">
 
     <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="2"
+        android:layout_weight="20"
         android:gravity="center_vertical"
         android:orientation="vertical"
-        android:layout_marginRight="@dimen/ds26">
+        android:layout_marginRight="@dimen/ds30">
 
         <TextView
             android:id="@+id/collection_title"
@@ -34,7 +34,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
-            android:layout_marginBottom="@dimen/ds10"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -55,6 +54,16 @@
                 android:text="财经网"
                 android:textColor="@color/gray"
                 android:textSize="11dp" />
+
+            <TextView
+                android:id="@+id/article_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/ds40"
+                android:lines="1"
+                android:text="2939评论"
+                android:textColor="@color/gray"
+                android:textSize="11dp" />
         </LinearLayout>
 
 
@@ -63,7 +72,7 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_weight="13"
         android:gravity="center">
 
         <ImageView

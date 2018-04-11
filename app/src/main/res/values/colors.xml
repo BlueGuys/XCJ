@@ -293,8 +293,8 @@
 
     <color name="increasing_color">#CD2626</color>
     <color name="decreasing_color">#006400</color>
-    <color name="xcj_chart_red">#ff1739</color>
-    <color name="xcj_chart_green">#23c477</color>
+    <color name="xcj_chart_red">#ff341b</color>
+    <color name="xcj_chart_green">#36ad2b</color>
     <color name="xcj_background">#edecf2</color>
     <color name="xcj_blue">#007AFF</color>
     <color name="xcj_line">#000000</color>
