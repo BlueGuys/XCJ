@@ -91,6 +91,7 @@ public class ScrollBannerView extends LinearLayout {
         if (entityList == null || entityList.size() == 0) {
             return;
         }
+        this.mList.clear();
         this.mList.addAll(entityList);
         headerVpAdapter.notifyDataSetChanged();
         notifyPointView();
