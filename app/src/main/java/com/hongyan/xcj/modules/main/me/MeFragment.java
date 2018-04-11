@@ -90,7 +90,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
                     return;
                 }
                 EventBus.getDefault().post(new MarketMeMessageEvent());
-                EventBus.getDefault().post(new MarketMessageEvent());
+                EventBus.getDefault().post(new MarketMessageEvent(1));
                 break;
             case R.id.linear_set_nike_name:
                 if (!AccountManager.getInstance().isLogin()) {

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center">
+    android:background="@color/xcj_background"
+    android:gravity="center"
+    android:orientation="vertical">
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/layout_swipe_refresh"
@@ -17,4 +18,31 @@
             android:background="@color/white" />
     </android.support.v4.widget.SwipeRefreshLayout>
 
-</LinearLayout>
+    <RelativeLayout
+        android:id="@+id/linear_not_login"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/xcj_background"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/image_add_coin"
+            android:layout_width="@dimen/ds70"
+            android:layout_height="@dimen/ds70"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/ds150"
+            android:src="@drawable/icon_add_coin" />
+
+        <TextView
+            android:id="@+id/tv_login_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/image_add_coin"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/ds30"
+            android:gravity="center"
+            android:textSize="15dp" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

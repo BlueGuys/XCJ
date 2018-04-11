@@ -73,8 +73,12 @@ public class MarketFragment extends BaseFragment {
         if (message == null) {
             return;
         }
-        switchFragment(1);
-        toggleButton.slideRight();
+        switchFragment(message.frgmentID);
+        if(message.frgmentID == 0){
+            toggleButton.slideLeft();
+        }else{
+            toggleButton.slideRight();
+        }
     }
 
     private void switchFragment(int type) {

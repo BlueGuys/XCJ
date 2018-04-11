@@ -6,7 +6,17 @@ package com.hongyan.xcj.modules.event;
 
 public class MarketMessageEvent {
 
-    public MarketMessageEvent() {
+    public int frgmentID;
 
+    public MarketMessageEvent(int frgmentID) {
+        this.frgmentID = frgmentID;
+    }
+
+    public int getFrgmentID() {
+        return frgmentID;
+    }
+
+    public void setFrgmentID(int frgmentID) {
+        this.frgmentID = frgmentID;
     }
 }
