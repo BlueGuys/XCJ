@@ -123,6 +123,7 @@ public class AnalysisFragment extends BaseFragment {
     }
 
     private void refresh() {
+        currentPage = 1;
         JPRequest request = new JPRequest<>(InfoAnalysisResult.class, UrlConst.getInfoAnalysisUrl(), new Response.Listener<JPResponse>() {
             @Override
             public void onResponse(JPResponse response) {
@@ -134,7 +135,6 @@ public class AnalysisFragment extends BaseFragment {
                 if (result != null && result.data != null) {
                     mArticleList.clear();
                     mArticleList.addAll(result.data.list);
-                    currentPage = 1;
                     helper.setSwipeToLoadEnabled("1".equals(result.data.hasMore));
                     notifyDataSetChanged();
                 }
@@ -152,6 +152,7 @@ public class AnalysisFragment extends BaseFragment {
     }
 
     private void loadMore() {
+        currentPage ++;
         JPRequest request = new JPRequest<>(InfoAnalysisResult.class, UrlConst.getInfoAnalysisUrl(), new Response.Listener<JPResponse>() {
             @Override
             public void onResponse(JPResponse response) {
@@ -163,9 +164,7 @@ public class AnalysisFragment extends BaseFragment {
                 if (result != null && result.data != null) {
                     mArticleList.addAll(result.data.list);
                     boolean hasMore = "1".equals(result.data.hasMore);
-                    if (hasMore) {
-                        currentPage++;
-                    } else {
+                    if (!hasMore) {
                         helper.setSwipeToLoadEnabled(false);
                     }
                     notifyDataSetChanged();

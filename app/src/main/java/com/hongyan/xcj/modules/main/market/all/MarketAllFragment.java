@@ -83,6 +83,7 @@ public class MarketAllFragment extends BaseFragment {
     }
 
     private void refresh() {
+        currentPage = 1;
         JPRequest request = new JPRequest<>(MarketResult.class, UrlConst.getMarketList(), new Response.Listener<JPResponse>() {
             @Override
             public void onResponse(JPResponse response) {
@@ -94,7 +95,6 @@ public class MarketAllFragment extends BaseFragment {
                 if (result != null && result.data != null) {
                     mAllMarketList.clear();
                     mAllMarketList.addAll(result.data.marketList);
-                    currentPage = 1;
                     helper.setSwipeToLoadEnabled("1".equals(result.data.hasMore));
                     notifyDataSetChanged();
                 }
@@ -106,12 +106,13 @@ public class MarketAllFragment extends BaseFragment {
             }
         });
         request.addParam("pagesize", "20");
-        request.addParam("p", 1);
+        request.addParam("p", currentPage);
         JPBaseModel baseModel = new JPBaseModel();
         baseModel.sendRequest(request);
     }
 
     private void loadMore() {
+        currentPage ++;
         JPRequest request = new JPRequest<>(MarketResult.class, UrlConst.getMarketList(), new Response.Listener<JPResponse>() {
             @Override
             public void onResponse(JPResponse response) {
@@ -123,9 +124,7 @@ public class MarketAllFragment extends BaseFragment {
                 if (result != null && result.data != null) {
                     mAllMarketList.addAll(result.data.marketList);
                     boolean hasMore = "1".equals(result.data.hasMore);
-                    if (hasMore) {
-                        currentPage++;
-                    }else{
+                    if (!hasMore) {
                         helper.setSwipeToLoadEnabled(false);
                     }
                     notifyDataSetChanged();
