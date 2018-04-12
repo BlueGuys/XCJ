@@ -59,7 +59,7 @@
 
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="5ac189b2f29d987bdf0001be" />
+            android:value="5acf092cf29d9819ca0000b0" />
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="Wandoujia" />
