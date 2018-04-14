@@ -102,8 +102,8 @@ public class InfoRecommendAdapter extends RecyclerView.Adapter<RecyclerView.View
             final ArrayList<InfoRecommendResult.AD> adList = (ArrayList<InfoRecommendResult.AD>) getItemData(position);
             for (int i = 0; i < adList.size(); i++) {
                 ScrollBannerView.Entity entity = new ScrollBannerView.Entity();
-                entity.setImageUrl(adList.get(position).photo);
-                entity.setTitle(adList.get(position).title);
+                entity.setImageUrl(adList.get(i).photo);
+                entity.setTitle(adList.get(i).title);
                 entityArrayList.add(entity);
             }
             ((HeadViewHolder) holder).headerView.setData(entityArrayList);
