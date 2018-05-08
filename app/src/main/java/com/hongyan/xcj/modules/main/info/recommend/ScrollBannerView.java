@@ -62,19 +62,7 @@ public class ScrollBannerView extends LinearLayout {
 
             @Override
             public void onPageSelected(int arg0) {
-//                currentPos = arg0;
-//                if (mList.size() > 0) {
-//                    tvTitle.setText(mList.get(arg0 % mList.size()).getTitle());
-//                    View view = pointLayout.getChildAt(arg0 % mList.size());
-//                    if (view != null) {
-//                        view.setBackgroundResource(R.drawable.yuan_pressed);
-//                    }
-//                    View view2 = pointLayout.getChildAt(oldPos % mList.size());
-//                    if (view2 != null) {
-//                        view2.setBackgroundResource(R.drawable.yuan_normal);
-//                    }
-//                }
-//                oldPos = arg0;
+                tvTitle.setText(mList.get(arg0).getTitle());
             }
 
             @Override
@@ -106,10 +94,6 @@ public class ScrollBannerView extends LinearLayout {
      */
     private void notifyPointView() {
         tvTitle.setText(mList.get(0).getTitle() != null ? mList.get(0).getTitle() : "");
-//        pointLayout.removeAllViews();
-//        for (int i = 0; i < mList.size(); i++) {
-//            pointLayout.addView(getPointView(mContext, i != 0));
-//        }
     }
 
     public static class Entity {
