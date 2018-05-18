@@ -60,6 +60,7 @@ public class ShareManager {
                 ShareResult result = (ShareResult) response.getResult();
                 if (result != null && result.data != null && result.data.share_info != null) {
                     LogUtils.e("ShareManager 分享信息获取成功");
+                    info = result.data.share_info;
                     showShareDialog(activity, result.data.share_info);
                 }
             }
@@ -90,10 +91,10 @@ public class ShareManager {
     private void handleShare(int channelId) {
         switch (channelId) {
             case 0:
-                shareToWeibo();
+                shareToWeChat();
                 break;
             case 1:
-                shareToWeChat();
+                shareToWeibo();
                 break;
             case 2:
                 shareToWeChatMoment();
