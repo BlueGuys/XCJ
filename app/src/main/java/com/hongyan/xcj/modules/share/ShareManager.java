@@ -1,9 +1,12 @@
 package com.hongyan.xcj.modules.share;
 
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.hongyan.xcj.R;
 import com.hongyan.xcj.base.BaseActivity;
 import com.hongyan.xcj.base.JPBaseModel;
 import com.hongyan.xcj.base.JPRequest;
@@ -85,6 +88,12 @@ public class ShareManager {
             @Override
             public void onChannelSelect(int channelId) {
                 handleShare(channelId);
+                BaseApplication.getInstance().postTaskInUIThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        dialog.dismiss();
+                    }
+                },1000);
             }
         });
     }
@@ -136,13 +145,15 @@ public class ShareManager {
     }
 
     private void shareToWeChat() {
+        Bitmap logo = BitmapFactory.decodeResource(BaseApplication.getInstance().getResources(), R.drawable.ic_launcher);
         Platform.ShareParams sp = new Platform.ShareParams();
         sp.setTitle(info.title);
         sp.setTitleUrl(info.note); // 标题的超链接
         sp.setText(info.note);
         sp.setImageUrl(info.photo);
-        sp.setSite("发布分享的网站名称");
-        sp.setSiteUrl("发布分享网站的地址");
+        sp.setImageData(logo);
+        sp.setUrl(info.url);
+        sp.setShareType(Platform.SHARE_WEBPAGE);
         Platform wx = ShareSDK.getPlatform(Wechat.NAME);
         wx.setPlatformActionListener(new PlatformActionListener() {
             public void onError(Platform arg0, int arg1, Throwable arg2) {
@@ -164,29 +175,33 @@ public class ShareManager {
     }
 
     private void shareToWeChatMoment() {
+        Bitmap logo = BitmapFactory.decodeResource(BaseApplication.getInstance().getResources(), R.drawable.ic_launcher);
         Platform.ShareParams sp = new Platform.ShareParams();
         sp.setTitle(info.title);
         sp.setTitleUrl(info.note); // 标题的超链接
         sp.setText(info.note);
         sp.setImageUrl(info.photo);
-//                sp.setSite("发布分享的网站名称");
-//                sp.setSiteUrl("发布分享网站的地址");
-        Platform weibo = ShareSDK.getPlatform(WechatMoments.NAME);
-        weibo.SSOSetting(true);
-        weibo.setPlatformActionListener(new PlatformActionListener() {
+        sp.setImageData(logo);
+        sp.setUrl(info.url);
+        sp.setShareType(Platform.SHARE_WEBPAGE);
+        Platform wx = ShareSDK.getPlatform(WechatMoments.NAME);
+        wx.setPlatformActionListener(new PlatformActionListener() {
             public void onError(Platform arg0, int arg1, Throwable arg2) {
+                Log.e("分享log","分享失败=========="+arg2.getMessage());
                 //失败的回调，arg:平台对象，arg1:表示当前的动作，arg2:异常信息
             }
 
             public void onComplete(Platform arg0, int arg1, HashMap arg2) {
+                Log.e("分享log","分享成功=========="+arg1);
                 //分享成功的回调
             }
 
             public void onCancel(Platform arg0, int arg1) {
+                Log.e("分享log","分享取消=========="+arg1);
                 //取消分享的回调
             }
         });
-        weibo.share(sp);// 执行图文分享
+        wx.share(sp);// 执行图文分享
     }
 
     private void shareToQQ() {

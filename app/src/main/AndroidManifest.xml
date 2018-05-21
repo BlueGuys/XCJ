@@ -50,7 +50,6 @@
         <activity android:name=".modules.article.ArticleActivity" />
         <activity android:name=".modules.setting.SetNickNameActivity" />
         <activity android:name=".modules.search.SearchActivity" />
-        <activity android:name=".wxapi.WXEntryActivity" />
         <activity
             android:name=".modules.share.ShareActivity"
             android:theme="@style/Share" />

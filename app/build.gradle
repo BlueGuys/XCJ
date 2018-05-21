@@ -60,12 +60,12 @@ MobSDK {
             }
             Wechat {
                 appId "wx0144f6e278db09e7"
-                appSecret "d3280acca2238befce7d089ca75cdc49"
+                appSecret "413bb60b972bd08462ce805df3b842a2"
                 shareByAppClient true
             }
             WechatMoments{
                 appId "wx0144f6e278db09e7"
-                appSecret "d3280acca2238befce7d089ca75cdc49"
+                appSecret "413bb60b972bd08462ce805df3b842a2"
                 shareByAppClient true
             }
         }
