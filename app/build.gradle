@@ -16,9 +16,8 @@ android {
         applicationId "com.hongyan.xcj"
         minSdkVersion 19
         targetSdkVersion 26
-        versionCode 1
-
-        versionName "1.0"
+        versionCode 101
+        versionName "1.0.1"
     }
     buildTypes {
         release {
